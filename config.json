@@ -1,0 +1,29 @@
+{
+  "site": {
+    "name": "BUCKLEY",
+    "shortName": "BUCKLEY",
+    "domain": "buckley.kr",
+    "url": "https://dtslib1979.github.io/buckley/",
+    "description": "Broadcasting Content Platform",
+    "tagline": "On Air. On Point.",
+    "established": "2026.01.23",
+    "themeColor": "#EC4899"
+  },
+  "owner": {
+    "name": "BUCKLEY",
+    "email": "buckley@buckley.kr",
+    "location": "\ub300\ud55c\ubbfc\uad6d"
+  },
+  "staff": {
+    "accessCode": "0123",
+    "storageKey": "buckley_staff_auth"
+  },
+  "card": {
+    "name": "BUCKLEY",
+    "title": "Broadcasting Content Platform",
+    "tagline": "On Air. On Point.",
+    "email": "buckley@buckley.kr",
+    "website": "https://buckley.kr",
+    "theme": "pink"
+  }
+}

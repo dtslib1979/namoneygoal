@@ -1,62 +1,109 @@
-# BUCKLEY 에이전트 프로토콜
+# BUCKLEY Agent Protocol
 
-> 이 문서는 Claude Code가 buckley 레포지토리에서 작업할 때 따라야 하는 가이드입니다.
-
----
-
-## 1. 프로젝트 개요
-
-### 목적
-방송 콘텐츠 플랫폼 - Broadcasting Content Branch
-
-### 기술 스택
-- 순수 정적 사이트 (HTML/CSS/JS)
-- GitHub Pages 호스팅
-
-### 핵심 가치
-- 방송 콘텐츠 편집
-- 스트리밍 자료 관리
-- 모바일 퍼스트
+> Claude Code agent guide for the buckley repository.
 
 ---
 
-## 2. HQ 연동
+## 1. Project Overview
 
-이 프로젝트는 **DTSLIB HQ**에서 관리됩니다.
+### Purpose
+Broadcasting Content Platform (On Air. On Point.)
 
-| 항목 | 값 |
-|------|-----|
-| **본사 레포** | dtslib1979/dtslib-branch |
-| **브랜치 ID** | buckley |
-| **상태** | active |
-| **공개** | public |
+### Tech Stack
+- Pure static site (HTML/CSS/JS)
+- GitHub Pages hosting
+- PWA manifest support
+
+### Core Values
+- Broadcasting content creation & management
+- Streaming resource management
+- Mobile-first, premium design
+- Pink (#EC4899) + Teal (#14B8A6) theme
 
 ---
 
-## 3. 폴더 구조
+## 2. HQ Integration
+
+This project is managed by **DTSLIB HQ**.
+
+| Item | Value |
+|------|-------|
+| **HQ Repo** | dtslib1979/dtslib-branch |
+| **Branch ID** | buckley |
+| **Status** | active |
+| **Visibility** | public |
+| **Domain** | buckley.kr |
+| **Established** | 2026.01.23 |
+
+---
+
+## 3. Folder Structure
 
 ```
 buckley/
-├── index.html              # 메인 페이지
-├── branch.json             # Franchise OS 설정
-├── CLAUDE.md               # 이 문서
-└── assets/
-    └── js/                 # Bridge SDK
+├── index.html              # Main production page (premium single-page)
+├── config.json             # Site configuration
+├── branch.json             # Franchise OS settings
+├── CLAUDE.md               # This document
+├── .nojekyll               # Disable Jekyll processing
+├── robots.txt              # SEO robots
+├── sitemap.xml             # Sitemap
+│
+├── assets/
+│   ├── manifest.json       # PWA manifest
+│   └── icons/              # App icons
+│
+├── articles/
+│   ├── index.html          # Articles list page
+│   └── articles.json       # Articles registry
+│
+├── card/
+│   └── index.html          # Business card page (OG-enabled)
+│
+├── staff/
+│   └── index.html          # Staff portal (access-controlled)
+│
+├── studio/
+│   └── index.html          # Broadcasting studio tools
+│
+└── tools/
+    └── index.html          # Content creation tools
 ```
 
 ---
 
-## 4. 커밋 컨벤션
+## 4. Design System
+
+| Token | Value |
+|-------|-------|
+| **Primary** | `#EC4899` (pink) |
+| **Accent** | `#14B8A6` (teal) |
+| **Background** | `#0f0a1a` (dark purple) |
+| **Text** | `#f5f5f5` |
+| **Fonts** | Inter, Cinzel, Cormorant Garamond |
+
+---
+
+## 5. Staff Access
+
+- Access code: configured in `config.json`
+- Storage key: `buckley_staff_auth` (sessionStorage)
+- Entry point: `/staff/`
+
+---
+
+## 6. Commit Convention
 
 ```
-feat: 새 기능 추가
-fix: 버그 수정
-docs: 문서 업데이트
-style: 디자인 변경
-content: 콘텐츠 추가/수정
+feat: New feature
+fix: Bug fix
+docs: Documentation update
+style: Design changes
+content: Content add/modify
+build: Production build changes
 ```
 
 ---
 
-*마지막 업데이트: 2026-01-23*
-*소속: DTSLIB HQ*
+*Last updated: 2026-01-23*
+*Affiliation: DTSLIB HQ*

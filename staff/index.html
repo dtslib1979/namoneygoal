@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Portal | BUCKLEY</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#EC4899">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #EC4899;
+      --pink-light: #F472B6;
+      --accent: #14B8A6;
+      --bg: #0f0a1a;
+      --bg-card: rgba(20, 14, 35, 0.9);
+      --text: #f5f5f5;
+      --text-secondary: rgba(255, 255, 255, 0.6);
+      --text-tertiary: rgba(255, 255, 255, 0.35);
+      --border-pink: rgba(236, 72, 153, 0.2);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-display: 'Cinzel', serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== Gate (Access Code) ===== */
+    .gate {
+      text-align: center;
+      width: 100%;
+      max-width: 320px;
+      animation: fadeIn 0.5s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .gate-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+
+    .gate-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .gate-desc {
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      margin-bottom: 32px;
+    }
+
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 240px;
+      margin: 0 auto 24px;
+    }
+
+    .key {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text);
+      font-size: 1.25rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .key:active {
+      transform: scale(0.92);
+      background: rgba(236, 72, 153, 0.1);
+      border-color: var(--border-pink);
+    }
+
+    .key-clear {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    .code-display {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .code-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid var(--border-pink);
+      transition: all 0.2s;
+    }
+
+    .code-dot.filled {
+      background: var(--pink);
+      border-color: var(--pink);
+      box-shadow: 0 0 8px rgba(236, 72, 153, 0.4);
+    }
+
+    .code-dot.error {
+      background: #ef4444;
+      border-color: #ef4444;
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+
+    /* ===== Dashboard ===== */
+    .dashboard {
+      width: 100%;
+      max-width: 640px;
+      display: none;
+      animation: fadeIn 0.5s ease both;
+    }
+
+    .dashboard.active {
+      display: block;
+    }
+
+    .dash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .dash-brand {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .dash-badge {
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: rgba(20, 184, 166, 0.1);
+      border: 1px solid rgba(20, 184, 166, 0.3);
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .dash-section {
+      margin-bottom: 32px;
+    }
+
+    .dash-section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--pink);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .dash-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 20px 24px;
+    }
+
+    .dash-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+    }
+
+    .dash-stat + .dash-stat {
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .dash-stat-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .dash-stat-value {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .dash-briefing {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .dash-logout {
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    .dash-logout button {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px 16px;
+      transition: color 0.2s;
+    }
+    .dash-logout button:hover { color: var(--pink); }
+
+    .back-link {
+      display: block;
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--pink); }
+  </style>
+</head>
+<body>
+  <!-- Access Gate -->
+  <div class="gate" id="gate">
+    <div class="gate-icon">&#9775;</div>
+    <h1 class="gate-title">Staff Portal</h1>
+    <p class="gate-desc">Enter access code to continue</p>
+
+    <div class="code-display" id="codeDisplay">
+      <div class="code-dot"></div>
+      <div class="code-dot"></div>
+      <div class="code-dot"></div>
+      <div class="code-dot"></div>
+    </div>
+
+    <div class="keypad">
+      <button class="key" onclick="pressKey('1')">1</button>
+      <button class="key" onclick="pressKey('2')">2</button>
+      <button class="key" onclick="pressKey('3')">3</button>
+      <button class="key" onclick="pressKey('4')">4</button>
+      <button class="key" onclick="pressKey('5')">5</button>
+      <button class="key" onclick="pressKey('6')">6</button>
+      <button class="key" onclick="pressKey('7')">7</button>
+      <button class="key" onclick="pressKey('8')">8</button>
+      <button class="key" onclick="pressKey('9')">9</button>
+      <button class="key key-clear" onclick="clearCode()">CLR</button>
+      <button class="key" onclick="pressKey('0')">0</button>
+      <button class="key key-clear" onclick="submitCode()">OK</button>
+    </div>
+
+    <a href="../" class="back-link">&larr; Back to BUCKLEY</a>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashboard">
+    <div class="dash-header">
+      <span class="dash-brand">BUCKLEY STAFF</span>
+      <span class="dash-badge">AUTHORIZED</span>
+    </div>
+
+    <div class="dash-section">
+      <div class="dash-section-title">Status</div>
+      <div class="dash-card">
+        <div class="dash-stat">
+          <span class="dash-stat-label">Platform</span>
+          <span class="dash-stat-value">Online</span>
+        </div>
+        <div class="dash-stat">
+          <span class="dash-stat-label">Articles</span>
+          <span class="dash-stat-value" id="articleCount">0</span>
+        </div>
+        <div class="dash-stat">
+          <span class="dash-stat-label">Last Update</span>
+          <span class="dash-stat-value">2026.01.23</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-section">
+      <div class="dash-section-title">Briefing</div>
+      <div class="dash-card">
+        <div class="dash-briefing">
+          Welcome to the BUCKLEY Staff Portal. This is the broadcasting content management interface. Use this dashboard to monitor platform status and manage content operations.
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-section">
+      <div class="dash-section-title">Quick Links</div>
+      <div class="dash-card">
+        <div class="dash-stat">
+          <span class="dash-stat-label">Studio</span>
+          <a href="../studio/" class="dash-stat-value" style="text-decoration:none;color:var(--accent)">Open &rarr;</a>
+        </div>
+        <div class="dash-stat">
+          <span class="dash-stat-label">Tools</span>
+          <a href="../tools/" class="dash-stat-value" style="text-decoration:none;color:var(--accent)">Open &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-logout">
+      <button onclick="logout()">Sign Out</button>
+    </div>
+  </div>
+
+  <script>
+    const ACCESS_CODE = '0123';
+    const STORAGE_KEY = 'buckley_staff_auth';
+    let currentCode = '';
+
+    // Check existing auth
+    if (sessionStorage.getItem(STORAGE_KEY) === 'true') {
+      showDashboard();
+    }
+
+    function pressKey(num) {
+      if (currentCode.length >= 4) return;
+      currentCode += num;
+      updateDots();
+      if (currentCode.length === 4) {
+        setTimeout(submitCode, 200);
+      }
+    }
+
+    function clearCode() {
+      currentCode = '';
+      updateDots();
+    }
+
+    function updateDots() {
+      const dots = document.querySelectorAll('.code-dot');
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('filled', i < currentCode.length);
+        dot.classList.remove('error');
+      });
+    }
+
+    function submitCode() {
+      if (currentCode === ACCESS_CODE) {
+        sessionStorage.setItem(STORAGE_KEY, 'true');
+        showDashboard();
+      } else {
+        const dots = document.querySelectorAll('.code-dot');
+        dots.forEach(d => { d.classList.add('error'); d.classList.remove('filled'); });
+        currentCode = '';
+        setTimeout(() => dots.forEach(d => d.classList.remove('error')), 600);
+      }
+    }
+
+    function showDashboard() {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('dashboard').classList.add('active');
+      loadStaffData();
+    }
+
+    function logout() {
+      sessionStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    }
+
+    async function loadStaffData() {
+      try {
+        const res = await fetch('../articles/articles.json');
+        const data = await res.json();
+        document.getElementById('articleCount').textContent = data.articles ? data.articles.length : 0;
+      } catch (e) {}
+    }
+  </script>
+</body>
+</html>

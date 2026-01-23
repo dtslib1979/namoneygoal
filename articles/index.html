@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles | BUCKLEY</title>
+  <meta name="description" content="BUCKLEY - Articles & Content">
+  <meta name="theme-color" content="#EC4899">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #EC4899;
+      --pink-light: #F472B6;
+      --accent: #14B8A6;
+      --bg: #0f0a1a;
+      --bg-card: rgba(20, 14, 35, 0.85);
+      --text: #f5f5f5;
+      --text-secondary: rgba(255, 255, 255, 0.6);
+      --text-tertiary: rgba(255, 255, 255, 0.35);
+      --border-pink: rgba(236, 72, 153, 0.2);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-display: 'Cinzel', serif;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --max-width: 640px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .header {
+      padding: 48px 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-brand {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      background: linear-gradient(135deg, var(--pink), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-back {
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+      transition: color 0.2s;
+    }
+    .header-back:hover { color: var(--pink); }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .page-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .articles-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 200px;
+    }
+
+    .article-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .article-item:hover {
+      border-color: var(--border-pink);
+      transform: translateY(-1px);
+    }
+
+    .article-item-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .article-item-meta {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 64px 24px;
+      color: var(--text-tertiary);
+      font-size: 0.875rem;
+      border: 1px dashed var(--border-subtle);
+      border-radius: var(--radius-lg);
+    }
+
+    .empty-state-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      opacity: 0.3;
+    }
+
+    .footer {
+      padding: 48px 0 32px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <a href="../" class="header-brand">BUCKLEY</a>
+      <a href="../" class="header-back">&larr; Back</a>
+    </header>
+
+    <h1 class="page-title">Articles</h1>
+    <p class="page-desc">Broadcasting content and insights.</p>
+
+    <div class="articles-list" id="articlesList">
+      <div class="empty-state">
+        <div class="empty-state-icon">&#9998;</div>
+        <p>No articles published yet.</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      &copy; 2026 BUCKLEY
+    </footer>
+  </div>
+
+  <script>
+    async function loadArticles() {
+      try {
+        const res = await fetch('articles.json');
+        const data = await res.json();
+        const list = document.getElementById('articlesList');
+
+        if (data.articles && data.articles.length > 0) {
+          list.innerHTML = data.articles.map(article => `
+            <div class="article-item" onclick="location.href='${article.slug || '#'}'">
+              <div class="article-item-title">${article.title}</div>
+              <div class="article-item-meta">${article.date || ''} ${article.category ? '&middot; ' + article.category : ''}</div>
+            </div>
+          `).join('');
+        }
+      } catch (e) {
+        // Keep empty state
+      }
+    }
+    loadArticles();
+  </script>
+</body>
+</html>
