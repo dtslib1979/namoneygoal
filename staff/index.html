@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LOTUS | Private Room</title>
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#0a0a14">
+  <meta name="theme-color" content="#0c0618">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #A855F7;
-      --primary-light: #C084FC;
-      --primary-dim: rgba(168, 85, 247, 0.08);
-      --primary-glow: rgba(168, 85, 247, 0.15);
-      --accent: #F59E0B;
-      --bg: #0a0a14;
-      --bg-deep: #050510;
-      --bg-card: rgba(12, 10, 24, 0.9);
+      --gold: #D4A853;
+      --gold-light: #E8C97A;
+      --gold-dim: rgba(212, 168, 83, 0.06);
+      --gold-glow: rgba(212, 168, 83, 0.2);
+      --purple: #A855F7;
+      --purple-dim: rgba(168, 85, 247, 0.05);
+      --bg: #0c0618;
+      --bg-deep: #080411;
+      --bg-card: rgba(12, 6, 24, 0.92);
       --text: #e8e8e8;
       --text-secondary: rgba(255, 255, 255, 0.5);
       --text-tertiary: rgba(255, 255, 255, 0.25);
       --text-ghost: rgba(255, 255, 255, 0.08);
-      --border: rgba(168, 85, 247, 0.12);
+      --border: rgba(212, 168, 83, 0.12);
       --border-subtle: rgba(255, 255, 255, 0.04);
       --font-sans: 'Inter', -apple-system, sans-serif;
       --font-display: 'Cinzel', serif;
@@ -63,7 +64,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 20px; height: 20px;
-      border: 1px solid var(--primary-light);
+      border: 1px solid var(--gold-light);
       border-radius: 50%;
       pointer-events: none;
       z-index: 99999;
@@ -77,7 +78,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 4px; height: 4px;
-      background: var(--primary);
+      background: var(--gold);
       border-radius: 50%;
       pointer-events: none;
       z-index: 99999;
@@ -86,8 +87,8 @@
 
     .cursor.hover {
       width: 50px; height: 50px;
-      background: rgba(168, 85, 247, 0.1);
-      border-color: var(--primary);
+      background: rgba(212, 168, 83, 0.08);
+      border-color: var(--gold);
     }
 
     /* Noise */
@@ -105,7 +106,7 @@
       position: fixed;
       width: 300px; height: 300px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(212, 168, 83, 0.05) 0%, rgba(168, 85, 247, 0.03) 50%, transparent 70%);
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       animation: orbFloat 8s ease-in-out infinite;
@@ -194,9 +195,9 @@
     }
 
     .code-dot.filled {
-      background: var(--primary);
-      border-color: var(--primary);
-      box-shadow: 0 0 12px var(--primary-glow);
+      background: var(--gold);
+      border-color: var(--gold);
+      box-shadow: 0 0 12px var(--gold-glow);
     }
 
     .code-dot.error {
@@ -240,9 +241,9 @@
     }
 
     .key:active, .key:hover {
-      border-color: var(--primary);
-      color: var(--primary-light);
-      background: var(--primary-dim);
+      border-color: var(--gold);
+      color: var(--gold-light);
+      background: var(--gold-dim);
       transform: scale(0.95);
     }
 
@@ -262,7 +263,7 @@
       transition: color 0.3s;
     }
 
-    .back-link:hover { color: var(--primary); }
+    .back-link:hover { color: var(--gold); }
 
     /* Dashboard */
     .dashboard {
@@ -305,14 +306,14 @@
       gap: 8px;
       font-family: var(--font-mono);
       font-size: 0.55rem;
-      color: var(--primary);
+      color: var(--gold);
       letter-spacing: 0.15em;
     }
 
     .dash-status-dot {
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--primary);
+      background: var(--gold);
       animation: statusBlink 2s ease-in-out infinite;
     }
 
@@ -364,7 +365,7 @@
       font-size: 0.55rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--primary);
+      color: var(--gold);
       margin-bottom: 16px;
     }
 
@@ -417,7 +418,7 @@
     }
 
     .dash-link:hover .dash-link-arrow {
-      color: var(--primary);
+      color: var(--gold);
       transform: translateX(4px);
     }
 
@@ -449,7 +450,7 @@
 
     .dash-logout:hover {
       border-color: var(--border);
-      color: var(--primary);
+      color: var(--gold);
     }
 
     @media (max-width: 480px) {
