@@ -3,32 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Staff Portal | LOTUS</title>
+  <title>LOTUS | Private Room</title>
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#A855F7">
+  <meta name="theme-color" content="#0a0a14">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --pink: #A855F7;
-      --pink-light: #F472B6;
+      --primary: #A855F7;
+      --primary-light: #C084FC;
+      --primary-dim: rgba(168, 85, 247, 0.08);
+      --primary-glow: rgba(168, 85, 247, 0.15);
       --accent: #F59E0B;
       --bg: #0a0a14;
-      --bg-card: rgba(20, 14, 35, 0.9);
-      --text: #f5f5f5;
-      --text-secondary: rgba(255, 255, 255, 0.6);
-      --text-tertiary: rgba(255, 255, 255, 0.35);
-      --border-pink: rgba(236, 72, 153, 0.2);
-      --border-subtle: rgba(255, 255, 255, 0.06);
+      --bg-deep: #050510;
+      --bg-card: rgba(12, 10, 24, 0.9);
+      --text: #e8e8e8;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.25);
+      --text-ghost: rgba(255, 255, 255, 0.08);
+      --border: rgba(168, 85, 247, 0.12);
+      --border-subtle: rgba(255, 255, 255, 0.04);
       --font-sans: 'Inter', -apple-system, sans-serif;
       --font-display: 'Cinzel', serif;
+      --font-elegant: 'Cormorant Garamond', serif;
+      --font-mono: 'Space Mono', monospace;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: var(--font-sans);
-      background: var(--bg);
+      background: var(--bg-deep);
       color: var(--text);
       min-height: 100vh;
       display: flex;
@@ -36,143 +45,314 @@
       justify-content: center;
       padding: 24px;
       -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+      cursor: none;
     }
 
-    /* ===== Gate (Access Code) ===== */
+    a { color: inherit; text-decoration: none; cursor: none; }
+    button { border: none; background: none; cursor: none; font: inherit; color: inherit; }
+
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+      a, button { cursor: pointer; }
+      .cursor, .cursor-dot { display: none !important; }
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 20px; height: 20px;
+      border: 1px solid var(--primary-light);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo),
+                  border-color 0.3s, background 0.3s;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+    }
+
+    .cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 4px; height: 4px;
+      background: var(--primary);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor.hover {
+      width: 50px; height: 50px;
+      background: rgba(168, 85, 247, 0.1);
+      border-color: var(--primary);
+    }
+
+    /* Noise */
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.03;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    }
+
+    /* Ambient orb */
+    .ambient-orb {
+      position: fixed;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.06) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: orbFloat 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+    }
+
+    /* Gate */
     .gate {
       text-align: center;
       width: 100%;
       max-width: 320px;
-      animation: fadeIn 0.5s ease both;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: gateIn 0.8s var(--ease-out-expo) 0.3s forwards;
+      position: relative;
+      z-index: 10;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+    @keyframes gateIn {
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .gate-icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
-      opacity: 0.6;
+    .gate-symbol {
+      width: 48px; height: 48px;
+      margin: 0 auto 32px;
+      position: relative;
+    }
+
+    .gate-symbol::before, .gate-symbol::after {
+      content: '';
+      position: absolute;
+      background: var(--text-tertiary);
+    }
+
+    .gate-symbol::before {
+      top: 50%; left: 10%;
+      width: 80%; height: 1px;
+      transform: translateY(-50%);
+    }
+
+    .gate-symbol::after {
+      left: 50%; top: 10%;
+      width: 1px; height: 80%;
+      transform: translateX(-50%);
+    }
+
+    .gate-symbol .circle {
+      position: absolute;
+      inset: 4px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      animation: gateRotate 20s linear infinite;
+    }
+
+    @keyframes gateRotate {
+      to { transform: rotate(360deg); }
     }
 
     .gate-title {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 48px;
     }
 
-    .gate-desc {
-      font-size: 0.8rem;
-      color: var(--text-tertiary);
-      margin-bottom: 32px;
+    .code-display {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .code-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      transition: all 0.3s var(--ease-out-expo);
+      position: relative;
+    }
+
+    .code-dot.filled {
+      background: var(--primary);
+      border-color: var(--primary);
+      box-shadow: 0 0 12px var(--primary-glow);
+    }
+
+    .code-dot.error {
+      background: #ef4444;
+      border-color: #ef4444;
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
+      animation: dotShake 0.4s ease;
+    }
+
+    @keyframes dotShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-3px); }
+      40% { transform: translateX(3px); }
+      60% { transform: translateX(-2px); }
+      80% { transform: translateX(2px); }
     }
 
     .keypad {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      max-width: 240px;
-      margin: 0 auto 24px;
+      max-width: 220px;
+      margin: 0 auto 32px;
     }
 
     .key {
       width: 100%;
       aspect-ratio: 1;
-      border-radius: 16px;
-      background: var(--bg-card);
+      border-radius: 50%;
+      background: transparent;
       border: 1px solid var(--border-subtle);
-      color: var(--text);
-      font-size: 1.25rem;
-      font-weight: 500;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 400;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.2s var(--ease-out-expo);
       -webkit-tap-highlight-color: transparent;
     }
 
-    .key:active {
-      transform: scale(0.92);
-      background: rgba(236, 72, 153, 0.1);
-      border-color: var(--border-pink);
+    .key:active, .key:hover {
+      border-color: var(--primary);
+      color: var(--primary-light);
+      background: var(--primary-dim);
+      transform: scale(0.95);
     }
 
-    .key-clear {
-      font-size: 0.75rem;
+    .key-action {
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
       color: var(--text-tertiary);
     }
 
-    .code-display {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 24px;
+    .back-link {
+      display: block;
+      margin-top: 32px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--text-ghost);
+      letter-spacing: 0.2em;
+      transition: color 0.3s;
     }
 
-    .code-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: 1px solid var(--border-pink);
-      transition: all 0.2s;
-    }
+    .back-link:hover { color: var(--primary); }
 
-    .code-dot.filled {
-      background: var(--pink);
-      border-color: var(--pink);
-      box-shadow: 0 0 8px rgba(236, 72, 153, 0.4);
-    }
-
-    .code-dot.error {
-      background: #ef4444;
-      border-color: #ef4444;
-      animation: shake 0.3s ease;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-4px); }
-      75% { transform: translateX(4px); }
-    }
-
-    /* ===== Dashboard ===== */
+    /* Dashboard */
     .dashboard {
       width: 100%;
       max-width: 640px;
       display: none;
-      animation: fadeIn 0.5s ease both;
+      position: relative;
+      z-index: 10;
     }
 
     .dashboard.active {
       display: block;
+      animation: dashIn 0.8s var(--ease-out-expo) both;
+    }
+
+    @keyframes dashIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .dash-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 32px;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .dash-brand {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
     }
 
-    .dash-badge {
-      font-size: 0.7rem;
-      padding: 4px 12px;
-      border-radius: 100px;
-      background: rgba(20, 184, 166, 0.1);
-      border: 1px solid rgba(20, 184, 166, 0.3);
-      color: var(--accent);
-      letter-spacing: 0.05em;
+    .dash-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      color: var(--primary);
+      letter-spacing: 0.15em;
+    }
+
+    .dash-status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: statusBlink 2s ease-in-out infinite;
+    }
+
+    @keyframes statusBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 32px;
+    }
+
+    .dash-cell {
+      padding: 28px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: border-color 0.3s;
+    }
+
+    .dash-cell:hover {
+      border-color: var(--border);
+    }
+
+    .dash-cell-label {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 8px;
+    }
+
+    .dash-cell-value {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text);
     }
 
     .dash-section {
@@ -180,83 +360,115 @@
     }
 
     .dash-section-title {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--pink);
-      letter-spacing: 0.1em;
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      color: var(--primary);
+      margin-bottom: 16px;
     }
 
     .dash-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 20px 24px;
-    }
-
-    .dash-stat {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 0;
-    }
-
-    .dash-stat + .dash-stat {
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .dash-stat-label {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-
-    .dash-stat-value {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--accent);
+      padding: 24px;
     }
 
     .dash-briefing {
-      font-size: 0.875rem;
+      font-family: var(--font-elegant);
+      font-size: 1rem;
+      font-style: italic;
       color: var(--text-secondary);
       line-height: 1.8;
     }
 
-    .dash-logout {
-      margin-top: 32px;
-      text-align: center;
+    .dash-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
     }
 
-    .dash-logout button {
-      font-size: 0.75rem;
-      color: var(--text-tertiary);
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 8px 16px;
-      transition: color 0.2s;
-    }
-    .dash-logout button:hover { color: var(--pink); }
-
-    .back-link {
-      display: block;
-      margin-top: 24px;
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--text-tertiary);
+    .dash-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.3s var(--ease-out-expo);
       text-decoration: none;
-      transition: color 0.2s;
     }
-    .back-link:hover { color: var(--pink); }
+
+    .dash-link:hover {
+      border-color: var(--border);
+      padding-left: 24px;
+    }
+
+    .dash-link-name {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .dash-link-arrow {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .dash-link:hover .dash-link-arrow {
+      color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    .dash-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dash-footer-text {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      color: var(--text-ghost);
+      letter-spacing: 0.15em;
+    }
+
+    .dash-logout {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      color: var(--text-tertiary);
+      letter-spacing: 0.1em;
+      padding: 8px 16px;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.3s;
+    }
+
+    .dash-logout:hover {
+      border-color: var(--border);
+      color: var(--primary);
+    }
+
+    @media (max-width: 480px) {
+      .dash-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="noise"></div>
+  <div class="ambient-orb"></div>
+
   <!-- Access Gate -->
   <div class="gate" id="gate">
-    <div class="gate-icon">&#9775;</div>
-    <h1 class="gate-title">Staff Portal</h1>
-    <p class="gate-desc">Enter access code to continue</p>
+    <div class="gate-symbol">
+      <div class="circle"></div>
+    </div>
+    <h1 class="gate-title">Private Room</h1>
 
     <div class="code-display" id="codeDisplay">
       <div class="code-dot"></div>
@@ -275,73 +487,105 @@
       <button class="key" onclick="pressKey('7')">7</button>
       <button class="key" onclick="pressKey('8')">8</button>
       <button class="key" onclick="pressKey('9')">9</button>
-      <button class="key key-clear" onclick="clearCode()">CLR</button>
+      <button class="key key-action" onclick="clearCode()">CLR</button>
       <button class="key" onclick="pressKey('0')">0</button>
-      <button class="key key-clear" onclick="submitCode()">OK</button>
+      <button class="key key-action" onclick="submitCode()">OK</button>
     </div>
 
-    <a href="../" class="back-link">&larr; Back to LOTUS</a>
+    <a href="../" class="back-link">&larr; RETURN</a>
   </div>
 
   <!-- Dashboard -->
   <div class="dashboard" id="dashboard">
     <div class="dash-header">
-      <span class="dash-brand">LOTUS STAFF</span>
-      <span class="dash-badge">AUTHORIZED</span>
+      <span class="dash-brand">LOTUS</span>
+      <div class="dash-status">
+        <span class="dash-status-dot"></span>
+        <span>AUTHORIZED</span>
+      </div>
     </div>
 
-    <div class="dash-section">
-      <div class="dash-section-title">Status</div>
-      <div class="dash-card">
-        <div class="dash-stat">
-          <span class="dash-stat-label">Platform</span>
-          <span class="dash-stat-value">Online</span>
-        </div>
-        <div class="dash-stat">
-          <span class="dash-stat-label">Articles</span>
-          <span class="dash-stat-value" id="articleCount">0</span>
-        </div>
-        <div class="dash-stat">
-          <span class="dash-stat-label">Last Update</span>
-          <span class="dash-stat-value">2026.01.23</span>
-        </div>
+    <div class="dash-grid">
+      <div class="dash-cell">
+        <div class="dash-cell-label">STATUS</div>
+        <div class="dash-cell-value">Online</div>
+      </div>
+      <div class="dash-cell">
+        <div class="dash-cell-label">ARTICLES</div>
+        <div class="dash-cell-value" id="articleCount">0</div>
+      </div>
+      <div class="dash-cell">
+        <div class="dash-cell-label">LAST UPDATE</div>
+        <div class="dash-cell-value">2026.01.23</div>
+      </div>
+      <div class="dash-cell">
+        <div class="dash-cell-label">MODE</div>
+        <div class="dash-cell-value">Operating</div>
       </div>
     </div>
 
     <div class="dash-section">
-      <div class="dash-section-title">Briefing</div>
+      <div class="dash-section-title">BRIEFING</div>
       <div class="dash-card">
         <div class="dash-briefing">
-          Welcome to the LOTUS Staff Portal. This is the broadcasting content management interface. Use this dashboard to monitor platform status and manage content operations.
+          This is the private workspace. A place where things are quietly made, observed, and refined. Not for display. For operation.
         </div>
       </div>
     </div>
 
     <div class="dash-section">
-      <div class="dash-section-title">Quick Links</div>
-      <div class="dash-card">
-        <div class="dash-stat">
-          <span class="dash-stat-label">Studio</span>
-          <a href="../studio/" class="dash-stat-value" style="text-decoration:none;color:var(--accent)">Open &rarr;</a>
-        </div>
-        <div class="dash-stat">
-          <span class="dash-stat-label">Tools</span>
-          <a href="../tools/" class="dash-stat-value" style="text-decoration:none;color:var(--accent)">Open &rarr;</a>
-        </div>
+      <div class="dash-section-title">WORKSPACE</div>
+      <div class="dash-links">
+        <a href="../studio/" class="dash-link">
+          <span class="dash-link-name">Studio</span>
+          <span class="dash-link-arrow">&rarr;</span>
+        </a>
+        <a href="../tools/" class="dash-link">
+          <span class="dash-link-name">Tools</span>
+          <span class="dash-link-arrow">&rarr;</span>
+        </a>
+        <a href="../articles/" class="dash-link">
+          <span class="dash-link-name">Articles</span>
+          <span class="dash-link-arrow">&rarr;</span>
+        </a>
       </div>
     </div>
 
-    <div class="dash-logout">
-      <button onclick="logout()">Sign Out</button>
+    <div class="dash-footer">
+      <span class="dash-footer-text">PRIVATE OFFICE</span>
+      <button class="dash-logout" onclick="logout()">SIGN OUT</button>
     </div>
   </div>
 
   <script>
+    // Custom Cursor
+    const cursor = document.getElementById('cursor');
+    const cursorDot = document.getElementById('cursorDot');
+    let cx = 0, cy = 0, dx = 0, dy = 0;
+
+    document.addEventListener('mousemove', (e) => { cx = e.clientX; cy = e.clientY; });
+
+    function animCursor() {
+      dx += (cx - dx) * 0.15;
+      dy += (cy - dy) * 0.15;
+      cursor.style.left = cx + 'px';
+      cursor.style.top = cy + 'px';
+      cursorDot.style.left = dx + 'px';
+      cursorDot.style.top = dy + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // Access System
     const ACCESS_CODE = '1126';
     const STORAGE_KEY = 'lotus_staff_auth';
     let currentCode = '';
 
-    // Check existing auth
     if (sessionStorage.getItem(STORAGE_KEY) === 'true') {
       showDashboard();
     }
@@ -351,7 +595,7 @@
       currentCode += num;
       updateDots();
       if (currentCode.length === 4) {
-        setTimeout(submitCode, 200);
+        setTimeout(submitCode, 250);
       }
     }
 
@@ -376,12 +620,15 @@
         const dots = document.querySelectorAll('.code-dot');
         dots.forEach(d => { d.classList.add('error'); d.classList.remove('filled'); });
         currentCode = '';
-        setTimeout(() => dots.forEach(d => d.classList.remove('error')), 600);
+        setTimeout(() => dots.forEach(d => d.classList.remove('error')), 800);
       }
     }
 
     function showDashboard() {
       document.getElementById('gate').style.display = 'none';
+      document.body.style.overflow = 'auto';
+      document.body.style.alignItems = 'flex-start';
+      document.body.style.paddingTop = '60px';
       document.getElementById('dashboard').classList.add('active');
       loadStaffData();
     }
