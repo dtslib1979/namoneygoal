@@ -1,29 +1,29 @@
 {
   "site": {
-    "name": "BUCKLEY",
-    "shortName": "BUCKLEY",
-    "domain": "buckley.kr",
-    "url": "https://dtslib1979.github.io/buckley/",
-    "description": "Broadcasting Content Platform",
-    "tagline": "On Air. On Point.",
+    "name": "LOTUS",
+    "shortName": "LOTUS",
+    "domain": "lotus.kr",
+    "url": "https://dtslib1979.github.io/lotus/",
+    "description": "LOTUS Creative Studio",
+    "tagline": "Bloom Beyond Limits",
     "established": "2026.01.23",
-    "themeColor": "#EC4899"
+    "themeColor": "#A855F7"
   },
   "owner": {
-    "name": "BUCKLEY",
-    "email": "buckley@buckley.kr",
-    "location": "\ub300\ud55c\ubbfc\uad6d"
+    "name": "LOTUS",
+    "email": "lotus@lotus.kr",
+    "location": "대한민국"
   },
   "staff": {
     "accessCode": "0123",
-    "storageKey": "buckley_staff_auth"
+    "storageKey": "lotus_staff_auth"
   },
   "card": {
-    "name": "BUCKLEY",
-    "title": "Broadcasting Content Platform",
-    "tagline": "On Air. On Point.",
-    "email": "buckley@buckley.kr",
-    "website": "https://buckley.kr",
-    "theme": "pink"
+    "name": "LOTUS",
+    "title": "LOTUS Creative Studio",
+    "tagline": "Bloom Beyond Limits",
+    "email": "lotus@lotus.kr",
+    "website": "https://lotus.kr",
+    "theme": "purple"
   }
 }

@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BUCKLEY | Business Card</title>
-  <meta name="description" content="BUCKLEY - Broadcasting Content Platform. On Air. On Point.">
-  <meta name="theme-color" content="#EC4899">
+  <title>LOTUS | Business Card</title>
+  <meta name="description" content="LOTUS - Creative Studio. Bloom Beyond Limits">
+  <meta name="theme-color" content="#A855F7">
 
   <!-- OG Tags for link preview -->
-  <meta property="og:title" content="BUCKLEY">
-  <meta property="og:description" content="Broadcasting Content Platform - On Air. On Point.">
+  <meta property="og:title" content="LOTUS">
+  <meta property="og:description" content="Creative Studio - Bloom Beyond Limits">
   <meta property="og:type" content="profile">
-  <meta property="og:url" content="https://dtslib1979.github.io/buckley/card/">
-  <meta property="og:site_name" content="BUCKLEY">
+  <meta property="og:url" content="https://dtslib1979.github.io/lotus/card/">
+  <meta property="og:site_name" content="LOTUS">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --pink: #EC4899;
+      --pink: #A855F7;
       --pink-light: #F472B6;
-      --accent: #14B8A6;
-      --bg: #0f0a1a;
+      --accent: #F59E0B;
+      --bg: #0a0a14;
       --bg-card: rgba(20, 14, 35, 0.9);
       --text: #f5f5f5;
       --text-secondary: rgba(255, 255, 255, 0.6);
@@ -227,18 +227,18 @@
   <div class="card-wrapper">
     <div class="card">
       <div class="card-avatar">B</div>
-      <h1 class="card-name">BUCKLEY</h1>
-      <p class="card-title">Broadcasting Content Platform</p>
-      <p class="card-tagline">On Air. On Point.</p>
+      <h1 class="card-name">LOTUS</h1>
+      <p class="card-title">Creative Studio</p>
+      <p class="card-tagline">Bloom Beyond Limits</p>
 
       <div class="card-details">
         <div class="card-detail">
           <span class="card-detail-icon">@</span>
-          <span>buckley@buckley.kr</span>
+          <span>lotus@lotus.kr</span>
         </div>
         <div class="card-detail">
           <span class="card-detail-icon">&#9741;</span>
-          <span>buckley.kr</span>
+          <span>lotus.kr</span>
         </div>
         <div class="card-detail">
           <span class="card-detail-icon">&#9873;</span>
@@ -253,7 +253,7 @@
 
       <div class="card-footer">EST. 2026.01.23</div>
     </div>
-    <a href="../" class="back-link">&larr; buckley.kr</a>
+    <a href="../" class="back-link">&larr; lotus.kr</a>
   </div>
 
   <div class="toast" id="toast"></div>
@@ -270,26 +270,26 @@
       const vcard = [
         'BEGIN:VCARD',
         'VERSION:3.0',
-        'FN:BUCKLEY',
-        'ORG:BUCKLEY',
-        'TITLE:Broadcasting Content Platform',
-        'EMAIL:buckley@buckley.kr',
-        'URL:https://buckley.kr',
-        'NOTE:On Air. On Point.',
+        'FN:LOTUS',
+        'ORG:LOTUS',
+        'TITLE:Creative Studio',
+        'EMAIL:lotus@lotus.kr',
+        'URL:https://lotus.kr',
+        'NOTE:Bloom Beyond Limits',
         'END:VCARD'
       ].join('\n');
       const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'BUCKLEY.vcf';
+      a.download = 'LOTUS.vcf';
       a.click();
       URL.revokeObjectURL(url);
       showToast('Contact saved!');
     }
 
     function copyLink() {
-      const url = 'https://buckley.kr';
+      const url = 'https://lotus.kr';
       if (navigator.clipboard) {
         navigator.clipboard.writeText(url).then(() => showToast('Link copied!')).catch(() => fbCopy(url));
       } else { fbCopy(url); }

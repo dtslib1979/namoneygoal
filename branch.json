@@ -1,17 +1,17 @@
 {
-  "id": "buckley",
-  "name": "BUCKLEY",
-  "tagline": "Broadcasting Content Platform",
+  "id": "lotus",
+  "name": "LOTUS",
+  "tagline": "Creative Studio",
   "hq": "dtslib1979/dtslib-branch",
   "version": "1.0",
   "status": "active",
   "visibility": "public",
-  "area": "content",
+  "area": "creative",
   "tier": "standard",
   "theme": {
-    "primary": "#EC4899",
-    "accent": "#14B8A6",
-    "bg": "#0f0a1a",
+    "primary": "#A855F7",
+    "accent": "#F59E0B",
+    "bg": "#0a0a14",
     "text": "#f5f5f5"
   },
   "subscriptions": [
@@ -28,12 +28,6 @@
       "target": "assets/feeds/eae"
     },
     {
-      "feedId": "alexandria-wisdom",
-      "publisher": "alexandria",
-      "autoSync": true,
-      "target": "assets/feeds/alexandria"
-    },
-    {
       "feedId": "hq-notices",
       "publisher": "hq",
       "autoSync": true,
@@ -46,5 +40,5 @@
       "target": "assets/js"
     }
   ],
-  "features": ["broadcasting"]
+  "features": ["creative"]
 }

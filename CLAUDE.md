@@ -1,13 +1,13 @@
-# BUCKLEY Agent Protocol
+# LOTUS Agent Protocol
 
-> Claude Code agent guide for the buckley repository.
+> Claude Code agent guide for the lotus repository.
 
 ---
 
 ## 1. Project Overview
 
 ### Purpose
-Broadcasting Content Platform (On Air. On Point.)
+LOTUS Creative Studio (Bloom Beyond Limits)
 
 ### Tech Stack
 - Pure static site (HTML/CSS/JS)
@@ -15,10 +15,10 @@ Broadcasting Content Platform (On Air. On Point.)
 - PWA manifest support
 
 ### Core Values
-- Broadcasting content creation & management
-- Streaming resource management
-- Mobile-first, premium design
-- Pink (#EC4899) + Teal (#14B8A6) theme
+- Creative content production
+- Premium visual experience
+- Mobile-first design
+- Purple (#A855F7) + Amber (#F59E0B) theme
 
 ---
 
@@ -29,10 +29,10 @@ This project is managed by **DTSLIB HQ**.
 | Item | Value |
 |------|-------|
 | **HQ Repo** | dtslib1979/dtslib-branch |
-| **Branch ID** | buckley |
+| **Branch ID** | lotus |
 | **Status** | active |
 | **Visibility** | public |
-| **Domain** | buckley.kr |
+| **Domain** | lotus.kr |
 | **Established** | 2026.01.23 |
 
 ---
@@ -40,8 +40,8 @@ This project is managed by **DTSLIB HQ**.
 ## 3. Folder Structure
 
 ```
-buckley/
-├── index.html              # Main production page (premium single-page)
+lotus/
+├── index.html              # Main production page
 ├── config.json             # Site configuration
 ├── branch.json             # Franchise OS settings
 ├── CLAUDE.md               # This document
@@ -58,16 +58,19 @@ buckley/
 │   └── articles.json       # Articles registry
 │
 ├── card/
-│   └── index.html          # Business card page (OG-enabled)
+│   └── index.html          # Business card page
 │
 ├── staff/
-│   └── index.html          # Staff portal (access-controlled)
+│   └── index.html          # Staff portal
 │
 ├── studio/
-│   └── index.html          # Broadcasting studio tools
+│   └── index.html          # Creative studio tools
 │
-└── tools/
-    └── index.html          # Content creation tools
+├── tools/
+│   └── index.html          # Production tools
+│
+└── docs/
+    └── chat.html           # Chat Hub
 ```
 
 ---
@@ -76,9 +79,9 @@ buckley/
 
 | Token | Value |
 |-------|-------|
-| **Primary** | `#EC4899` (pink) |
-| **Accent** | `#14B8A6` (teal) |
-| **Background** | `#0f0a1a` (dark purple) |
+| **Primary** | `#A855F7` (purple) |
+| **Accent** | `#F59E0B` (amber) |
+| **Background** | `#0a0a14` (deep navy) |
 | **Text** | `#f5f5f5` |
 | **Fonts** | Inter, Cinzel, Cormorant Garamond |
 
@@ -87,7 +90,7 @@ buckley/
 ## 5. Staff Access
 
 - Access code: configured in `config.json`
-- Storage key: `buckley_staff_auth` (sessionStorage)
+- Storage key: `lotus_staff_auth` (sessionStorage)
 - Entry point: `/staff/`
 
 ---

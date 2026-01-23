@@ -1,11 +1,11 @@
 {
-  "name": "BUCKLEY",
-  "short_name": "BUCKLEY",
-  "description": "Broadcasting Content Platform",
-  "start_url": "/buckley/",
+  "name": "LOTUS",
+  "short_name": "LOTUS",
+  "description": "LOTUS Creative Studio",
+  "start_url": "/lotus/",
   "display": "standalone",
-  "background_color": "#0f0a1a",
-  "theme_color": "#EC4899",
+  "background_color": "#0a0a14",
+  "theme_color": "#A855F7",
   "icons": [
     {
       "src": "icons/icon-192.png",
