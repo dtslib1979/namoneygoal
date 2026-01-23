@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUCKLEY Chat Hub</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0a1a;
+      color: #f5f5f5;
+      height: 100vh;
+      display: flex;
+    }
+    .sidebar {
+      width: 200px;
+      background: #1a1028;
+      border-right: 1px solid rgba(236,72,153,0.2);
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar h2 {
+      padding: 16px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      border-bottom: 1px solid rgba(236,72,153,0.2);
+    }
+    .channel {
+      padding: 12px 16px;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .channel:hover { background: rgba(236,72,153,0.08); }
+    .channel.active {
+      background: rgba(236,72,153,0.12);
+      border-left-color: #EC4899;
+    }
+    .channel.hotline.active { border-left-color: #14B8A6; }
+    .channel-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .channel-icon.global { background: #EC4899; }
+    .channel-icon.hotline { background: #14B8A6; }
+    .channel-name { font-size: 14px; }
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      background: #1a1028;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(236,72,153,0.2);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header h1 { font-size: 18px; }
+    .badge {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+    .badge.global { background: #EC4899; }
+    .badge.hotline { background: #14B8A6; }
+    .sync-btn {
+      margin-left: auto;
+      background: rgba(236,72,153,0.2);
+      border: 1px solid rgba(236,72,153,0.3);
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: #f5f5f5;
+      cursor: pointer;
+    }
+    .chat-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .message {
+      max-width: 75%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+    }
+    .message.mine {
+      align-self: flex-end;
+      background: #EC4899;
+      border-bottom-right-radius: 4px;
+    }
+    .message.other {
+      align-self: flex-start;
+      background: rgba(255,255,255,0.1);
+      border-bottom-left-radius: 4px;
+    }
+    .message .sender { font-size: 11px; opacity: 0.7; margin-bottom: 4px; }
+    .message .time { font-size: 10px; opacity: 0.5; margin-top: 4px; text-align: right; }
+    .input-area {
+      background: #1a1028;
+      padding: 16px 20px;
+      border-top: 1px solid rgba(236,72,153,0.2);
+      display: flex;
+      gap: 12px;
+    }
+    .input-area input {
+      flex: 1;
+      background: #0f0a1a;
+      border: 1px solid rgba(236,72,153,0.2);
+      border-radius: 20px;
+      padding: 12px 20px;
+      color: #f5f5f5;
+      font-size: 14px;
+      outline: none;
+    }
+    .input-area input:focus { border-color: #EC4899; }
+    .input-area button {
+      background: #EC4899;
+      border: none;
+      border-radius: 20px;
+      padding: 12px 24px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .status { font-size: 12px; color: rgba(255,255,255,0.5); text-align: center; padding: 8px; }
+    .setup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,10,26,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .setup-overlay.hidden { display: none; }
+    .setup-box {
+      background: #1a1028;
+      padding: 32px;
+      border-radius: 16px;
+      border: 1px solid rgba(236,72,153,0.3);
+      width: 90%;
+      max-width: 400px;
+    }
+    .setup-box h2 { margin-bottom: 20px; text-align: center; color: #EC4899; }
+    .setup-box label { display: block; margin-bottom: 8px; font-size: 14px; color: rgba(255,255,255,0.6); }
+    .setup-box input, .setup-box select {
+      width: 100%;
+      background: #0f0a1a;
+      border: 1px solid rgba(236,72,153,0.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #f5f5f5;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .setup-box button {
+      width: 100%;
+      background: #EC4899;
+      border: none;
+      border-radius: 8px;
+      padding: 14px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      .sidebar { width: 60px; }
+      .channel-name { display: none; }
+      .sidebar h2 { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="setup-overlay" id="setupOverlay">
+    <div class="setup-box">
+      <h2>BUCKLEY Chat</h2>
+      <label>Username</label>
+      <input type="text" id="inputUser" placeholder="Your name">
+      <label>Your Branch</label>
+      <select id="inputBranch">
+        <option value="buckley">Buckley</option>
+        <option value="hq">HQ (본사)</option>
+        <option value="koosy">Koosy</option>
+        <option value="gohsy">Gohsy</option>
+        <option value="artrew">Artrew</option>
+        <option value="papafly">Papafly</option>
+      </select>
+      <label>GitHub Token</label>
+      <input type="password" id="inputToken" placeholder="ghp_xxxx...">
+      <button onclick="saveSetup()">Enter</button>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <h2>Channels</h2>
+    <div class="channel active" data-channel="global" onclick="switchChannel('global')">
+      <div class="channel-icon global">G</div>
+      <span class="channel-name">전체</span>
+    </div>
+    <div class="channel hotline" data-channel="buckley" onclick="switchChannel('buckley')">
+      <div class="channel-icon hotline">B</div>
+      <span class="channel-name">Buckley</span>
+    </div>
+    <div class="channel hotline" data-channel="koosy" onclick="switchChannel('koosy')">
+      <div class="channel-icon hotline">K</div>
+      <span class="channel-name">Koosy</span>
+    </div>
+    <div class="channel hotline" data-channel="gohsy" onclick="switchChannel('gohsy')">
+      <div class="channel-icon hotline">G</div>
+      <span class="channel-name">Gohsy</span>
+    </div>
+    <div class="channel hotline" data-channel="artrew" onclick="switchChannel('artrew')">
+      <div class="channel-icon hotline">A</div>
+      <span class="channel-name">Artrew</span>
+    </div>
+    <div class="channel hotline" data-channel="papafly" onclick="switchChannel('papafly')">
+      <div class="channel-icon hotline">P</div>
+      <span class="channel-name">Papafly</span>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="header">
+      <h1 id="channelTitle">전체</h1>
+      <span class="badge global" id="channelBadge">Global</span>
+      <button class="sync-btn" onclick="syncChannel()">Sync</button>
+    </div>
+    <div class="chat-container" id="chatContainer"></div>
+    <div class="status" id="status">Ready</div>
+    <div class="input-area">
+      <input type="text" id="messageInput" placeholder="Type..." onkeypress="if(event.key==='Enter')sendMessage()">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const REPO_OWNER = 'dtslib1979';
+    const REPO_NAME = 'dtslib-branch';
+    const PATHS = {
+      global: 'meeting-minutes/chat-log.json',
+      buckley: 'meeting-minutes/hotline/buckley.json',
+      koosy: 'meeting-minutes/hotline/koosy.json',
+      gohsy: 'meeting-minutes/hotline/gohsy.json',
+      artrew: 'meeting-minutes/hotline/artrew.json',
+      papafly: 'meeting-minutes/hotline/papafly.json'
+    };
+
+    let currentUser = localStorage.getItem('chatUser');
+    let currentBranch = localStorage.getItem('chatBranch');
+    let ghToken = localStorage.getItem('ghToken');
+    let currentChannel = 'global';
+    let channelData = {};
+    let channelSha = {};
+
+    function init() {
+      if (!currentUser || !ghToken || !currentBranch) {
+        document.getElementById('setupOverlay').classList.remove('hidden');
+      } else {
+        document.getElementById('setupOverlay').classList.add('hidden');
+        syncChannel();
+      }
+    }
+
+    function saveSetup() {
+      const user = document.getElementById('inputUser').value.trim();
+      const branch = document.getElementById('inputBranch').value;
+      const token = document.getElementById('inputToken').value.trim();
+      if (user && token) {
+        currentUser = user;
+        currentBranch = branch;
+        ghToken = token;
+        localStorage.setItem('chatUser', user);
+        localStorage.setItem('chatBranch', branch);
+        localStorage.setItem('ghToken', token);
+        document.getElementById('setupOverlay').classList.add('hidden');
+        syncChannel();
+      }
+    }
+
+    function switchChannel(ch) {
+      currentChannel = ch;
+      document.querySelectorAll('.channel').forEach(el => el.classList.remove('active'));
+      document.querySelector(`[data-channel="${ch}"]`).classList.add('active');
+
+      const isGlobal = ch === 'global';
+      document.getElementById('channelTitle').textContent = isGlobal ? '전체' : ch.toUpperCase() + ' Hotline';
+      document.getElementById('channelBadge').textContent = isGlobal ? 'Global' : '1:1';
+      document.getElementById('channelBadge').className = 'badge ' + (isGlobal ? 'global' : 'hotline');
+
+      if (channelData[ch]) {
+        renderMessages(channelData[ch]);
+      } else {
+        syncChannel();
+      }
+    }
+
+    function setStatus(msg) {
+      document.getElementById('status').textContent = msg;
+    }
+
+    async function syncChannel() {
+      setStatus('Syncing...');
+      try {
+        const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${PATHS[currentChannel]}`, {
+          headers: { 'Authorization': `token ${ghToken}` }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          channelSha[currentChannel] = data.sha;
+          channelData[currentChannel] = JSON.parse(atob(data.content));
+          renderMessages(channelData[currentChannel]);
+          setStatus('Synced');
+        } else {
+          setStatus('Failed: ' + res.status);
+        }
+      } catch (e) {
+        setStatus('Error: ' + e.message);
+      }
+    }
+
+    function renderMessages(msgs) {
+      const container = document.getElementById('chatContainer');
+      container.innerHTML = '';
+      msgs.forEach(msg => {
+        const div = document.createElement('div');
+        div.className = 'message ' + (msg.user === currentUser ? 'mine' : 'other');
+        div.innerHTML = `
+          <div class="sender">${msg.user} ${msg.repo ? '@'+msg.repo : ''}</div>
+          <div class="text">${msg.text}</div>
+          <div class="time">${msg.time}</div>
+        `;
+        container.appendChild(div);
+      });
+      container.scrollTop = container.scrollHeight;
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const msg = {
+        user: currentUser,
+        repo: currentBranch,
+        text: text,
+        time: new Date().toLocaleString('ko-KR')
+      };
+
+      if (!channelData[currentChannel]) channelData[currentChannel] = [];
+      channelData[currentChannel].push(msg);
+      renderMessages(channelData[currentChannel]);
+      input.value = '';
+
+      setStatus('Saving...');
+      try {
+        const content = btoa(unescape(encodeURIComponent(JSON.stringify(channelData[currentChannel], null, 2))));
+        const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${PATHS[currentChannel]}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${ghToken}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: `chat: ${currentUser} in ${currentChannel}`,
+            content: content,
+            sha: channelSha[currentChannel]
+          })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          channelSha[currentChannel] = data.content.sha;
+          setStatus('Saved');
+        } else {
+          setStatus('Save failed');
+        }
+      } catch (e) {
+        setStatus('Error: ' + e.message);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
