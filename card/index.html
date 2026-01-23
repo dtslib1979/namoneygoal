@@ -3,42 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LOTUS | Business Card</title>
-  <meta name="description" content="LOTUS - Creative Studio. Bloom Beyond Limits">
-  <meta name="theme-color" content="#A855F7">
+  <title>LOTUS</title>
+  <meta name="description" content="LOTUS — A quiet space where things are made.">
+  <meta name="theme-color" content="#0a0a14">
 
-  <!-- OG Tags for link preview -->
   <meta property="og:title" content="LOTUS">
-  <meta property="og:description" content="Creative Studio - Bloom Beyond Limits">
+  <meta property="og:description" content="A quiet space where things are made.">
   <meta property="og:type" content="profile">
-  <meta property="og:url" content="https://dtslib1979.github.io/lotus/card/">
+  <meta property="og:url" content="https://lotus.kr/card/">
   <meta property="og:site_name" content="LOTUS">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --pink: #A855F7;
-      --pink-light: #F472B6;
+      --primary: #A855F7;
+      --primary-light: #C084FC;
+      --primary-dim: rgba(168, 85, 247, 0.08);
+      --primary-glow: rgba(168, 85, 247, 0.15);
       --accent: #F59E0B;
       --bg: #0a0a14;
-      --bg-card: rgba(20, 14, 35, 0.9);
-      --text: #f5f5f5;
-      --text-secondary: rgba(255, 255, 255, 0.6);
-      --text-tertiary: rgba(255, 255, 255, 0.35);
-      --border-pink: rgba(236, 72, 153, 0.25);
-      --border-subtle: rgba(255, 255, 255, 0.06);
-      --shadow-pink: 0 8px 32px rgba(236, 72, 153, 0.2);
+      --bg-deep: #050510;
+      --bg-card: rgba(12, 10, 24, 0.9);
+      --text: #e8e8e8;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.25);
+      --text-ghost: rgba(255, 255, 255, 0.08);
+      --border: rgba(168, 85, 247, 0.12);
+      --border-subtle: rgba(255, 255, 255, 0.04);
       --font-sans: 'Inter', -apple-system, sans-serif;
       --font-display: 'Cinzel', serif;
       --font-elegant: 'Cormorant Garamond', serif;
+      --font-mono: 'Space Mono', monospace;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: var(--font-sans);
-      background: var(--bg);
+      background: var(--bg-deep);
       color: var(--text);
       min-height: 100vh;
       display: flex;
@@ -46,105 +51,160 @@
       justify-content: center;
       padding: 24px;
       -webkit-font-smoothing: antialiased;
+      cursor: none;
     }
-    a { color: inherit; text-decoration: none; }
-    button { border: none; background: none; cursor: pointer; font: inherit; color: inherit; }
 
+    a { color: inherit; text-decoration: none; cursor: none; }
+    button { border: none; background: none; cursor: none; font: inherit; color: inherit; }
+
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+      a, button { cursor: pointer; }
+      .cursor, .cursor-dot { display: none !important; }
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 20px; height: 20px;
+      border: 1px solid var(--primary-light);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo),
+                  border-color 0.3s, background 0.3s;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+    }
+
+    .cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 4px; height: 4px;
+      background: var(--primary);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor.hover {
+      width: 50px; height: 50px;
+      background: rgba(168, 85, 247, 0.1);
+      border-color: var(--primary);
+    }
+
+    /* Noise */
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.03;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    }
+
+    /* Card */
     .card-wrapper {
       width: 100%;
-      max-width: 400px;
-      animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+      max-width: 380px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cardReveal 0.8s var(--ease-out-expo) 0.2s forwards;
+      position: relative;
+      z-index: 10;
     }
 
-    @keyframes cardIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    @keyframes cardReveal {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .card {
       background: var(--bg-card);
-      border: 1px solid var(--border-pink);
-      border-radius: 24px;
-      padding: 40px 32px;
+      border: 1px solid var(--border);
+      padding: 48px 36px;
       backdrop-filter: blur(20px);
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-pink);
     }
 
     .card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--pink), var(--accent), transparent);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
     }
 
-    .card-avatar {
-      width: 72px;
-      height: 72px;
+    .card-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .card-symbol {
+      width: 48px; height: 48px;
+      margin: 0 auto 24px;
+      border: 1px solid var(--border);
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--pink), var(--accent));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: white;
-      margin: 0 auto 24px;
-      box-shadow: 0 4px 16px rgba(236, 72, 153, 0.3);
+      position: relative;
+    }
+
+    .card-symbol::after {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--primary-glow);
     }
 
     .card-name {
       font-family: var(--font-display);
-      font-size: 1.75rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-align: center;
-      margin-bottom: 4px;
-    }
-
-    .card-title {
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-      text-align: center;
-      margin-bottom: 4px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
     }
 
     .card-tagline {
       font-family: var(--font-elegant);
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-style: italic;
       color: var(--text-tertiary);
-      text-align: center;
-      margin-bottom: 32px;
     }
 
     .card-details {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 20px 0;
+      padding: 24px 0;
+      margin-bottom: 32px;
       border-top: 1px solid var(--border-subtle);
       border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
     .card-detail {
       display: flex;
       align-items: center;
       gap: 16px;
-      font-size: 0.875rem;
-      color: var(--text-secondary);
     }
 
     .card-detail-icon {
-      width: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--primary);
+      width: 16px;
       text-align: center;
-      color: var(--pink);
-      font-size: 0.75rem;
       flex-shrink: 0;
+    }
+
+    .card-detail-text {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
     }
 
     .card-actions {
@@ -157,108 +217,149 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 100px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 14px 24px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.3s var(--ease-out-expo);
     }
 
     .card-btn-primary {
-      background: linear-gradient(135deg, var(--pink), var(--pink-light));
-      color: white;
-      box-shadow: 0 4px 16px rgba(236, 72, 153, 0.25);
+      background: var(--primary-dim);
+      border: 1px solid var(--border);
+      color: var(--primary-light);
     }
 
     .card-btn-primary:hover {
+      background: rgba(168, 85, 247, 0.15);
+      border-color: var(--primary);
       transform: translateY(-1px);
-      box-shadow: 0 6px 24px rgba(236, 72, 153, 0.35);
     }
 
     .card-btn-secondary {
-      border: 1px solid var(--border-pink);
-      color: var(--pink-light);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-tertiary);
     }
 
     .card-btn-secondary:hover {
-      background: rgba(236, 72, 153, 0.06);
+      border-color: var(--border);
+      color: var(--text-secondary);
     }
 
     .card-footer {
-      margin-top: 24px;
+      margin-top: 32px;
       text-align: center;
-      font-size: 0.7rem;
-      color: var(--text-tertiary);
-      letter-spacing: 0.1em;
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      color: var(--text-ghost);
+      letter-spacing: 0.2em;
     }
 
     .back-link {
       display: block;
-      margin-top: 24px;
+      margin-top: 32px;
       text-align: center;
-      font-size: 0.75rem;
-      color: var(--text-tertiary);
-      transition: color 0.2s;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--text-ghost);
+      letter-spacing: 0.2em;
+      transition: color 0.3s;
     }
-    .back-link:hover { color: var(--pink); }
 
+    .back-link:hover { color: var(--primary); }
+
+    /* Toast */
     .toast {
       position: fixed;
-      bottom: 24px;
+      bottom: 32px;
       left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: rgba(30, 20, 50, 0.95);
-      border: 1px solid var(--border-pink);
-      border-radius: 100px;
-      padding: 10px 20px;
-      font-size: 0.875rem;
-      color: var(--text);
+      transform: translateX(-50%) translateY(60px);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 10px 24px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--primary-light);
       backdrop-filter: blur(20px);
       z-index: 100;
       opacity: 0;
-      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.4s var(--ease-out-expo);
       pointer-events: none;
     }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   </style>
 </head>
 <body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="noise"></div>
+
   <div class="card-wrapper">
     <div class="card">
-      <div class="card-avatar">B</div>
-      <h1 class="card-name">LOTUS</h1>
-      <p class="card-title">Creative Studio</p>
-      <p class="card-tagline">Bloom Beyond Limits</p>
+      <div class="card-header">
+        <div class="card-symbol"></div>
+        <h1 class="card-name">LOTUS</h1>
+        <p class="card-tagline">A quiet space where things are made</p>
+      </div>
 
       <div class="card-details">
         <div class="card-detail">
           <span class="card-detail-icon">@</span>
-          <span>lotus@lotus.kr</span>
+          <span class="card-detail-text">lotus@lotus.kr</span>
         </div>
         <div class="card-detail">
-          <span class="card-detail-icon">&#9741;</span>
-          <span>lotus.kr</span>
+          <span class="card-detail-icon">#</span>
+          <span class="card-detail-text">lotus.kr</span>
         </div>
         <div class="card-detail">
-          <span class="card-detail-icon">&#9873;</span>
-          <span>South Korea</span>
+          <span class="card-detail-icon">~</span>
+          <span class="card-detail-text">Private Office</span>
         </div>
       </div>
 
       <div class="card-actions">
-        <button class="card-btn card-btn-primary" onclick="saveVCard()">Save Contact</button>
-        <button class="card-btn card-btn-secondary" onclick="copyLink()">Copy Link</button>
+        <button class="card-btn card-btn-primary" onclick="saveVCard()">SAVE CONTACT</button>
+        <button class="card-btn card-btn-secondary" onclick="copyLink()">COPY LINK</button>
       </div>
 
-      <div class="card-footer">EST. 2026.01.23</div>
+      <div class="card-footer">EST. 2026</div>
     </div>
-    <a href="../" class="back-link">&larr; lotus.kr</a>
+    <a href="../" class="back-link">&larr; RETURN</a>
   </div>
 
   <div class="toast" id="toast"></div>
 
   <script>
+    // Custom Cursor
+    const cursor = document.getElementById('cursor');
+    const cursorDot = document.getElementById('cursorDot');
+    let cx = 0, cy = 0, dx = 0, dy = 0;
+
+    document.addEventListener('mousemove', (e) => { cx = e.clientX; cy = e.clientY; });
+
+    function animCursor() {
+      dx += (cx - dx) * 0.15;
+      dy += (cy - dy) * 0.15;
+      cursor.style.left = cx + 'px';
+      cursor.style.top = cy + 'px';
+      cursorDot.style.left = dx + 'px';
+      cursorDot.style.top = dy + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // Toast
     function showToast(msg) {
       const t = document.getElementById('toast');
       t.textContent = msg;
@@ -266,16 +367,17 @@
       setTimeout(() => t.classList.remove('show'), 2500);
     }
 
+    // vCard
     function saveVCard() {
       const vcard = [
         'BEGIN:VCARD',
         'VERSION:3.0',
         'FN:LOTUS',
         'ORG:LOTUS',
-        'TITLE:Creative Studio',
+        'TITLE:Private Office',
         'EMAIL:lotus@lotus.kr',
         'URL:https://lotus.kr',
-        'NOTE:Bloom Beyond Limits',
+        'NOTE:A quiet space where things are made.',
         'END:VCARD'
       ].join('\n');
       const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
@@ -285,13 +387,14 @@
       a.download = 'LOTUS.vcf';
       a.click();
       URL.revokeObjectURL(url);
-      showToast('Contact saved!');
+      showToast('CONTACT SAVED');
     }
 
+    // Copy
     function copyLink() {
       const url = 'https://lotus.kr';
       if (navigator.clipboard) {
-        navigator.clipboard.writeText(url).then(() => showToast('Link copied!')).catch(() => fbCopy(url));
+        navigator.clipboard.writeText(url).then(() => showToast('LINK COPIED')).catch(() => fbCopy(url));
       } else { fbCopy(url); }
     }
 
@@ -303,7 +406,7 @@
       ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
-      showToast('Link copied!');
+      showToast('LINK COPIED');
     }
   </script>
 </body>

@@ -3,16 +3,16 @@
     "name": "LOTUS",
     "shortName": "LOTUS",
     "domain": "lotus.kr",
-    "url": "https://dtslib1979.github.io/lotus/",
-    "description": "LOTUS Creative Studio",
-    "tagline": "Bloom Beyond Limits",
+    "url": "https://lotus.kr",
+    "description": "A quiet space where things are made.",
+    "tagline": "Private Office",
     "established": "2026.01.23",
-    "themeColor": "#A855F7"
+    "themeColor": "#0a0a14"
   },
   "owner": {
     "name": "LOTUS",
     "email": "lotus@lotus.kr",
-    "location": "대한민국"
+    "location": "South Korea"
   },
   "staff": {
     "accessCode": "1126",
@@ -20,10 +20,10 @@
   },
   "card": {
     "name": "LOTUS",
-    "title": "LOTUS Creative Studio",
-    "tagline": "Bloom Beyond Limits",
+    "title": "Private Office",
+    "tagline": "A quiet space where things are made",
     "email": "lotus@lotus.kr",
     "website": "https://lotus.kr",
-    "theme": "purple"
+    "theme": "deep"
   }
 }
