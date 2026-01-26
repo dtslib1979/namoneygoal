@@ -1,6 +1,6 @@
-# LOTUS 에이전트 프로토콜 v3.0
+# NAMONEYGOAL 에이전트 프로토콜 v3.0
 
-> 이 문서는 Claude Code가 lotus 레포지토리에서 작업할 때 따라야 하는 가이드입니다.
+> 이 문서는 Claude Code가 namoneygoal 레포지토리에서 작업할 때 따라야 하는 가이드입니다.
 
 ---
 
@@ -51,7 +51,7 @@ LOTUS Creative Studio — Bloom Beyond Limits
 | 항목 | 값 |
 |------|-----|
 | **본사 레포** | dtslib1979/dtslib-branch |
-| **브랜치 ID** | lotus |
+| **브랜치 ID** | namoneygoal |
 | **상태** | active |
 | **공개** | public |
 | **도메인** | lotus.kr |
@@ -62,7 +62,7 @@ LOTUS Creative Studio — Bloom Beyond Limits
 ## 4. 폴더 구조
 
 ```
-lotus/
+namoneygoal/
 ├── index.html              # 메인 프로덕션 페이지
 ├── config.json             # 사이트 설정
 ├── branch.json             # 프랜차이즈 OS 설정
