@@ -9,38 +9,44 @@
 | 축 | 값 | 설명 |
 |----|-----|------|
 | **Governance** | `collaborator` | HQ와 강하게 연동. 구조/룰/업데이트 HQ 주도 |
-| **Cognitive** | `creator` | 콘텐츠 중심. AI는 도우미. 출력=콘텐츠 |
+| **Cognitive** | `hybrid` | Creator(콘텐츠) + Builder(시스템) 공존 |
 
 ### HQ Access 권한
 ```
 ✅ templates    - 페이지/컴포넌트 템플릿
 ✅ sync         - HQ 동기화 시스템
 ✅ broadcast    - 방송/강의 시스템
-❌ claude-code  - (Creator 타입 - 불필요)
-❌ sdk          - (Creator 타입 - 불필요)
+✅ claude-code  - Claude Code 에이전트 접근
+❌ sdk          - (버티컬 특화 - 불필요)
 ```
 
 ### 캐릭터 프로필
-- **본성**: 크리에이티브 스튜디오, 비주얼 중심
-- **강점**: 프리미엄 시각 콘텐츠, 디자인 감각
-- **전략**: 콘텐츠 제작에 집중, 시스템은 HQ 위임
+- **정체성**: 시흥 부동산 중개인용 AI 워키토키 길드
+- **본질**: AI 리터러시를 "허세 소비재"로 파는 직업 운영 시스템
+- **구조**: 브랜치의 브랜치 (12슬롯 한정)
+- **전략**: 첫 번째 버티컬 파일럿 → 검증 후 복제
 
 ---
 
 ## 2. 프로젝트 개요
 
 ### 목적
-LOTUS Creative Studio — Bloom Beyond Limits
+남원골 / namoneygoal — 부동산 중개인의 말이 자동으로 네이버에 쌓이는 12슬롯 한정 직업 운영 길드
+
+### 핵심 가치
+- 허세 소비재 (즉시 만족)
+- 디지털 캐릭터 전환
+- 생산성은 보너스
 
 ### Focus 영역
-- 크리에이티브 콘텐츠 제작
-- 프리미엄 비주얼 경험
-- 스튜디오 프로덕션
+- 부동산 중개인 전용
+- AI 워키토키
+- 허세 포트폴리오 (명함/블로그/유튜브/사무실)
 
 ### 기술 스택
 - 순수 정적 사이트 (HTML/CSS/JS)
 - GitHub Pages 호스팅
-- PWA manifest 지원
+- Branch HQ PR 시스템 연동
 
 ---
 
@@ -54,8 +60,9 @@ LOTUS Creative Studio — Bloom Beyond Limits
 | **브랜치 ID** | namoneygoal |
 | **상태** | active |
 | **공개** | public |
-| **도메인** | lotus.kr |
+| **도메인** | namoneygoal.kr |
 | **레지스트리** | `hq/registry/branches.json` |
+| **타입** | 버티컬 브랜치 (브랜치의 브랜치) |
 
 ---
 
@@ -63,34 +70,54 @@ LOTUS Creative Studio — Bloom Beyond Limits
 
 ```
 namoneygoal/
-├── index.html              # 메인 프로덕션 페이지
+├── index.html              # 남원골 HQ
 ├── config.json             # 사이트 설정
 ├── branch.json             # 프랜차이즈 OS 설정
 ├── CLAUDE.md               # 이 문서
 │
-├── assets/
-│   ├── manifest.json       # PWA 설정
-│   └── icons/              # 앱 아이콘
+├── slots/
+│   ├── slot01/             # 중개인 1 전용 페이지
+│   ├── slot02/
+│   └── ... (slot12까지)
 │
-├── articles/               # 아티클 콘텐츠
-├── card/                   # 명함 페이지
-├── staff/                  # 스태프 포털
-├── studio/                 # 크리에이티브 스튜디오
-├── tools/                  # 프로덕션 도구
-└── docs/                   # 문서
+├── modules/
+│   ├── card.html           # 내 디지털 명함
+│   ├── blog.html           # 내 디지털 블로그
+│   ├── video.html          # 내 디지털 유튜브
+│   ├── walkie.html         # AI 워키토키 입력
+│   └── pr.js               # PR 버튼 → 카톡 접수
+│
+├── console/
+│   ├── requests.html       # PR 요청 로그
+│   └── billing.html        # 정산 보드
+│
+├── docs/
+│   └── concept.md          # 컨셉 문서
+│
+└── assets/
+    └── icons/
 ```
 
 ---
 
-## 5. 디자인 시스템
+## 5. 슬롯 시스템
 
-| 토큰 | 값 |
-|------|-----|
-| **Primary** | `#A855F7` (purple) |
-| **Accent** | `#F59E0B` (amber) |
-| **Background** | `#0a0a14` (deep navy) |
-| **Text** | `#f5f5f5` |
-| **Fonts** | Inter, Cinzel, Cormorant Garamond |
+### 구조
+- 12슬롯 한정
+- slot01: 앵커 (친구 무료)
+- slot02~12: 유료
+
+### 각 슬롯 구성
+```
+slots/slotXX/
+├── index.html      # 개인 사무실
+├── card.html       # 디지털 명함
+├── blog.html       # 블로그
+└── config.json     # 개인 설정
+```
+
+### 슬롯 = 브랜치의 브랜치
+겉으로는 "각자의 사이트", 실제로는 **단일 관제 시스템**.
 
 ---
 
@@ -100,10 +127,10 @@ namoneygoal/
 feat: 새 기능 추가
 fix: 버그 수정
 docs: 문서 업데이트
-style: 디자인 변경
-content: 콘텐츠 추가/수정
-studio: 스튜디오 작업
-visual: 비주얼/이미지 관련
+slot: 슬롯 관련 작업
+module: 모듈 관련 작업
+console: 관제/정산 관련
+pr: PR 시스템 관련
 ```
 
 커밋 메시지 끝:
@@ -113,34 +140,52 @@ Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
 
 ---
 
-## 7. Creator 타입 작업 가이드
+## 7. Hybrid 타입 작업 가이드
+
+### Creator 모드 (콘텐츠)
+- 슬롯별 콘텐츠 제작
+- PD 모드 배치 작업
+- 영상/글 템플릿 관리
+
+### Builder 모드 (시스템)
+- PR 시스템 구축
+- 관제 콘솔 개발
+- 정산 보드 자동화
 
 ### 핵심 원칙
-> "비주얼이 먼저. 콘텐츠가 말한다."
-
-### AI 활용 방식
-- 콘텐츠 아이디어 브레인스토밍
-- 카피/캡션 작성 보조
-- 레이아웃 구조 제안
-- 비주얼 컨셉 정리
-
-### 하지 않는 것
-- 복잡한 자동화 시스템 구축
-- SDK 개발
-- 코드 중심 작업
+> "허세가 먼저 팔리고, 생산성은 나중에 따라온다."
 
 ---
 
 ## 8. 작업 시 주의사항
 
 1. 수정 전 반드시 `git pull` 실행
-2. 커밋 메시지는 명확하게
-3. 이미지 파일은 적절한 크기로 최적화
-4. 비주얼 품질 우선
-5. **Creator 원칙**: 콘텐츠 제작에 집중
+2. 슬롯 작업 시 slot 번호 명확히 구분
+3. PR 시스템은 Branch HQ와 연동 확인
+4. 정산 데이터는 민감 정보 주의
+5. **버티컬 특화**: 부동산 중개인 맥락 유지
+
+---
+
+## 9. 가격 구조
+
+| 항목 | 금액 |
+|------|------|
+| 입장비 | 50만 원 |
+| 월 유지 | 5만 원 |
+| PR 호출 | 1만 / 건 |
+| 세션 | 10만 / 시간 |
+
+---
+
+## 10. 타겟
+
+- 시흥 부동산 중개인
+- 이미 ChatGPT 사용자
+- 확보된 풀: 10명+ (남원 네트워크)
 
 ---
 
 *Version: 3.0*
 *Last Updated: 2026-01-27*
-*Affiliation: DTSLIB HQ (Collaborator)*
+*Affiliation: DTSLIB HQ (Collaborator - Vertical Branch)*
