@@ -5,24 +5,24 @@
     "status": "active"
   },
   "member": {
-    "name": "박씨 중개사",
+    "name": "김남원 공인중개사",
     "title": "부동산 전문 중개인",
-    "tagline": "시흥 남원골에서 20년, AI와 함께하는 현대적 중개인",
-    "avatar": "박",
-    "photo": "/assets/members/slot01.jpg",
+    "tagline": "시흥 남원골에서 신뢰로 거래하는 AI 쓰는 중개인",
+    "avatar": "김",
+    "photo": "/assets/members/kimnamwon.png",
     "logo": "/assets/logos/slot01.png"
   },
   "contact": {
-    "phone": "010-1234-5678",
-    "office": "경기도 시흥시 남원동 123-45",
-    "kakao": "@parksy_realty",
-    "email": "parksy@example.com"
+    "phone": "010-2831-7909",
+    "office": "경기도 시흥시 남원동",
+    "kakao": "@kimnamwon",
+    "email": ""
   },
   "website": {
     "url": "namoneygoal.kr/slots/slot01",
-    "blogTitle": "박씨의 부동산 이야기",
+    "blogTitle": "김남원의 부동산 이야기",
     "blogSubtitle": "시흥 남원골에서 들려주는 진짜 이야기",
-    "channelName": "박씨TV"
+    "channelName": "김남원TV"
   },
   "theme": {
     "primary": "#A855F7",
