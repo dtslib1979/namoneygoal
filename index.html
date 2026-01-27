@@ -889,28 +889,62 @@
   </footer>
 
   <script>
-    // 슬롯 데이터
-    const slots = [
-      { id: 'slot01', name: '박씨 중개사', avatar: '박', type: 'anchor', active: true },
-      { id: 'slot02', name: '김철수', avatar: '김', type: 'paid', active: true },
-      { id: 'slot03', name: '이영희', avatar: '이', type: 'paid', active: true },
-      { id: 'slot04', name: '정민수', avatar: '정', type: 'paid', active: true },
-      { id: 'slot05', name: '최지현', avatar: '최', type: 'paid', active: true },
-      { id: 'slot06', name: '박성훈', avatar: '박', type: 'paid', active: true },
-      { id: 'slot07', name: '강미영', avatar: '강', type: 'paid', active: true },
-      { id: 'slot08', name: '윤재혁', avatar: '윤', type: 'paid', active: true },
-      { id: 'slot09', name: '빈 슬롯', avatar: '?', type: 'empty', active: false },
-      { id: 'slot10', name: '빈 슬롯', avatar: '?', type: 'empty', active: false },
-      { id: 'slot11', name: '빈 슬롯', avatar: '?', type: 'empty', active: false },
-      { id: 'slot12', name: '빈 슬롯', avatar: '?', type: 'empty', active: false },
-    ];
+    // 슬롯 데이터 (registry.json에서 로딩)
+    let slots = [];
+    let registry = null;
 
-    // 블로그 데이터
-    const blogPosts = [
-      { title: '시흥 배곧 신도시 아파트 시세 동향', author: '박씨', avatar: '박', date: '2시간 전', emoji: '🏢' },
-      { title: '전세 사기 예방 체크리스트 5가지', author: '최지현', avatar: '최', date: '5시간 전', emoji: '🔒' },
-      { title: '재개발 투자, 지금이 적기인 이유', author: '정민수', avatar: '정', date: '1일 전', emoji: '📈' },
-    ];
+    // registry.json 로딩
+    async function loadRegistry() {
+      try {
+        const res = await fetch('/registry.json');
+        registry = await res.json();
+
+        // registry 데이터를 렌더링용으로 변환
+        slots = registry.slots.map(slot => ({
+          id: slot.id,
+          name: slot.member?.name || '빈 슬롯',
+          avatar: slot.member?.avatar || '?',
+          type: slot.type,
+          active: slot.status === 'active'
+        }));
+
+        return true;
+      } catch (e) {
+        console.error('Registry load failed:', e);
+        // 폴백 데이터
+        slots = Array.from({length: 12}, (_, i) => ({
+          id: `slot${String(i+1).padStart(2, '0')}`,
+          name: '빈 슬롯',
+          avatar: '?',
+          type: i === 0 ? 'anchor' : 'paid',
+          active: false
+        }));
+        return false;
+      }
+    }
+
+    // 블로그 데이터 (활성 슬롯에서 수집)
+    async function loadBlogPosts() {
+      const posts = [];
+      for (const slot of slots.filter(s => s.active)) {
+        try {
+          const stored = localStorage.getItem(`nmg_blog_${slot.id}`);
+          if (stored) {
+            const slotPosts = JSON.parse(stored);
+            slotPosts.slice(0, 2).forEach(p => {
+              posts.push({
+                ...p,
+                author: slot.name,
+                avatar: slot.avatar,
+                slotId: slot.id
+              });
+            });
+          }
+        } catch (e) {}
+      }
+      // 최신순 정렬
+      return posts.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+    }
 
     // 포탈 렌더링
     function renderPortals() {
@@ -921,7 +955,8 @@
 
       grid.innerHTML = slots.map(slot => `
         <a href="${slot.active ? '/slots/' + slot.id + '/' : '#'}"
-           class="portal-gate ${slot.type} ${!slot.active ? 'empty' : ''}">
+           class="portal-gate ${slot.type} ${!slot.active ? 'empty' : ''}"
+           ${!slot.active ? 'onclick="event.preventDefault(); alert(\'빈 슬롯입니다. 입장 신청하세요!\');"' : ''}>
           <div class="portal-avatar">${slot.avatar}</div>
           <div class="portal-name">${slot.name}</div>
         </a>
@@ -929,22 +964,56 @@
     }
 
     // 블로그 렌더링
-    function renderBlog() {
+    async function renderBlog() {
       const feed = document.getElementById('blogFeed');
-      feed.innerHTML = blogPosts.map(post => `
-        <article class="blog-card">
+      const posts = await loadBlogPosts();
+
+      if (posts.length === 0) {
+        feed.innerHTML = `
+          <div class="blog-card">
+            <div class="blog-card-inner">
+              <div class="blog-thumb">📝</div>
+              <div class="blog-content">
+                <div class="blog-meta">남원골 HQ</div>
+                <h3 class="blog-title">아직 소식이 없습니다. 멤버들의 첫 글을 기다려주세요!</h3>
+              </div>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      feed.innerHTML = posts.map(post => `
+        <article class="blog-card" onclick="location.href='/slots/${post.slotId}/blog.html'">
           <div class="blog-card-inner">
-            <div class="blog-thumb">${post.emoji}</div>
+            <div class="blog-thumb">${getCategoryIcon(post.category)}</div>
             <div class="blog-content">
               <div class="blog-meta">
                 <div class="blog-author-avatar">${post.avatar}</div>
-                ${post.author} · ${post.date}
+                ${post.author} · ${formatDate(post.date)}
               </div>
               <h3 class="blog-title">${post.title}</h3>
             </div>
           </div>
         </article>
       `).join('');
+    }
+
+    function getCategoryIcon(category) {
+      const icons = { '매물소개': '🏠', '시세정보': '📊', '투자팁': '💡', '지역소식': '📰', '일상': '☕' };
+      return icons[category] || '📝';
+    }
+
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      const now = new Date();
+      const diff = now - date;
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      if (hours < 1) return '방금 전';
+      if (hours < 24) return `${hours}시간 전`;
+      const days = Math.floor(hours / 24);
+      if (days < 7) return `${days}일 전`;
+      return date.toLocaleDateString('ko-KR');
     }
 
     // 초크보드
@@ -1085,10 +1154,16 @@
     }
 
     // 초기화
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+      // 1. registry.json 로딩
+      await loadRegistry();
+
+      // 2. 렌더링
       renderPortals();
-      renderBlog();
+      await renderBlog();
       initChalkboard();
+
+      console.log('남원골 HQ 초기화 완료', { slots: slots.length, active: slots.filter(s => s.active).length });
     });
   </script>
 </body>

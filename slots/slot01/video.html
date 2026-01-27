@@ -1,15 +1,687 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>내 디지털 유튜브</title>
-  <script>
-    // Redirect to module with slot context
-    window.location.href = '/modules/video.html?slot=slot01';
-  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0A0A0F">
+  <title>유튜브 | 김남원 공인중개사</title>
+  <meta name="description" content="김남원TV - 시흥 부동산 영상 채널">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="남원골">
+  <meta property="og:url" content="https://namoneygoal.vercel.app/slots/slot01/video.html">
+  <meta property="og:title" content="김남원TV">
+  <meta property="og:description" content="시흥 부동산 영상 채널">
+  <meta property="og:image" content="https://namoneygoal.vercel.app/assets/members/kimnamwon.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <link rel="icon" href="/assets/members/kimnamwon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --gold-light: #E8C547;
+      --gold-dim: rgba(212,175,55,.12);
+      --red: #FF0000;
+      --red-dim: rgba(255,0,0,.15);
+      --bg: #0A0A0F;
+      --bg-elevated: #12121A;
+      --bg-card: #18182A;
+      --text: #FAFAF8;
+      --text-secondary: rgba(250,250,248,.75);
+      --text-muted: rgba(250,250,248,.5);
+      --border: rgba(250,250,248,.1);
+      --border-gold: rgba(212,175,55,.25);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Noto Sans KR', -apple-system, sans-serif;
+      font-size: 15px;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,15,.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      padding-top: calc(12px + var(--safe-top));
+    }
+
+    .header-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-btn {
+      width: 36px; height: 36px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      color: var(--gold);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .back-btn:active {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    .header-title {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .header-badge {
+      background: var(--red);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* Main */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: calc(80px + var(--safe-top)) 16px calc(100px + var(--safe-bottom));
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 20px 0 40px;
+    }
+
+    .hero-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .youtube-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--red);
+      color: #fff;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .youtube-link:active {
+      transform: scale(0.96);
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border-gold), transparent);
+    }
+
+    /* Video Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+
+    .video-card:active {
+      border-color: var(--gold);
+      transform: scale(0.98);
+    }
+
+    .video-thumb {
+      aspect-ratio: 16/9;
+      background: var(--bg-elevated);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-thumb-placeholder {
+      font-size: 2.5rem;
+    }
+
+    .video-play {
+      position: absolute;
+      width: 48px; height: 48px;
+      background: rgba(0,0,0,.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .video-info {
+      padding: 12px;
+    }
+
+    .video-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .video-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      grid-column: 1 / -1;
+    }
+
+    .empty-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+
+    .empty-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .empty-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Add Button */
+    .add-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--bg);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .add-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* Floating Action */
+    .floating-action {
+      position: fixed;
+      bottom: 24px;
+      bottom: calc(24px + var(--safe-bottom));
+      right: 20px;
+      z-index: 90;
+    }
+
+    .fab {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 50%;
+      color: var(--bg);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(212,175,55,.4);
+    }
+
+    .fab:active {
+      transform: scale(0.9);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,.8);
+      padding: 16px;
+      align-items: flex-end;
+    }
+
+    .modal.show { display: flex; }
+
+    .modal-content {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--bg-elevated);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      padding: 20px;
+      padding-bottom: calc(20px + var(--safe-bottom));
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      width: 32px; height: 32px;
+      background: var(--border);
+      border-radius: 50%;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .form-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--bg);
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--gold);
+      color: var(--bg);
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0;
+      transition: all 0.3s;
+      pointer-events: none;
+      z-index: 1100;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
 </head>
 <body>
-  <p>Redirecting...</p>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <button class="back-btn" onclick="history.back()">←</button>
+      <span class="header-title" id="channelName">김남원TV</span>
+      <span class="header-badge">YOUTUBE</span>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-icon">🎬</div>
+      <h1 class="hero-title" id="heroTitle">내 유튜브 채널</h1>
+      <p class="hero-subtitle">부동산 영상 갤러리</p>
+
+      <a href="#" class="youtube-link" id="youtubeLink" target="_blank" style="display:none;">
+        <span>▶️</span>
+        유튜브 채널 바로가기
+      </a>
+
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-value" id="videoCount">0</div>
+          <div class="stat-label">Videos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="viewCount">0</div>
+          <div class="stat-label">Views</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Grid -->
+    <div class="section-title">Video Gallery</div>
+    <div class="video-grid" id="videoGrid">
+      <div class="empty-state">
+        <div class="empty-icon">📹</div>
+        <h2 class="empty-title">아직 영상이 없습니다</h2>
+        <p class="empty-text">유튜브 영상 링크를 추가해보세요</p>
+        <button class="add-btn" onclick="openModal()">
+          <span>➕</span>
+          영상 추가
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Action Button -->
+  <div class="floating-action">
+    <button class="fab" onclick="openModal()" title="영상 추가">➕</button>
+  </div>
+
+  <!-- Add Video Modal -->
+  <div class="modal" id="addModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">영상 추가</h2>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+
+      <form id="videoForm" onsubmit="saveVideo(event)">
+        <div class="form-group">
+          <label class="form-label">영상 제목</label>
+          <input type="text" class="form-input" id="videoTitle" placeholder="영상 제목을 입력하세요" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">유튜브 URL</label>
+          <input type="url" class="form-input" id="videoUrl" placeholder="https://youtube.com/watch?v=..." required>
+          <p class="form-hint">유튜브 영상 주소를 붙여넣기 하세요</p>
+        </div>
+
+        <button type="submit" class="submit-btn">추가하기</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">추가되었습니다</div>
+
+  <script>
+    const slotId = 'slot01';
+    const storageKey = `nmg_videos_${slotId}`;
+    let config = null;
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+      if (navigator.vibrate) navigator.vibrate(50);
+    }
+
+    async function init() {
+      await loadConfig();
+      render();
+      loadVideos();
+      trackView();
+    }
+
+    async function loadConfig() {
+      try {
+        const res = await fetch('config.json');
+        config = await res.json();
+      } catch (e) {
+        config = {
+          website: { channelName: '김남원TV' },
+          social: { youtube: '' }
+        };
+      }
+    }
+
+    function render() {
+      const w = config.website || {};
+      const s = config.social || {};
+
+      document.getElementById('channelName').textContent = w.channelName || '유튜브';
+      document.getElementById('heroTitle').textContent = w.channelName || '내 유튜브 채널';
+
+      if (s.youtube) {
+        const link = document.getElementById('youtubeLink');
+        link.href = s.youtube;
+        link.style.display = 'inline-flex';
+      }
+    }
+
+    function loadVideos() {
+      const videos = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      const container = document.getElementById('videoGrid');
+
+      // Update stats
+      document.getElementById('videoCount').textContent = videos.length;
+
+      if (videos.length === 0) return;
+
+      // Show videos
+      container.innerHTML = videos.map((video, idx) => `
+        <article class="video-card" onclick="playVideo('${video.url}')">
+          <div class="video-thumb">
+            ${video.thumb ? `<img src="${video.thumb}" alt="${video.title}">` : '<div class="video-thumb-placeholder">🎬</div>'}
+            <div class="video-play">▶️</div>
+          </div>
+          <div class="video-info">
+            <h3 class="video-title">${video.title}</h3>
+            <div class="video-meta">${formatDate(video.date)}</div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function extractYoutubeId(url) {
+      const patterns = [
+        /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+        /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/
+      ];
+
+      for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match) return match[1];
+      }
+      return null;
+    }
+
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('ko-KR', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function openModal() {
+      document.getElementById('addModal').classList.add('show');
+    }
+
+    function closeModal() {
+      document.getElementById('addModal').classList.remove('show');
+      document.getElementById('videoForm').reset();
+    }
+
+    function saveVideo(e) {
+      e.preventDefault();
+
+      const title = document.getElementById('videoTitle').value;
+      const url = document.getElementById('videoUrl').value;
+
+      const videoId = extractYoutubeId(url);
+      const thumb = videoId ? `https://img.youtube.com/vi/${videoId}/mqdefault.jpg` : null;
+
+      const videos = JSON.parse(localStorage.getItem(storageKey) || '[]');
+
+      const newVideo = {
+        id: Date.now(),
+        title,
+        url,
+        thumb,
+        date: new Date().toISOString()
+      };
+
+      videos.unshift(newVideo);
+      localStorage.setItem(storageKey, JSON.stringify(videos));
+
+      closeModal();
+      loadVideos();
+      showToast('영상이 추가되었습니다');
+    }
+
+    function playVideo(url) {
+      window.open(url, '_blank');
+    }
+
+    function trackView() {
+      const viewKey = `nmg_video_views_${slotId}`;
+      const views = parseInt(localStorage.getItem(viewKey) || '0') + 1;
+      localStorage.setItem(viewKey, views);
+      document.getElementById('viewCount').textContent = views;
+    }
+
+    // Close modal on backdrop click
+    document.getElementById('addModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
 </body>
 </html>

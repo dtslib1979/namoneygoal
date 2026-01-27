@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "name": "남원골",
+    "description": "AI 쓰는 중개인 12슬롯 길드",
+    "totalSlots": 12,
+    "version": "1.0.0",
+    "updatedAt": "2026-01-27"
+  },
+  "slots": [
+    {
+      "id": "slot01",
+      "status": "active",
+      "type": "anchor",
+      "member": {
+        "name": "김남원",
+        "fullName": "김남원 공인중개사",
+        "avatar": "김",
+        "photo": "/assets/members/kimnamwon.png",
+        "title": "부동산 전문 중개인",
+        "tagline": "시흥 남원골에서 신뢰로 거래하는 AI 쓰는 중개인"
+      },
+      "contact": {
+        "phone": "010-2831-7909",
+        "email": "namone@gmail.com"
+      },
+      "social": {
+        "youtube": "",
+        "blog": ""
+      },
+      "joinedAt": "2026-01-27",
+      "theme": "gold"
+    },
+    {
+      "id": "slot02",
+      "status": "empty",
+      "type": "paid",
+      "member": null,
+      "contact": null
+    },
+    {
+      "id": "slot03",
+      "status": "empty",
+      "type": "paid",
+      "member": null,
+      "contact": null
+    },
+    {
+      "id": "slot04",
+      "status": "empty",
+      "type": "paid",
+      "member": null,
+      "contact": null
+    },
+    {
+      "id": "slot05",
+      "status": "empty",
+      "type": "paid",
+      "member": null,
+      "contact": null
+    },
+    {
+      "id": "slot06",
+      "status": "empty",
+      "type": "paid",
+      "member": null,
+      "contact": null
+    },
+    {
+      "id": "slot07",
+      "status": "empty",
+      "type": "paid",
+      "member": null,
+      "contact": null
+    },
+    {
+      "id": "slot08",
+      "status": "empty",
+      "type": "paid",
+      "member": null,
+      "contact": null
+    },
+    {
+      "id": "slot09",
+      "status": "empty",
+      "type": "paid",
+      "member": null,
+      "contact": null
+    },
+    {
+      "id": "slot10",
+      "status": "empty",
+      "type": "paid",
+      "member": null,
+      "contact": null
+    },
+    {
+      "id": "slot11",
+      "status": "empty",
+      "type": "paid",
+      "member": null,
+      "contact": null
+    },
+    {
+      "id": "slot12",
+      "status": "empty",
+      "type": "paid",
+      "member": null,
+      "contact": null
+    }
+  ]
+}
