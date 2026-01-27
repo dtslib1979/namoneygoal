@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내 디지털 블로그 | 남원골</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #A855F7;
+      --accent: #F59E0B;
+      --bg: #0a0a14;
+      --card-bg: #1a1a2e;
+      --text: #f5f5f5;
+      --text-dim: #a0a0a0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: var(--card-bg);
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .header .subtitle {
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .nav a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+
+    .nav a:hover, .nav a.active {
+      color: var(--text);
+      background: var(--primary);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .post {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 20px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .post-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .post-info {
+      flex: 1;
+    }
+
+    .post-author {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .post-date {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .post-category {
+      background: var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    .post-title {
+      font-size: 22px;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .post-content {
+      color: var(--text-dim);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .post-content p {
+      margin-bottom: 15px;
+    }
+
+    .post-tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: rgba(168, 85, 247, 0.2);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dim);
+      font-size: 14px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .action-btn:hover {
+      color: var(--primary);
+    }
+
+    .write-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+      transition: transform 0.3s;
+    }
+
+    .write-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-dim);
+    }
+
+    .empty-state h2 {
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    /* Write Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .modal-header h3 {
+      font-size: 18px;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .form-group textarea {
+      min-height: 200px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .powered-by {
+      text-align: center;
+      padding: 30px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .powered-by a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1 id="blogTitle">박씨의 부동산 이야기</h1>
+    <p class="subtitle" id="blogSubtitle">시흥 남원골에서 들려주는 진짜 이야기</p>
+  </header>
+
+  <nav class="nav">
+    <a href="#" class="active" data-filter="all">전체</a>
+    <a href="#" data-filter="매물">매물</a>
+    <a href="#" data-filter="시세">시세</a>
+    <a href="#" data-filter="팁">팁</a>
+    <a href="#" data-filter="일상">일상</a>
+  </nav>
+
+  <main class="container">
+    <div id="postsContainer">
+      <!-- Posts will be loaded here -->
+    </div>
+
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <h2>아직 글이 없습니다</h2>
+      <p>첫 번째 이야기를 시작해보세요</p>
+    </div>
+  </main>
+
+  <button class="write-btn" id="writeBtn">+</button>
+
+  <!-- Write Modal -->
+  <div class="modal" id="writeModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>새 글 쓰기</h3>
+        <button class="modal-close" id="closeModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="postForm">
+          <div class="form-group">
+            <label>카테고리</label>
+            <select name="category">
+              <option value="매물">매물 소개</option>
+              <option value="시세">시세 분석</option>
+              <option value="팁">부동산 팁</option>
+              <option value="일상">일상</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>제목</label>
+            <input type="text" name="title" placeholder="글 제목을 입력하세요" required>
+          </div>
+          <div class="form-group">
+            <label>내용</label>
+            <textarea name="content" placeholder="이야기를 적어주세요..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label>태그 (쉼표로 구분)</label>
+            <input type="text" name="tags" placeholder="시흥, 아파트, 매매">
+          </div>
+          <button type="submit" class="submit-btn">발행하기</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="powered-by">
+    Powered by <a href="https://namoneygoal.kr">남원골</a> | AI 쓰는 중개인
+  </footer>
+
+  <script>
+    // Blog System
+    class DigitalBlog {
+      constructor() {
+        this.config = null;
+        this.posts = [];
+        this.currentFilter = 'all';
+        this.storageKey = 'nmg_blog_posts';
+        this.init();
+      }
+
+      async init() {
+        await this.loadConfig();
+        this.loadPosts();
+        this.render();
+        this.bindEvents();
+      }
+
+      async loadConfig() {
+        const slotPath = window.location.pathname;
+        const slotMatch = slotPath.match(/slots\/(slot\d+)/);
+
+        if (slotMatch) {
+          try {
+            const response = await fetch(`/slots/${slotMatch[1]}/config.json`);
+            this.config = await response.json();
+            this.storageKey = `nmg_blog_${slotMatch[1]}`;
+          } catch (e) {
+            console.log('Using default config');
+          }
+        }
+
+        if (!this.config) {
+          this.config = {
+            name: '박씨 중개사',
+            blogTitle: '박씨의 부동산 이야기',
+            blogSubtitle: '시흥 남원골에서 들려주는 진짜 이야기'
+          };
+        }
+      }
+
+      loadPosts() {
+        const stored = localStorage.getItem(this.storageKey);
+        this.posts = stored ? JSON.parse(stored) : this.getSamplePosts();
+      }
+
+      savePosts() {
+        localStorage.setItem(this.storageKey, JSON.stringify(this.posts));
+      }
+
+      getSamplePosts() {
+        return [
+          {
+            id: 1,
+            category: '매물',
+            title: '남원동 신축 아파트 34평 급매물',
+            content: '오늘 좋은 매물이 들어왔습니다. 남원동 중심가에 위치한 신축 아파트입니다. 채광이 좋고 교통이 편리합니다. 관심 있으신 분들은 연락 주세요.',
+            tags: ['남원동', '아파트', '급매'],
+            date: new Date().toISOString(),
+            likes: 12,
+            views: 156
+          },
+          {
+            id: 2,
+            category: '시세',
+            title: '2026년 1월 시흥 부동산 시세 분석',
+            content: 'AI로 분석한 이번 달 시흥 부동산 시세입니다. 전반적으로 안정세를 보이고 있으며, 특히 남원동 지역은 개발 호재로 인해 관심이 높아지고 있습니다.',
+            tags: ['시세', '분석', 'AI'],
+            date: new Date(Date.now() - 86400000).toISOString(),
+            likes: 28,
+            views: 342
+          }
+        ];
+      }
+
+      render() {
+        // Update header
+        document.getElementById('blogTitle').textContent = this.config.blogTitle || `${this.config.name}의 블로그`;
+        document.getElementById('blogSubtitle').textContent = this.config.blogSubtitle || '';
+
+        // Render posts
+        this.renderPosts();
+      }
+
+      renderPosts() {
+        const container = document.getElementById('postsContainer');
+        const emptyState = document.getElementById('emptyState');
+
+        const filteredPosts = this.currentFilter === 'all'
+          ? this.posts
+          : this.posts.filter(p => p.category === this.currentFilter);
+
+        if (filteredPosts.length === 0) {
+          container.innerHTML = '';
+          emptyState.style.display = 'block';
+          return;
+        }
+
+        emptyState.style.display = 'none';
+        container.innerHTML = filteredPosts.map(post => this.renderPost(post)).join('');
+      }
+
+      renderPost(post) {
+        const date = new Date(post.date);
+        const dateStr = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+        const initial = (this.config.name || '?')[0];
+
+        return `
+          <article class="post" data-id="${post.id}">
+            <div class="post-meta">
+              <div class="post-avatar">${initial}</div>
+              <div class="post-info">
+                <div class="post-author">${this.config.name}</div>
+                <div class="post-date">${dateStr}</div>
+              </div>
+              <span class="post-category">${post.category}</span>
+            </div>
+            <h2 class="post-title">${post.title}</h2>
+            <div class="post-content">
+              <p>${post.content}</p>
+            </div>
+            <div class="post-tags">
+              ${post.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
+            </div>
+            <div class="post-actions">
+              <span class="action-btn" data-action="like">
+                ❤️ ${post.likes || 0}
+              </span>
+              <span class="action-btn">
+                👁️ ${post.views || 0}
+              </span>
+              <span class="action-btn" data-action="share">
+                🔗 공유
+              </span>
+            </div>
+          </article>
+        `;
+      }
+
+      bindEvents() {
+        // Filter navigation
+        document.querySelectorAll('.nav a').forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.nav a').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            this.currentFilter = link.dataset.filter;
+            this.renderPosts();
+          });
+        });
+
+        // Write button
+        document.getElementById('writeBtn').addEventListener('click', () => {
+          document.getElementById('writeModal').classList.add('active');
+        });
+
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', () => {
+          document.getElementById('writeModal').classList.remove('active');
+        });
+
+        // Submit form
+        document.getElementById('postForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.createPost(new FormData(e.target));
+          e.target.reset();
+          document.getElementById('writeModal').classList.remove('active');
+        });
+
+        // Post actions
+        document.getElementById('postsContainer').addEventListener('click', (e) => {
+          const actionBtn = e.target.closest('.action-btn');
+          if (!actionBtn) return;
+
+          const post = actionBtn.closest('.post');
+          const postId = parseInt(post.dataset.id);
+          const action = actionBtn.dataset.action;
+
+          if (action === 'like') {
+            this.likePost(postId);
+          } else if (action === 'share') {
+            this.sharePost(postId);
+          }
+        });
+      }
+
+      createPost(formData) {
+        const post = {
+          id: Date.now(),
+          category: formData.get('category'),
+          title: formData.get('title'),
+          content: formData.get('content'),
+          tags: formData.get('tags').split(',').map(t => t.trim()).filter(Boolean),
+          date: new Date().toISOString(),
+          likes: 0,
+          views: 0
+        };
+
+        this.posts.unshift(post);
+        this.savePosts();
+        this.renderPosts();
+      }
+
+      likePost(postId) {
+        const post = this.posts.find(p => p.id === postId);
+        if (post) {
+          post.likes = (post.likes || 0) + 1;
+          this.savePosts();
+          this.renderPosts();
+        }
+      }
+
+      sharePost(postId) {
+        const url = `${window.location.origin}${window.location.pathname}?post=${postId}`;
+        if (navigator.share) {
+          navigator.share({ title: '남원골 블로그', url });
+        } else {
+          navigator.clipboard.writeText(url);
+          alert('링크가 복사되었습니다!');
+        }
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      new DigitalBlog();
+    });
+  </script>
+</body>
+</html>

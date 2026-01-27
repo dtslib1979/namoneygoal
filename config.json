@@ -1,29 +1,51 @@
 {
   "site": {
-    "name": "LOTUS",
-    "shortName": "LOTUS",
-    "domain": "lotus.kr",
-    "url": "https://lotus.kr",
-    "description": "A quiet space where things are made.",
-    "tagline": "Private Office",
-    "established": "2026.01.23",
-    "themeColor": "#0a0a14"
+    "name": "남원골",
+    "shortName": "NAMONEYGOAL",
+    "domain": "namoneygoal.kr",
+    "url": "https://namoneygoal.kr",
+    "description": "시흥 부동산중개인용 AI 워키토키 길드",
+    "tagline": "AI 쓰는 중개인",
+    "established": "2026.01.27",
+    "themeColor": "#A855F7"
   },
   "owner": {
-    "name": "LOTUS",
-    "email": "lotus@lotus.kr",
-    "location": "South Korea"
+    "name": "남원골 HQ",
+    "email": "hq@namoneygoal.kr",
+    "location": "시흥, 대한민국"
   },
-  "staff": {
+  "guild": {
+    "maxSlots": 12,
+    "anchorSlot": "slot01",
+    "paidSlots": ["slot02", "slot03", "slot04", "slot05", "slot06", "slot07", "slot08", "slot09", "slot10", "slot11", "slot12"]
+  },
+  "pricing": {
+    "entry": 500000,
+    "monthly": 100000,
+    "monthlyBreakdown": {
+      "chatgpt": 30000,
+      "namoneygoal": 70000
+    },
+    "addons": {
+      "pwa": 50000,
+      "pageEdit": 10000
+    }
+  },
+  "pr": {
+    "channel": "kakao",
+    "kakaoId": "namoneygoal",
+    "webhookEnabled": true
+  },
+  "console": {
     "accessCode": "1126",
-    "storageKey": "lotus_staff_auth"
+    "storageKey": "nmg_console_auth"
   },
-  "card": {
-    "name": "LOTUS",
-    "title": "Private Office",
-    "tagline": "A quiet space where things are made",
-    "email": "lotus@lotus.kr",
-    "website": "https://lotus.kr",
-    "theme": "deep"
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true,
+    "pwa": true
   }
 }

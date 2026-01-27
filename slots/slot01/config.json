@@ -1,0 +1,42 @@
+{
+  "slot": {
+    "id": "slot01",
+    "type": "anchor",
+    "status": "active"
+  },
+  "member": {
+    "name": "박씨 중개사",
+    "title": "부동산 전문 중개인",
+    "tagline": "시흥 남원골에서 20년, AI와 함께하는 현대적 중개인",
+    "avatar": "박"
+  },
+  "contact": {
+    "phone": "010-1234-5678",
+    "office": "경기도 시흥시 남원동 123-45",
+    "kakao": "@parksy_realty",
+    "email": "parksy@example.com"
+  },
+  "website": {
+    "url": "namoneygoal.kr/slots/slot01",
+    "blogTitle": "박씨의 부동산 이야기",
+    "blogSubtitle": "시흥 남원골에서 들려주는 진짜 이야기",
+    "channelName": "박씨TV"
+  },
+  "theme": {
+    "primary": "#A855F7",
+    "accent": "#F59E0B"
+  },
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true
+  },
+  "social": {
+    "naver": "",
+    "youtube": "",
+    "instagram": ""
+  },
+  "createdAt": "2026-01-27T00:00:00Z"
+}

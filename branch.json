@@ -1,44 +1,97 @@
 {
   "id": "namoneygoal",
   "name": "NAMONEYGOAL",
-  "tagline": "Money Goal Studio",
+  "displayName": "남원골",
+  "tagline": "AI 쓰는 중개인",
   "hq": "dtslib1979/dtslib-branch",
-  "version": "1.0",
+  "version": "3.0",
+  "branchType": "vertical",
   "status": "active",
   "visibility": "public",
-  "area": "creative",
-  "tier": "standard",
+
+  "axes": {
+    "governance": "collaborator",
+    "cognitive": "hybrid"
+  },
+
+  "focus": ["부동산 중개인", "AI 워키토키", "허세 소비재"],
+
   "theme": {
     "primary": "#A855F7",
     "accent": "#F59E0B",
     "bg": "#0a0a14",
-    "text": "#f5f5f5"
+    "text": "#f5f5f5",
+    "card": "#1a1a2e"
   },
+
+  "slots": {
+    "total": 12,
+    "structure": {
+      "anchor": {
+        "id": "slot01",
+        "type": "free",
+        "description": "앵커 슬롯 (친구 무료)"
+      },
+      "paid": {
+        "range": ["slot02", "slot12"],
+        "count": 11,
+        "pricing": {
+          "entry": 500000,
+          "monthly": 70000
+        }
+      }
+    }
+  },
+
+  "modules": {
+    "card": {
+      "enabled": true,
+      "path": "modules/card.html",
+      "description": "내 디지털 명함"
+    },
+    "blog": {
+      "enabled": true,
+      "path": "modules/blog.html",
+      "description": "내 디지털 블로그"
+    },
+    "video": {
+      "enabled": true,
+      "path": "modules/video.html",
+      "description": "내 디지털 유튜브"
+    },
+    "walkie": {
+      "enabled": true,
+      "path": "modules/walkie.html",
+      "description": "AI 워키토키 입력"
+    },
+    "pr": {
+      "enabled": true,
+      "path": "modules/pr.js",
+      "description": "PR 버튼 → 카톡 접수"
+    }
+  },
+
+  "console": {
+    "requests": "console/requests.html",
+    "billing": "console/billing.html"
+  },
+
+  "hqAccess": ["templates", "sync", "broadcast", "claude-code"],
+
   "subscriptions": [
-    {
-      "feedId": "parksy-gallery",
-      "publisher": "parksy",
-      "autoSync": true,
-      "target": "assets/feeds/parksy"
-    },
-    {
-      "feedId": "eae-courses",
-      "publisher": "eae",
-      "autoSync": true,
-      "target": "assets/feeds/eae"
-    },
     {
       "feedId": "hq-notices",
       "publisher": "hq",
-      "autoSync": true,
-      "target": null
+      "autoSync": true
     },
     {
-      "feedId": "hq-sdk",
+      "feedId": "hq-templates",
       "publisher": "hq",
       "autoSync": true,
-      "target": "assets/js"
+      "target": "assets/templates"
     }
   ],
-  "features": ["creative"]
+
+  "createdAt": "2026-01-27T00:00:00Z",
+  "updatedAt": "2026-01-27T00:00:00Z"
 }
