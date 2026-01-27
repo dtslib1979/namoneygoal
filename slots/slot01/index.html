@@ -542,6 +542,13 @@
     }
 
     document.addEventListener('DOMContentLoaded', init);
+
+    // Register slot-specific service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/slots/slot01/sw.js', { scope: '/slots/slot01/' })
+        .then(() => console.log('SW registered for slot01'))
+        .catch((e) => console.log('SW registration failed', e));
+    }
   </script>
 </body>
 </html>
