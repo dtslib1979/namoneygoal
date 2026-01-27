@@ -9,6 +9,21 @@
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="/assets/members/kimnamwon.png">
 
+  <!-- Open Graph / 카카오톡 미리보기 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="남원골">
+  <meta property="og:url" content="https://namoneygoal.vercel.app/slots/slot01/">
+  <meta property="og:title" content="김남원 공인중개사">
+  <meta property="og:description" content="시흥 남원골에서 신뢰로 거래하는 AI 쓰는 중개인">
+  <meta property="og:image" content="https://namoneygoal.vercel.app/assets/members/kimnamwon.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="김남원 공인중개사">
+  <meta name="twitter:description" content="시흥 남원골에서 신뢰로 거래하는 AI 쓰는 중개인">
+  <meta name="twitter:image" content="https://namoneygoal.vercel.app/assets/members/kimnamwon.png">
+
   <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -393,11 +408,83 @@
       transition: all 0.2s var(--ease-out);
     }
 
+    .action-btn.large {
+      width: 60px; height: 60px;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, var(--gold-dim), rgba(212,175,55,.15));
+      border-width: 2px;
+    }
+
     .action-btn:active {
       background: var(--gold);
       color: var(--bg);
       transform: scale(0.9);
       box-shadow: var(--shadow-gold);
+    }
+
+    /* Contact Info in Card */
+    .card-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      background: rgba(0,0,0,.2);
+      border-radius: var(--radius-md);
+    }
+
+    .card-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+    }
+
+    .card-contact-item a {
+      color: var(--text);
+      transition: color 0.2s;
+    }
+
+    .card-contact-item a:active {
+      color: var(--gold);
+    }
+
+    .card-contact-icon {
+      width: 20px;
+      text-align: center;
+      color: var(--gold);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--gold);
+      color: var(--bg);
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      opacity: 0;
+      transition: all 0.3s var(--ease-out);
+      pointer-events: none;
+      z-index: 1100;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .card-tap-hint {
+      text-align: center;
+      margin-top: var(--space-sm);
+      font-size: var(--text-xs);
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
     }
 
     /* ===== SECTION TITLE ===== */
@@ -715,12 +802,26 @@
           <span class="card-badge">AI 쓰는 중개인</span>
         </div>
 
-        <div class="card-actions">
-          <a href="tel:010-2831-7909" class="action-btn" id="phoneBtn">📞</a>
-          <a href="#" class="action-btn" id="kakaoBtn">💬</a>
-          <a href="card.html" class="action-btn">📇</a>
-          <button class="action-btn" onclick="shareOffice()">📤</button>
+        <!-- Contact Info -->
+        <div class="card-contact">
+          <div class="card-contact-item">
+            <span class="card-contact-icon">📞</span>
+            <a href="tel:010-2831-7909" id="phoneDisplay">010-2831-7909</a>
+          </div>
+          <div class="card-contact-item">
+            <span class="card-contact-icon">✉️</span>
+            <a href="mailto:namone@gmail.com" id="emailDisplay">namone@gmail.com</a>
+          </div>
         </div>
+
+        <div class="card-actions">
+          <a href="tel:010-2831-7909" class="action-btn" id="phoneBtn" title="전화">📞</a>
+          <a href="sms:010-2831-7909" class="action-btn" id="smsBtn" title="문자">💬</a>
+          <a href="mailto:namone@gmail.com" class="action-btn" id="emailBtn" title="이메일">✉️</a>
+          <button class="action-btn large" onclick="shareCard()" title="명함 공유">📇</button>
+        </div>
+
+        <p class="card-tap-hint">카드를 탭하면 링크가 복사됩니다</p>
       </div>
     </section>
 
@@ -795,10 +896,21 @@
     <button class="float-btn primary" id="prBtn">📞 문의하기</button>
   </div>
 
+  <!-- Toast -->
+  <div class="toast" id="toast">링크가 복사되었습니다</div>
+
   <script src="/modules/pr.js"></script>
   <script>
     const slotId = 'slot01';
     let config = null;
+    const toast = document.getElementById('toast');
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+      if (navigator.vibrate) navigator.vibrate(50);
+    }
 
     async function init() {
       await loadConfig();
@@ -806,6 +918,7 @@
       loadStats();
       loadRecentPosts();
       trackVisit();
+      setupCardTap();
     }
 
     async function loadConfig() {
@@ -815,7 +928,7 @@
       } catch (e) {
         config = {
           member: { name: '김남원 공인중개사', title: '부동산 전문 중개인', tagline: 'AI 쓰는 중개인', avatar: '김' },
-          contact: { phone: '010-2831-7909' }
+          contact: { phone: '010-2831-7909', email: 'namone@gmail.com' }
         };
       }
     }
@@ -834,8 +947,55 @@
       document.getElementById('name').textContent = m.name;
       document.getElementById('title').textContent = m.title;
       document.getElementById('tagline').textContent = m.tagline;
+
+      // 전화
       document.getElementById('phoneBtn').href = `tel:${c.phone}`;
+      document.getElementById('phoneDisplay').textContent = c.phone;
+      document.getElementById('phoneDisplay').href = `tel:${c.phone}`;
+
+      // 문자
+      document.getElementById('smsBtn').href = `sms:${c.phone}`;
+
+      // 이메일
+      const email = c.email || 'namone@gmail.com';
+      document.getElementById('emailBtn').href = `mailto:${email}`;
+      document.getElementById('emailDisplay').textContent = email;
+      document.getElementById('emailDisplay').href = `mailto:${email}`;
+
       document.title = `${m.name} | AI 쓰는 중개인`;
+    }
+
+    // 카드 탭하면 링크 복사
+    function setupCardTap() {
+      const card = document.querySelector('.business-card');
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a') || e.target.closest('button')) return;
+
+        const url = location.href;
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('링크가 복사되었습니다');
+        }).catch(() => {
+          showToast('복사 실패');
+        });
+      });
+    }
+
+    // 명함 공유
+    function shareCard() {
+      const m = config.member;
+      const url = location.href;
+
+      if (navigator.share) {
+        navigator.share({
+          title: m.name,
+          text: `${m.name} - ${m.tagline}`,
+          url: url
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('링크가 복사되었습니다');
+        });
+      }
     }
 
     function loadStats() {
