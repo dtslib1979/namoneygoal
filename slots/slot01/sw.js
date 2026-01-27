@@ -3,7 +3,7 @@
  * 개인 사무실 전용
  */
 
-const CACHE_NAME = 'slot01-v1';
+const CACHE_NAME = 'slot01-v2';
 
 const PRECACHE_URLS = [
   '/slots/slot01/',
