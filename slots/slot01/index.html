@@ -902,7 +902,8 @@
 
   <script src="/modules/pr.js"></script>
   <script>
-    const slotId = 'slot01';
+    // Config-driven - slotId will be loaded from config.json
+    let slotId = 'slot01';
     let config = null;
     const toast = document.getElementById('toast');
 
@@ -926,8 +927,10 @@
       try {
         const res = await fetch('config.json');
         config = await res.json();
+        slotId = config.slot?.id || 'slot01';
       } catch (e) {
         config = {
+          slot: { id: 'slot01' },
           member: { name: '김남원 공인중개사', title: '부동산 전문 중개인', tagline: 'AI 쓰는 중개인', avatar: '김' },
           contact: { phone: '010-2831-7909', email: 'namone@gmail.com' }
         };

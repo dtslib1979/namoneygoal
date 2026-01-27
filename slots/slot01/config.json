@@ -6,8 +6,10 @@
   },
   "member": {
     "name": "김남원 공인중개사",
+    "shortName": "김남원",
     "title": "부동산 전문 중개인",
     "tagline": "시흥 남원골에서 신뢰로 거래하는 AI 쓰는 중개인",
+    "badge": "AI 쓰는 중개인",
     "avatar": "김",
     "photo": "/assets/members/kimnamwon.png",
     "logo": "/assets/logos/slot01.png"
@@ -25,8 +27,9 @@
     "channelName": "김남원TV"
   },
   "theme": {
-    "primary": "#A855F7",
-    "accent": "#F59E0B"
+    "primary": "#D4AF37",
+    "accent": "#E8C547",
+    "bg": "#0A0A0F"
   },
   "features": {
     "card": true,
@@ -39,6 +42,47 @@
     "naver": "",
     "youtube": "",
     "instagram": ""
+  },
+  "staff": {
+    "accessCode": "7909",
+    "adminCode": "7909admin",
+    "storageKey": "nmg_staff_slot01"
+  },
+  "hq": {
+    "name": "남원골 HQ",
+    "tagline": "AI 쓰는 중개인 12슬롯 길드",
+    "url": "https://namoneygoal.kr",
+    "parent": "dtslib-branch"
+  },
+  "tools": {
+    "apk": [
+      {
+        "name": "Parksy Axis",
+        "desc": "방송용 오버레이",
+        "icon": "📡",
+        "url": "https://nightly.link/dtslib1979/dtslib-apk-lab/workflows/build-parksy-axis/main/parksy-axis-debug.zip"
+      },
+      {
+        "name": "Parksy Pen",
+        "desc": "레이저펜 판서",
+        "icon": "✏️",
+        "url": "https://nightly.link/dtslib1979/dtslib-apk-lab/workflows/build-laser-pen/main/laser-pen-overlay-debug.zip"
+      }
+    ],
+    "links": [
+      {
+        "name": "네이버 블로그",
+        "desc": "매물 홍보",
+        "icon": "📝",
+        "url": "https://blog.naver.com/"
+      },
+      {
+        "name": "유튜브",
+        "desc": "영상 업로드",
+        "icon": "📺",
+        "url": "https://youtube.com/"
+      }
+    ]
   },
   "createdAt": "2026-01-27T00:00:00Z"
 }

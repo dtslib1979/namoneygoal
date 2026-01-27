@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0A0A0F">
   <meta name="robots" content="noindex, nofollow">
-  <title>Secret Office | 김남원</title>
+  <title>Secret Office | Slot Template</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -212,6 +212,91 @@
       background: linear-gradient(90deg, var(--border-gold), transparent);
     }
 
+    .section-badge {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.08em;
+    }
+
+    /* ===== STATS CARD ===== */
+    .stats-card {
+      background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      text-align: center;
+    }
+
+    .stat-item {
+      background: rgba(0,0,0,.2);
+      border-radius: var(--radius-sm);
+      padding: 14px 8px;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== MENU GRID ===== */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .menu-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 14px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .menu-card:active {
+      transform: scale(0.96);
+      border-color: var(--gold);
+    }
+
+    .menu-icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .menu-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .menu-desc {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
     /* ===== ACCORDION ===== */
     .accordion {
       margin-bottom: 12px;
@@ -302,135 +387,55 @@
       display: block;
     }
 
-    /* ===== MENU GRID ===== */
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .menu-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 18px 14px;
-      text-align: center;
-      transition: all 0.2s;
-    }
-
-    .menu-card:active {
-      transform: scale(0.96);
-      border-color: var(--gold);
-    }
-
-    .menu-icon {
-      font-size: 1.8rem;
-      margin-bottom: 8px;
-    }
-
-    .menu-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 3px;
-    }
-
-    .menu-desc {
-      font-size: 10px;
-      color: var(--text-muted);
-    }
-
-    /* ===== QUICK ACTIONS ===== */
-    .quick-actions {
+    /* ===== APK LIST ===== */
+    .apk-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
-    .quick-btn {
+    .apk-item {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 16px;
-      background: var(--bg-card);
+      gap: 12px;
+      padding: 14px;
+      background: var(--bg-elevated);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       transition: all 0.2s;
     }
 
-    .quick-btn:active {
+    .apk-item:active {
       border-color: var(--gold);
-      background: var(--bg-elevated);
+      background: var(--bg-card);
     }
 
-    .quick-btn-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--gold-dim);
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
+    .apk-icon { font-size: 24px; }
 
-    .quick-btn-info { flex: 1; text-align: left; }
+    .apk-content { flex: 1; }
 
-    .quick-btn-title {
+    .apk-name {
       font-size: 14px;
       font-weight: 600;
-      color: var(--text);
       margin-bottom: 2px;
     }
 
-    .quick-btn-desc {
+    .apk-desc {
       font-size: 11px;
       color: var(--text-muted);
     }
 
-    .quick-btn-arrow {
+    .apk-download {
       color: var(--gold);
       font-size: 18px;
     }
 
-    /* ===== STATS CARD ===== */
-    .stats-card {
-      background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      text-align: center;
-    }
-
-    .stat-item {
-      background: rgba(0,0,0,.2);
-      border-radius: var(--radius-sm);
-      padding: 14px 8px;
-    }
-
-    .stat-value {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--gold);
-      margin-bottom: 2px;
-    }
-
-    .stat-label {
-      font-size: 10px;
+    .apk-note {
+      font-size: 11px;
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      text-align: center;
+      margin-top: 8px;
     }
 
     /* ===== STEP LIST ===== */
@@ -483,7 +488,50 @@
       color: var(--text-muted);
     }
 
-    /* ===== HQ CONNECTION ===== */
+    /* ===== CONSOLE LINKS ===== */
+    .console-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .console-link-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+    }
+
+    .console-link-item:active {
+      border-color: var(--gold);
+      background: var(--bg-card);
+    }
+
+    .console-icon { font-size: 24px; }
+
+    .console-text { flex: 1; }
+
+    .console-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .console-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .console-arrow {
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    /* ===== HQ SECTION ===== */
     .hq-section {
       background: linear-gradient(135deg, rgba(212,175,55,.05), transparent);
       border-radius: var(--radius-md);
@@ -530,38 +578,162 @@
       line-height: 1.5;
     }
 
-    /* ===== FOOTER ===== */
-    .portal-footer {
-      text-align: center;
-      padding: 24px 0;
-      border-top: 1px solid var(--border);
-      margin-top: 24px;
+    /* ===== EXIT SECTION ===== */
+    .exit-content {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.8;
     }
 
+    .exit-content p {
+      margin-bottom: 16px;
+    }
+
+    .exit-content .highlight {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ===== GALAXY EXPRESS FOOTER ===== */
+    .galaxy-express {
+      position: relative;
+      margin-top: 40px;
+      padding: 60px 20px 30px;
+      background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg) 100%);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .galaxy-stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .galaxy-star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: twinkle 2s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    .orbit-container {
+      position: relative;
+      width: 200px;
+      height: 80px;
+      margin: 0 auto 20px;
+    }
+
+    .orbit-track {
+      position: absolute;
+      inset: 0;
+      border: 2px dashed var(--border-gold);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    .train-group {
+      position: absolute;
+      animation: orbitMove 8s linear infinite;
+    }
+
+    @keyframes orbitMove {
+      0% { top: 50%; left: 0; transform: translate(-50%, -50%); }
+      25% { top: 0; left: 50%; transform: translate(-50%, -50%); }
+      50% { top: 50%; left: 100%; transform: translate(-50%, -50%); }
+      75% { top: 100%; left: 50%; transform: translate(-50%, -50%); }
+      100% { top: 50%; left: 0; transform: translate(-50%, -50%); }
+    }
+
+    .train { font-size: 24px; }
+
+    .train-number {
+      position: absolute;
+      top: -8px;
+      right: -12px;
+      font-size: 8px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .branch-stations {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .branch-station {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 12px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+    }
+
+    .branch-station:active {
+      border-color: var(--gold);
+      transform: scale(0.95);
+    }
+
+    .branch-station.exit:active {
+      border-color: var(--danger);
+    }
+
+    .branch-node { font-size: 20px; }
+
+    .branch-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .express-label {
+      text-align: center;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-top: 16px;
+    }
+
+    /* ===== BACK LINK ===== */
     .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 24px;
       font-size: 13px;
       color: var(--text-muted);
-      transition: color 0.2s;
     }
 
     .back-link:active {
       color: var(--gold);
     }
 
-    .logout-btn {
-      display: inline-block;
-      margin-top: 14px;
-      font-size: 12px;
-      color: var(--text-muted);
-      padding: 10px 20px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      transition: all 0.2s;
+    /* ===== ADMIN SECTION ===== */
+    .section-admin {
+      display: none;
+      border: 1px dashed rgba(255,100,100,.3);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 20px;
     }
 
-    .logout-btn:active {
-      border-color: var(--danger);
-      color: var(--danger);
+    .badge-admin {
+      background: rgba(255,100,100,.2);
+      color: #ff6b6b;
     }
 
     /* Toast */
@@ -594,9 +766,9 @@
     <div class="login-gate" id="loginGate">
       <div class="login-logo">🔐</div>
       <h1 class="login-title">Secret Office</h1>
-      <p class="login-subtitle">관리자 전용 포털입니다</p>
+      <p class="login-subtitle" id="loginSubtitle">관리자 전용 포털</p>
 
-      <input type="password" class="login-input" id="passwordInput" placeholder="비밀번호" maxlength="6" inputmode="numeric">
+      <input type="password" class="login-input" id="passwordInput" placeholder="비밀번호" maxlength="10" inputmode="text">
       <button class="login-btn" onclick="login()">입장하기</button>
       <p class="login-error" id="loginError">비밀번호가 틀렸습니다</p>
     </div>
@@ -605,8 +777,8 @@
     <div class="portal" id="portal">
       <div class="portal-header">
         <span class="portal-badge">SECRET OFFICE</span>
-        <h1 class="portal-title" id="memberName">김남원</h1>
-        <p class="portal-subtitle">AI 쓰는 중개인 관리자 포털</p>
+        <h1 class="portal-title" id="memberName">Loading...</h1>
+        <p class="portal-subtitle" id="portalSubtitle">관리자 포털</p>
       </div>
 
       <!-- Stats Dashboard -->
@@ -627,40 +799,57 @@
         </div>
       </div>
 
-      <!-- Communication -->
-      <div class="section-title">커뮤니케이션</div>
-      <div class="menu-grid">
-        <a href="/modules/walkie.html?slot=slot01" class="menu-card">
-          <div class="menu-icon">🎤</div>
-          <div class="menu-title">워키토키</div>
-          <div class="menu-desc">말하면 글이 된다</div>
-        </a>
-        <a href="../card.html" class="menu-card">
-          <div class="menu-icon">📇</div>
-          <div class="menu-title">명함</div>
-          <div class="menu-desc">공유하기</div>
-        </a>
-        <a href="../blog.html" class="menu-card">
-          <div class="menu-icon">📝</div>
-          <div class="menu-title">블로그</div>
-          <div class="menu-desc">글 작성</div>
-        </a>
-        <a href="../video.html" class="menu-card">
-          <div class="menu-icon">🎬</div>
-          <div class="menu-title">유튜브</div>
-          <div class="menu-desc">영상 관리</div>
-        </a>
+      <!-- Admin Section (Hidden by default) -->
+      <div class="section-admin" id="sectionAdmin">
+        <div class="section-title">
+          <span class="section-badge badge-admin">ADMIN</span>
+          관리자 전용
+        </div>
+        <div class="menu-grid">
+          <a href="/console/requests.html" class="menu-card">
+            <div class="menu-icon">📋</div>
+            <div class="menu-title">PR 요청</div>
+            <div class="menu-desc">접수 내역</div>
+          </a>
+          <a href="/console/billing.html" class="menu-card">
+            <div class="menu-icon">💰</div>
+            <div class="menu-title">정산</div>
+            <div class="menu-desc">수익 현황</div>
+          </a>
+        </div>
       </div>
 
-      <!-- 작업 가이드 아코디언 -->
-      <div class="section-title">가이드</div>
+      <!-- Communication -->
+      <div class="section-title">커뮤니케이션</div>
+      <div class="menu-grid" id="menuGrid">
+        <!-- Dynamic from config -->
+      </div>
 
-      <div class="accordion" id="acc1">
-        <button class="accordion-header" onclick="toggleAccordion('acc1')">
+      <!-- APK Tools Accordion -->
+      <div class="accordion" id="accTools">
+        <button class="accordion-header" onclick="toggleAccordion('accTools')">
+          <div class="accordion-icon">📱</div>
+          <div class="accordion-info">
+            <div class="accordion-title">생산성 도구</div>
+            <div class="accordion-desc">APK 다운로드</div>
+          </div>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <div class="apk-list" id="apkList">
+            <!-- Dynamic from config -->
+          </div>
+          <p class="apk-note">* ZIP 다운로드 → 압축 해제 → APK 설치</p>
+        </div>
+      </div>
+
+      <!-- Daily Guide Accordion -->
+      <div class="accordion" id="accGuide">
+        <button class="accordion-header" onclick="toggleAccordion('accGuide')">
           <div class="accordion-icon">📋</div>
           <div class="accordion-info">
             <div class="accordion-title">매일 할 일</div>
-            <div class="accordion-desc">AI 쓰는 중개인의 일과</div>
+            <div class="accordion-desc" id="guideBadge">AI 쓰는 중개인의 일과</div>
           </div>
           <span class="accordion-toggle">▼</span>
         </button>
@@ -691,38 +880,19 @@
         </div>
       </div>
 
-      <div class="accordion" id="acc2">
-        <button class="accordion-header" onclick="toggleAccordion('acc2')">
-          <div class="accordion-icon">💡</div>
+      <!-- Console Panel Accordion -->
+      <div class="accordion" id="accConsole">
+        <button class="accordion-header" onclick="toggleAccordion('accConsole')">
+          <div class="accordion-icon">🔗</div>
           <div class="accordion-info">
-            <div class="accordion-title">활용 팁</div>
-            <div class="accordion-desc">더 효과적으로 사용하기</div>
+            <div class="accordion-title">Console Panel</div>
+            <div class="accordion-desc">외부 링크 & 자동화 타겟</div>
           </div>
           <span class="accordion-toggle">▼</span>
         </button>
         <div class="accordion-content">
-          <div class="step-list">
-            <div class="step-item">
-              <div class="step-number">💬</div>
-              <div class="step-content">
-                <div class="step-name">말투 그대로</div>
-                <div class="step-desc">자연스럽게 말하면 AI가 정리</div>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-number">📸</div>
-              <div class="step-content">
-                <div class="step-name">사진 + 음성</div>
-                <div class="step-desc">매물 사진 찍고 설명하면 끝</div>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-number">🔗</div>
-              <div class="step-content">
-                <div class="step-name">링크 공유</div>
-                <div class="step-desc">카톡으로 명함/블로그 링크 전송</div>
-              </div>
-            </div>
+          <div class="console-links" id="consoleLinks">
+            <!-- Dynamic from config -->
           </div>
         </div>
       </div>
@@ -736,52 +906,102 @@
         <div class="hq-card">
           <div class="hq-card-header">
             <span class="hq-card-icon">🏢</span>
-            <span class="hq-card-title">남원골 HQ</span>
+            <span class="hq-card-title" id="hqName">HQ</span>
           </div>
-          <div class="hq-card-desc">
-            AI 쓰는 중개인 12슬롯 길드<br>
-            슬롯 01 · 앵커 멤버
+          <div class="hq-card-desc" id="hqDesc">
+            Loading...
           </div>
         </div>
       </div>
 
-      <!-- Footer -->
-      <div class="portal-footer">
-        <a href="../" class="back-link">← 공개 사무실로 돌아가기</a>
-        <br>
-        <button class="logout-btn" onclick="logout()">로그아웃</button>
+      <!-- Exit & Transfer -->
+      <div class="accordion" id="accExit" style="margin-top: 20px;">
+        <button class="accordion-header" onclick="toggleAccordion('accExit')">
+          <div class="accordion-icon">🚪</div>
+          <div class="accordion-info">
+            <div class="accordion-title">독립과 양도</div>
+            <div class="accordion-desc">이 시스템에서 나가고 싶을 때</div>
+          </div>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <div class="exit-content">
+            <p>이 공간은 당신을 붙잡기 위해 존재하지 않습니다.</p>
+            <p>언젠가 혼자 가고 싶어질 때,<br>
+            당신은 지금까지의 모든 기록과 시스템을<br>
+            <span class="highlight">'구매'</span>하여 독립할 수 있습니다.</p>
+            <p>그 비용은,<br>
+            <span class="highlight">남원골 HQ</span>가 만들어 준 파이프라인의<br>
+            <span class="highlight">누적 수익 기준 30%</span>입니다.</p>
+            <p>그 순간부터,<br>
+            이 시스템은 당신의 것이 됩니다.</p>
+          </div>
+        </div>
       </div>
+
+      <!-- Galaxy Express Footer -->
+      <nav class="galaxy-express">
+        <div class="galaxy-stars">
+          <span class="galaxy-star" style="top:15%;left:10%;animation-delay:0s"></span>
+          <span class="galaxy-star" style="top:60%;left:25%;animation-delay:0.5s"></span>
+          <span class="galaxy-star" style="top:20%;left:50%;animation-delay:1s"></span>
+          <span class="galaxy-star" style="top:70%;left:70%;animation-delay:1.5s"></span>
+          <span class="galaxy-star" style="top:30%;left:85%;animation-delay:0.7s"></span>
+        </div>
+
+        <div class="orbit-container">
+          <div class="orbit-track"></div>
+          <div class="train-group">
+            <span class="train">🚂</span>
+            <span class="train-number">999</span>
+          </div>
+        </div>
+
+        <div class="branch-stations">
+          <a href="../" class="branch-station">
+            <span class="branch-node">🏠</span>
+            <span class="branch-label">Home</span>
+          </a>
+          <button class="branch-station exit" onclick="logout()">
+            <span class="branch-node">🚪</span>
+            <span class="branch-label">Exit</span>
+          </button>
+        </div>
+
+        <p class="express-label" id="expressLabel">Galaxy Express</p>
+      </nav>
     </div>
   </div>
+
+  <a href="../" class="back-link" id="backLink">← 공개 사무실로 돌아가기</a>
 
   <div class="toast" id="toast">알림</div>
 
   <script>
-    const ACCESS_CODE = '7909'; // 전화번호 뒷자리
-    const STORAGE_KEY = 'nmg_staff_slot01';
-    const slotId = 'slot01';
+    // Config-driven variables
+    let config = null;
+    let ACCESS_CODE = '0000';
+    let ADMIN_CODE = '0000admin';
+    let STORAGE_KEY = 'slot_staff_auth';
+    let slotId = 'slot01';
 
     const loginGate = document.getElementById('loginGate');
     const portal = document.getElementById('portal');
     const passwordInput = document.getElementById('passwordInput');
     const loginError = document.getElementById('loginError');
     const toast = document.getElementById('toast');
-
-    let config = null;
+    const sectionAdmin = document.getElementById('sectionAdmin');
+    const backLink = document.getElementById('backLink');
 
     async function init() {
       await loadConfig();
-      render();
-
-      // 이미 로그인되어 있으면 포털 표시
-      if (sessionStorage.getItem(STORAGE_KEY) === 'true') {
-        showPortal();
-      }
+      applyConfig();
+      checkSession();
       loadStats();
 
-      // Enter 키로 로그인
       passwordInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') login();
+        loginError.classList.remove('show');
       });
     }
 
@@ -789,22 +1009,131 @@
       try {
         const res = await fetch('../config.json');
         config = await res.json();
+
+        // Extract settings
+        slotId = config.slot?.id || 'slot01';
+        ACCESS_CODE = config.staff?.accessCode || '0000';
+        ADMIN_CODE = config.staff?.adminCode || '0000admin';
+        STORAGE_KEY = config.staff?.storageKey || `slot_staff_${slotId}`;
       } catch (e) {
-        config = { member: { name: '김남원' } };
+        console.error('Config load failed:', e);
+        config = {
+          member: { shortName: 'Member', badge: 'Member' },
+          hq: { name: 'HQ', tagline: 'Headquarters' },
+          tools: { apk: [], links: [] }
+        };
       }
     }
 
-    function render() {
-      if (config?.member?.name) {
-        document.getElementById('memberName').textContent = config.member.name.replace(' 공인중개사', '');
+    function applyConfig() {
+      // Portal header
+      document.getElementById('memberName').textContent = config.member?.shortName || 'Member';
+      document.getElementById('portalSubtitle').textContent = `${config.member?.badge || 'Member'} 관리자 포털`;
+      document.getElementById('loginSubtitle').textContent = `${config.member?.shortName || 'Member'} 전용 포털`;
+      document.getElementById('guideBadge').textContent = `${config.member?.badge || 'Member'}의 일과`;
+
+      // HQ section
+      document.getElementById('hqName').textContent = config.hq?.name || 'HQ';
+      document.getElementById('hqDesc').innerHTML = `
+        ${config.hq?.tagline || ''}<br>
+        슬롯 ${slotId.replace('slot', '')} · ${config.slot?.type === 'anchor' ? '앵커 멤버' : '정회원'}
+      `;
+
+      // Express label
+      document.getElementById('expressLabel').textContent = `Galaxy Express ${config.member?.shortName || 'SLOT'}`;
+
+      // Menu grid
+      renderMenuGrid();
+
+      // APK list
+      renderApkList();
+
+      // Console links
+      renderConsoleLinks();
+    }
+
+    function renderMenuGrid() {
+      const grid = document.getElementById('menuGrid');
+      const menus = [
+        { href: `/modules/walkie.html?slot=${slotId}`, icon: '🎤', title: '워키토키', desc: '말하면 글이 된다', feature: 'walkie' },
+        { href: '../card.html', icon: '📇', title: '명함', desc: '공유하기', feature: 'card' },
+        { href: '../blog.html', icon: '📝', title: '블로그', desc: '글 작성', feature: 'blog' },
+        { href: '../video.html', icon: '🎬', title: '유튜브', desc: '영상 관리', feature: 'video' }
+      ];
+
+      grid.innerHTML = menus
+        .filter(m => config.features?.[m.feature] !== false)
+        .map(m => `
+          <a href="${m.href}" class="menu-card">
+            <div class="menu-icon">${m.icon}</div>
+            <div class="menu-title">${m.title}</div>
+            <div class="menu-desc">${m.desc}</div>
+          </a>
+        `).join('');
+    }
+
+    function renderApkList() {
+      const list = document.getElementById('apkList');
+      const apks = config.tools?.apk || [];
+
+      if (apks.length === 0) {
+        list.innerHTML = '<p class="apk-note">등록된 APK가 없습니다</p>';
+        return;
+      }
+
+      list.innerHTML = apks.map(apk => `
+        <a href="${apk.url}" class="apk-item" download>
+          <span class="apk-icon">${apk.icon}</span>
+          <div class="apk-content">
+            <p class="apk-name">${apk.name}</p>
+            <p class="apk-desc">${apk.desc}</p>
+          </div>
+          <span class="apk-download">⬇</span>
+        </a>
+      `).join('');
+    }
+
+    function renderConsoleLinks() {
+      const container = document.getElementById('consoleLinks');
+      const links = config.tools?.links || [];
+
+      if (links.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-muted);font-size:12px;">등록된 링크가 없습니다</p>';
+        return;
+      }
+
+      container.innerHTML = links.map(link => `
+        <a href="${link.url}" target="_blank" class="console-link-item">
+          <span class="console-icon">${link.icon}</span>
+          <div class="console-text">
+            <div class="console-name">${link.name}</div>
+            <div class="console-desc">${link.desc}</div>
+          </div>
+          <span class="console-arrow">→</span>
+        </a>
+      `).join('');
+    }
+
+    function checkSession() {
+      const auth = sessionStorage.getItem(STORAGE_KEY);
+      if (auth === 'true') {
+        const isAdmin = sessionStorage.getItem(STORAGE_KEY + '_admin') === 'true';
+        showPortal(isAdmin);
       }
     }
 
     function login() {
       const pwd = passwordInput.value;
-      if (pwd === ACCESS_CODE) {
+
+      if (pwd === ADMIN_CODE) {
         sessionStorage.setItem(STORAGE_KEY, 'true');
-        showPortal();
+        sessionStorage.setItem(STORAGE_KEY + '_admin', 'true');
+        showPortal(true);
+        showToast('관리자 모드로 입장');
+      } else if (pwd === ACCESS_CODE) {
+        sessionStorage.setItem(STORAGE_KEY, 'true');
+        sessionStorage.removeItem(STORAGE_KEY + '_admin');
+        showPortal(false);
         showToast('환영합니다!');
       } else {
         loginError.classList.add('show');
@@ -814,13 +1143,19 @@
       }
     }
 
-    function showPortal() {
+    function showPortal(isAdmin = false) {
       loginGate.style.display = 'none';
       portal.classList.add('active');
+      backLink.style.display = 'none';
+
+      if (isAdmin && sectionAdmin) {
+        sectionAdmin.style.display = 'block';
+      }
     }
 
     function logout() {
       sessionStorage.removeItem(STORAGE_KEY);
+      sessionStorage.removeItem(STORAGE_KEY + '_admin');
       location.reload();
     }
 
