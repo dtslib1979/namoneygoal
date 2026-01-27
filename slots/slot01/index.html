@@ -843,10 +843,10 @@
         <div class="menu-title">유튜브</div>
         <div class="menu-desc">영상 갤러리</div>
       </a>
-      <a href="/modules/walkie.html?slot=slot01" class="menu-card">
-        <div class="menu-icon">🎤</div>
-        <div class="menu-title">워키토키</div>
-        <div class="menu-desc">말하면 글이 된다</div>
+      <a href="staff/" class="menu-card">
+        <div class="menu-icon">🔐</div>
+        <div class="menu-title">관리자</div>
+        <div class="menu-desc">시크릿 오피스</div>
       </a>
     </div>
 
@@ -887,13 +887,14 @@
     <footer class="footer">
       <p class="footer-text">Powered by <a href="/">남원골</a></p>
       <p class="footer-brand">NAMONEYGOAL</p>
+      <a href="staff/" style="display:inline-block;margin-top:12px;font-size:11px;color:var(--text-dim);opacity:0.5;">🔐</a>
     </footer>
   </div>
 
   <!-- Floating CTA -->
   <div class="floating-cta">
-    <a href="/modules/walkie.html?slot=slot01" class="float-btn secondary">🎤 워키토키</a>
-    <button class="float-btn primary" id="prBtn">📞 문의하기</button>
+    <a href="staff/" class="float-btn secondary">🔐 관리자</a>
+    <a href="tel:010-2831-7909" class="float-btn primary" id="callBtn">📞 전화하기</a>
   </div>
 
   <!-- Toast -->
@@ -1029,21 +1030,6 @@
       const key = `nmg_visits_${slotId}`;
       localStorage.setItem(key, parseInt(localStorage.getItem(key) || '0') + 1);
     }
-
-    function shareOffice() {
-      if (navigator.share) {
-        navigator.share({ title: config.member.name, text: config.member.tagline, url: location.href });
-      } else {
-        navigator.clipboard.writeText(location.href);
-        alert('링크가 복사되었습니다');
-      }
-    }
-
-    // PR button
-    document.getElementById('prBtn').addEventListener('click', () => {
-      const phone = config?.contact?.phone || '010-2831-7909';
-      location.href = `tel:${phone}`;
-    });
 
     document.addEventListener('DOMContentLoaded', init);
 
