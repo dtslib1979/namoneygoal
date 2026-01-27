@@ -1,0 +1,74 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot01.namoneygoal.kr" }],
+      "destination": "/slots/slot01/$1"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot02.namoneygoal.kr" }],
+      "destination": "/slots/slot02/$1"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot03.namoneygoal.kr" }],
+      "destination": "/slots/slot03/$1"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot04.namoneygoal.kr" }],
+      "destination": "/slots/slot04/$1"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot05.namoneygoal.kr" }],
+      "destination": "/slots/slot05/$1"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot06.namoneygoal.kr" }],
+      "destination": "/slots/slot06/$1"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot07.namoneygoal.kr" }],
+      "destination": "/slots/slot07/$1"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot08.namoneygoal.kr" }],
+      "destination": "/slots/slot08/$1"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot09.namoneygoal.kr" }],
+      "destination": "/slots/slot09/$1"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot10.namoneygoal.kr" }],
+      "destination": "/slots/slot10/$1"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot11.namoneygoal.kr" }],
+      "destination": "/slots/slot11/$1"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "slot12.namoneygoal.kr" }],
+      "destination": "/slots/slot12/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+      ]
+    }
+  ]
+}
