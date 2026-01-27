@@ -1,0 +1,44 @@
+{
+  "slot": {
+    "id": "slot11",
+    "type": "paid",
+    "status": "active"
+  },
+  "member": {
+    "name": "오수진 공인중개사",
+    "title": "학군/교육 전문",
+    "tagline": "자녀 교육을 위한 최적의 학군 매물 추천",
+    "avatar": "오",
+    "photo": "/assets/members/slot11.jpg",
+    "logo": "/assets/logos/slot11.png"
+  },
+  "contact": {
+    "phone": "010-1111-1111",
+    "office": "경기도 시흥시 장곡동 111-22",
+    "kakao": "@oh_realty",
+    "email": "oh@example.com"
+  },
+  "website": {
+    "url": "namoneygoal.kr/slots/slot11",
+    "blogTitle": "수진의 학군 매물 가이드",
+    "blogSubtitle": "시흥 명문 학군과 학원가 정보",
+    "channelName": "수진TV"
+  },
+  "theme": {
+    "primary": "#A855F7",
+    "accent": "#F59E0B"
+  },
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true
+  },
+  "social": {
+    "naver": "",
+    "youtube": "",
+    "instagram": ""
+  },
+  "createdAt": "2026-01-27T00:00:00Z"
+}

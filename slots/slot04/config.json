@@ -1,0 +1,44 @@
+{
+  "slot": {
+    "id": "slot04",
+    "type": "paid",
+    "status": "active"
+  },
+  "member": {
+    "name": "정민수 공인중개사",
+    "title": "재개발/재건축 전문",
+    "tagline": "투자 가치 분석과 미래 가치를 함께 봅니다",
+    "avatar": "정",
+    "photo": "/assets/members/slot04.jpg",
+    "logo": "/assets/logos/slot04.png"
+  },
+  "contact": {
+    "phone": "010-4444-4444",
+    "office": "경기도 시흥시 신천동 234-56",
+    "kakao": "@jung_realty",
+    "email": "jung@example.com"
+  },
+  "website": {
+    "url": "namoneygoal.kr/slots/slot04",
+    "blogTitle": "정민수의 재개발 투자 노트",
+    "blogSubtitle": "시흥 재개발 구역 분석 전문",
+    "channelName": "정민수TV"
+  },
+  "theme": {
+    "primary": "#A855F7",
+    "accent": "#F59E0B"
+  },
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true
+  },
+  "social": {
+    "naver": "",
+    "youtube": "",
+    "instagram": ""
+  },
+  "createdAt": "2026-01-27T00:00:00Z"
+}

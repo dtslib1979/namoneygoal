@@ -8,7 +8,9 @@
     "name": "박씨 중개사",
     "title": "부동산 전문 중개인",
     "tagline": "시흥 남원골에서 20년, AI와 함께하는 현대적 중개인",
-    "avatar": "박"
+    "avatar": "박",
+    "photo": "/assets/members/slot01.jpg",
+    "logo": "/assets/logos/slot01.png"
   },
   "contact": {
     "phone": "010-1234-5678",

@@ -1,0 +1,44 @@
+{
+  "slot": {
+    "id": "slot12",
+    "type": "paid",
+    "status": "active"
+  },
+  "member": {
+    "name": "임태우 공인중개사",
+    "title": "노후 대비/실버타운 전문",
+    "tagline": "은퇴 후 편안한 삶을 위한 주거 솔루션",
+    "avatar": "임",
+    "photo": "/assets/members/slot12.jpg",
+    "logo": "/assets/logos/slot12.png"
+  },
+  "contact": {
+    "phone": "010-1212-1212",
+    "office": "경기도 시흥시 군자동 121-21",
+    "kakao": "@lim_realty",
+    "email": "lim@example.com"
+  },
+  "website": {
+    "url": "namoneygoal.kr/slots/slot12",
+    "blogTitle": "태우의 실버 주거 가이드",
+    "blogSubtitle": "은퇴 후 주거와 투자 전략",
+    "channelName": "태우TV"
+  },
+  "theme": {
+    "primary": "#A855F7",
+    "accent": "#F59E0B"
+  },
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true
+  },
+  "social": {
+    "naver": "",
+    "youtube": "",
+    "instagram": ""
+  },
+  "createdAt": "2026-01-27T00:00:00Z"
+}

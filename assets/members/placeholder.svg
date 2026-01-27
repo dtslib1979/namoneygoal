@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#1a1a2e"/>
+  <circle cx="100" cy="75" r="40" fill="#A855F7" opacity="0.5"/>
+  <ellipse cx="100" cy="170" rx="60" ry="40" fill="#A855F7" opacity="0.3"/>
+  <text x="100" y="195" text-anchor="middle" fill="#666" font-family="system-ui" font-size="12">회원 사진</text>
+</svg>

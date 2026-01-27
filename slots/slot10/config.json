@@ -1,0 +1,44 @@
+{
+  "slot": {
+    "id": "slot10",
+    "type": "paid",
+    "status": "active"
+  },
+  "member": {
+    "name": "서준호 공인중개사",
+    "title": "경매/공매 전문",
+    "tagline": "법원 경매로 시세보다 저렴하게 내 집 마련",
+    "avatar": "서",
+    "photo": "/assets/members/slot10.jpg",
+    "logo": "/assets/logos/slot10.png"
+  },
+  "contact": {
+    "phone": "010-1010-1010",
+    "office": "경기도 시흥시 신천동 101-23",
+    "kakao": "@seo_realty",
+    "email": "seo@example.com"
+  },
+  "website": {
+    "url": "namoneygoal.kr/slots/slot10",
+    "blogTitle": "준호의 경매 투자 클래스",
+    "blogSubtitle": "경매/공매 입문부터 낙찰까지",
+    "channelName": "준호TV"
+  },
+  "theme": {
+    "primary": "#A855F7",
+    "accent": "#F59E0B"
+  },
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true
+  },
+  "social": {
+    "naver": "",
+    "youtube": "",
+    "instagram": ""
+  },
+  "createdAt": "2026-01-27T00:00:00Z"
+}

@@ -1,0 +1,44 @@
+{
+  "slot": {
+    "id": "slot08",
+    "type": "paid",
+    "status": "active"
+  },
+  "member": {
+    "name": "윤재혁 공인중개사",
+    "title": "공장/창고 전문",
+    "tagline": "시흥 시화공단 산업용 부동산 전문가",
+    "avatar": "윤",
+    "photo": "/assets/members/slot08.jpg",
+    "logo": "/assets/logos/slot08.png"
+  },
+  "contact": {
+    "phone": "010-8888-8888",
+    "office": "경기도 시흥시 정왕동 시화공단 456-78",
+    "kakao": "@yoon_realty",
+    "email": "yoon@example.com"
+  },
+  "website": {
+    "url": "namoneygoal.kr/slots/slot08",
+    "blogTitle": "재혁의 산업용 부동산",
+    "blogSubtitle": "공장/창고 매물과 임대 정보",
+    "channelName": "재혁TV"
+  },
+  "theme": {
+    "primary": "#A855F7",
+    "accent": "#F59E0B"
+  },
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true
+  },
+  "social": {
+    "naver": "",
+    "youtube": "",
+    "instagram": ""
+  },
+  "createdAt": "2026-01-27T00:00:00Z"
+}

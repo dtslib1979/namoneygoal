@@ -1,0 +1,44 @@
+{
+  "slot": {
+    "id": "slot02",
+    "type": "paid",
+    "status": "active"
+  },
+  "member": {
+    "name": "김철수 공인중개사",
+    "title": "상가/토지 전문",
+    "tagline": "시흥 상업지역 15년 경력, 믿을 수 있는 파트너",
+    "avatar": "김",
+    "photo": "/assets/members/slot02.jpg",
+    "logo": "/assets/logos/slot02.png"
+  },
+  "contact": {
+    "phone": "010-2222-2222",
+    "office": "경기도 시흥시 정왕동 456-78",
+    "kakao": "@kim_realty",
+    "email": "kim@example.com"
+  },
+  "website": {
+    "url": "namoneygoal.kr/slots/slot02",
+    "blogTitle": "김철수의 상가 투자 가이드",
+    "blogSubtitle": "상가/토지 투자 전문가의 노하우",
+    "channelName": "김철수TV"
+  },
+  "theme": {
+    "primary": "#A855F7",
+    "accent": "#F59E0B"
+  },
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true
+  },
+  "social": {
+    "naver": "",
+    "youtube": "",
+    "instagram": ""
+  },
+  "createdAt": "2026-01-27T00:00:00Z"
+}

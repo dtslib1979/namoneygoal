@@ -1,0 +1,44 @@
+{
+  "slot": {
+    "id": "slot05",
+    "type": "paid",
+    "status": "active"
+  },
+  "member": {
+    "name": "최지현 공인중개사",
+    "title": "전세/월세 전문",
+    "tagline": "안전한 전세, 합리적인 월세를 찾아드립니다",
+    "avatar": "최",
+    "photo": "/assets/members/slot05.jpg",
+    "logo": "/assets/logos/slot05.png"
+  },
+  "contact": {
+    "phone": "010-5555-5555",
+    "office": "경기도 시흥시 대야동 567-89",
+    "kakao": "@choi_realty",
+    "email": "choi@example.com"
+  },
+  "website": {
+    "url": "namoneygoal.kr/slots/slot05",
+    "blogTitle": "지현의 전월세 안심 가이드",
+    "blogSubtitle": "전세 사기 예방과 안전한 계약",
+    "channelName": "지현TV"
+  },
+  "theme": {
+    "primary": "#A855F7",
+    "accent": "#F59E0B"
+  },
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true
+  },
+  "social": {
+    "naver": "",
+    "youtube": "",
+    "instagram": ""
+  },
+  "createdAt": "2026-01-27T00:00:00Z"
+}

@@ -1,0 +1,44 @@
+{
+  "slot": {
+    "id": "slot06",
+    "type": "paid",
+    "status": "active"
+  },
+  "member": {
+    "name": "박성훈 공인중개사",
+    "title": "오피스텔/원룸 전문",
+    "tagline": "1인 가구와 투자자를 위한 소형 부동산 전문",
+    "avatar": "박",
+    "photo": "/assets/members/slot06.jpg",
+    "logo": "/assets/logos/slot06.png"
+  },
+  "contact": {
+    "phone": "010-6666-6666",
+    "office": "경기도 시흥시 월곶동 890-12",
+    "kakao": "@parksh_realty",
+    "email": "parksh@example.com"
+  },
+  "website": {
+    "url": "namoneygoal.kr/slots/slot06",
+    "blogTitle": "성훈의 소형 부동산 투자",
+    "blogSubtitle": "오피스텔/원룸 수익률 분석",
+    "channelName": "성훈TV"
+  },
+  "theme": {
+    "primary": "#A855F7",
+    "accent": "#F59E0B"
+  },
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true
+  },
+  "social": {
+    "naver": "",
+    "youtube": "",
+    "instagram": ""
+  },
+  "createdAt": "2026-01-27T00:00:00Z"
+}

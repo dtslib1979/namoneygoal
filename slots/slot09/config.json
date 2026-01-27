@@ -1,0 +1,44 @@
+{
+  "slot": {
+    "id": "slot09",
+    "type": "paid",
+    "status": "active"
+  },
+  "member": {
+    "name": "한소연 공인중개사",
+    "title": "신축 분양 전문",
+    "tagline": "배곧신도시 신축 아파트 분양 상담 전문",
+    "avatar": "한",
+    "photo": "/assets/members/slot09.jpg",
+    "logo": "/assets/logos/slot09.png"
+  },
+  "contact": {
+    "phone": "010-9999-9999",
+    "office": "경기도 시흥시 배곧동 신도시 789-01",
+    "kakao": "@han_realty",
+    "email": "han@example.com"
+  },
+  "website": {
+    "url": "namoneygoal.kr/slots/slot09",
+    "blogTitle": "소연의 분양 정보",
+    "blogSubtitle": "배곧신도시 분양 소식과 청약 가이드",
+    "channelName": "소연TV"
+  },
+  "theme": {
+    "primary": "#A855F7",
+    "accent": "#F59E0B"
+  },
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true
+  },
+  "social": {
+    "naver": "",
+    "youtube": "",
+    "instagram": ""
+  },
+  "createdAt": "2026-01-27T00:00:00Z"
+}

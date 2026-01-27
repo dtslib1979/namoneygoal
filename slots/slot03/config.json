@@ -1,0 +1,44 @@
+{
+  "slot": {
+    "id": "slot03",
+    "type": "paid",
+    "status": "active"
+  },
+  "member": {
+    "name": "이영희 공인중개사",
+    "title": "아파트/빌라 전문",
+    "tagline": "신혼부부와 함께하는 첫 집 찾기 전문가",
+    "avatar": "이",
+    "photo": "/assets/members/slot03.jpg",
+    "logo": "/assets/logos/slot03.png"
+  },
+  "contact": {
+    "phone": "010-3333-3333",
+    "office": "경기도 시흥시 배곧동 789-12",
+    "kakao": "@lee_realty",
+    "email": "lee@example.com"
+  },
+  "website": {
+    "url": "namoneygoal.kr/slots/slot03",
+    "blogTitle": "영희의 행복한 집 찾기",
+    "blogSubtitle": "신혼부부 맞춤 매물 추천",
+    "channelName": "영희TV"
+  },
+  "theme": {
+    "primary": "#A855F7",
+    "accent": "#F59E0B"
+  },
+  "features": {
+    "card": true,
+    "blog": true,
+    "video": true,
+    "walkie": true,
+    "pr": true
+  },
+  "social": {
+    "naver": "",
+    "youtube": "",
+    "instagram": ""
+  },
+  "createdAt": "2026-01-27T00:00:00Z"
+}
