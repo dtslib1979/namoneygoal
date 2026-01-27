@@ -2,1853 +2,1094 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>남원골 | AI 쓰는 중개인</title>
-  <meta name="description" content="부동산 중개인의 말이 자동으로 네이버에 쌓이는 12슬롯 한정 직업 운영 길드">
-  <meta name="theme-color" content="#0a0a0f">
-
-  <!-- PWA -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>남원골 | AI 쓰는 중개인 길드</title>
+  <meta name="description" content="시흥 부동산 중개인을 위한 AI 워키토키 길드. 12슬롯 한정.">
+  <meta name="theme-color" content="#7C3AED">
   <link rel="manifest" href="/assets/manifest.json">
   <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="남원골 | AI 쓰는 중개인">
-  <meta property="og:description" content="부동산 중개인의 말이 자동으로 네이버에 쌓이는 12슬롯 한정 직업 운영 길드">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://namoneygoal.kr">
-
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
     :root {
-      --primary: #a855f7;
-      --primary-light: #c084fc;
-      --primary-dark: #7c3aed;
-      --accent: #f59e0b;
-      --accent-light: #fbbf24;
-      --cyan: #06b6d4;
-      --green: #22c55e;
-      --pink: #ec4899;
-
-      --bg-deep: #030305;
-      --bg: #0a0a0f;
-      --bg-elevated: #12121a;
-      --bg-card: rgba(18, 18, 26, 0.8);
-      --bg-glass: rgba(255, 255, 255, 0.03);
-
-      --text: #f4f4f5;
-      --text-secondary: #a1a1aa;
-      --text-muted: #52525b;
-
-      --border: rgba(255, 255, 255, 0.06);
-      --border-light: rgba(255, 255, 255, 0.1);
-
-      --glow-primary: rgba(168, 85, 247, 0.4);
-      --glow-accent: rgba(245, 158, 11, 0.3);
-
-      --font-display: 'Inter', 'Noto Sans KR', sans-serif;
-      --font-body: 'Noto Sans KR', 'Inter', sans-serif;
-
-      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --primary: #7C3AED;
+      --primary-dark: #5B21B6;
+      --accent: #F59E0B;
+      --bg: #0F0F1A;
+      --bg-card: #1A1A2E;
+      --bg-card-hover: #252542;
+      --text: #FFFFFF;
+      --text-dim: #9CA3AF;
+      --text-muted: #6B7280;
+      --gradient: linear-gradient(135deg, #7C3AED 0%, #EC4899 50%, #F59E0B 100%);
+      --shadow: 0 4px 24px rgba(124, 58, 237, 0.15);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --safe-top: env(safe-area-inset-top);
+      --safe-bottom: env(safe-area-inset-bottom);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: var(--primary-dark) var(--bg);
-    }
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, var(--primary), var(--primary-dark));
-      border-radius: 4px;
-    }
+    html { font-size: 16px; scroll-behavior: smooth; }
 
     body {
-      font-family: var(--font-body);
-      background: var(--bg-deep);
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
       color: var(--text);
-      overflow-x: hidden;
       line-height: 1.6;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
     }
 
-    /* Selection */
-    ::selection {
-      background: var(--primary);
-      color: white;
-    }
-
-    /* ========== CANVAS BACKGROUND ========== */
-    #particles-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* ========== NOISE OVERLAY ========== */
-    .noise {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    }
-
-    /* ========== GRADIENT ORBS ========== */
-    .gradient-orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.5;
-    }
-
-    .orb-1 {
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-      top: -200px;
-      right: -200px;
-      animation: float-orb 20s ease-in-out infinite;
-    }
-
-    .orb-2 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-      bottom: -150px;
-      left: -150px;
-      animation: float-orb 25s ease-in-out infinite reverse;
-    }
-
-    .orb-3 {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, var(--cyan) 0%, transparent 70%);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation: pulse-orb 15s ease-in-out infinite;
-    }
-
-    @keyframes float-orb {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(50px, -30px) scale(1.1); }
-      50% { transform: translate(-30px, 50px) scale(0.9); }
-      75% { transform: translate(-50px, -20px) scale(1.05); }
-    }
-
-    @keyframes pulse-orb {
-      0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.2); }
-    }
-
-    /* ========== NAVIGATION ========== */
-    .nav {
+    /* ========== HEADER ========== */
+    .header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.4s var(--ease-out-expo);
-    }
-
-    .nav.scrolled {
-      background: rgba(10, 10, 15, 0.8);
+      z-index: 1000;
+      background: rgba(15, 15, 26, 0.9);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 15px 40px;
+      border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+      padding: 12px 20px;
+      padding-top: calc(12px + var(--safe-top));
     }
 
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 24px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--text), var(--primary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-
-    .nav-links {
+    .header-inner {
       display: flex;
-      gap: 40px;
-      list-style: none;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.3s;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--gradient);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .header-cta {
+      background: var(--gradient);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      padding: 90px 20px 40px;
+      text-align: center;
       position: relative;
+      overflow: hidden;
     }
 
-    .nav-links a::after {
+    .hero::before {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      transition: width 0.3s var(--ease-out-expo);
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+      animation: pulse 8s ease-in-out infinite;
     }
 
-    .nav-links a:hover {
-      color: var(--text);
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      padding: 12px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      transition: all 0.3s var(--ease-out-expo);
-      box-shadow: 0 4px 20px var(--glow-primary);
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px var(--glow-primary);
-    }
-
-    /* ========== HERO SECTION ========== */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 120px 20px 80px;
+    .hero-content {
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: var(--bg-glass);
-      border: 1px solid var(--border-light);
-      padding: 8px 16px;
+      gap: 6px;
+      background: rgba(124, 58, 237, 0.2);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      padding: 6px 14px;
       border-radius: 100px;
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-bottom: 30px;
-      backdrop-filter: blur(10px);
-      opacity: 0;
-      transform: translateY(20px);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #A78BFA;
+      margin-bottom: 16px;
     }
 
-    .hero-badge .dot {
-      width: 8px;
-      height: 8px;
-      background: var(--green);
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #10B981;
       border-radius: 50%;
-      animation: pulse-dot 2s infinite;
+      animation: blink 2s infinite;
     }
 
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.2); }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
     }
 
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(48px, 10vw, 120px);
+    .hero h1 {
+      font-size: 2rem;
       font-weight: 900;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-      opacity: 0;
-      transform: translateY(40px);
-    }
-
-    .hero-title .line {
-      display: block;
-      overflow: hidden;
-    }
-
-    .hero-title .gradient {
-      background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent) 50%, var(--pink) 100%);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      background-size: 200% 200%;
-      animation: gradient-shift 5s ease infinite;
     }
 
-    @keyframes gradient-shift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .hero-subtitle {
-      font-size: clamp(18px, 3vw, 24px);
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin-bottom: 50px;
-      line-height: 1.7;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    .hero-subtitle strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .hero-cta-group {
+    .hero-stats {
       display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
       justify-content: center;
-      opacity: 0;
-      transform: translateY(30px);
+      gap: 24px;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 18px 36px;
-      border-radius: 16px;
-      font-size: 16px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.4s var(--ease-out-expo);
-      cursor: pointer;
-      border: none;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      box-shadow: 0 8px 32px var(--glow-primary), inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    .btn-primary:hover::before {
-      left: 100%;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 16px 48px var(--glow-primary), inset 0 1px 0 rgba(255,255,255,0.2);
-    }
-
-    .btn-secondary {
-      background: var(--bg-glass);
-      color: var(--text);
-      border: 1px solid var(--border-light);
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-secondary:hover {
-      background: var(--bg-elevated);
-      border-color: var(--primary);
-      transform: translateY(-4px);
-    }
-
-    .btn-icon {
-      font-size: 20px;
-      transition: transform 0.3s;
-    }
-
-    .btn:hover .btn-icon {
-      transform: translateX(4px);
-    }
-
-    /* Hero Visual */
-    .hero-visual {
-      margin-top: 80px;
-      position: relative;
-      width: 100%;
-      max-width: 1000px;
-      opacity: 0;
-      transform: translateY(60px);
-    }
-
-    .hero-mockup {
-      width: 100%;
-      border-radius: 24px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 20px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
-    }
-
-    .mockup-header {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .mockup-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-
-    .mockup-dot:nth-child(1) { background: #ff5f57; }
-    .mockup-dot:nth-child(2) { background: #febc2e; }
-    .mockup-dot:nth-child(3) { background: #28c840; }
-
-    .mockup-content {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .mockup-card {
-      background: var(--bg);
-      border-radius: 16px;
-      padding: 24px;
+    .hero-stat {
       text-align: center;
-      border: 1px solid var(--border);
-      transition: all 0.4s var(--ease-out-expo);
     }
 
-    .mockup-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--primary);
-      box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
+    .hero-stat-value {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--accent);
     }
 
-    .mockup-card-icon {
-      font-size: 40px;
-      margin-bottom: 12px;
-    }
-
-    .mockup-card-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .mockup-card-desc {
-      font-size: 12px;
+    .hero-stat-label {
+      font-size: 0.7rem;
       color: var(--text-muted);
-    }
-
-    /* Scroll Indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      animation: fade-in 1s 2s forwards;
-    }
-
-    @keyframes fade-in {
-      to { opacity: 1; }
-    }
-
-    .scroll-indicator span {
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 2px;
       text-transform: uppercase;
     }
 
-    .scroll-line {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(180deg, var(--primary), transparent);
-      position: relative;
-    }
-
-    .scroll-line::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 20px;
-      background: var(--primary);
-      animation: scroll-down 2s infinite;
-    }
-
-    @keyframes scroll-down {
-      0% { top: 0; opacity: 1; }
-      100% { top: 100%; opacity: 0; }
-    }
-
-    /* ========== SECTIONS COMMON ========== */
-    .section {
-      position: relative;
-      z-index: 2;
-      padding: 120px 20px;
-    }
-
-    .container {
-      max-width: 1200px;
+    /* ========== STATION ========== */
+    .station {
+      padding: 0 16px 120px;
+      max-width: 600px;
       margin: 0 auto;
     }
 
-    .section-label {
-      display: inline-flex;
+    .section-header {
+      display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--primary-light);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-bottom: 20px;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 16px 0 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .section-label::before {
-      content: '';
-      width: 24px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
-    }
-
-    .section-desc {
-      font-size: 18px;
-      color: var(--text-secondary);
-      max-width: 600px;
-      line-height: 1.8;
-    }
-
-    /* ========== VALUE PROPS ========== */
-    .value-section {
-      background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 100%);
-    }
-
-    .value-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-top: 60px;
-    }
-
-    .value-card {
+    .section-icon {
+      width: 36px;
+      height: 36px;
       background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 40px 30px;
-      text-align: center;
-      transition: all 0.5s var(--ease-out-expo);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-    }
-
-    .value-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s var(--ease-out-expo);
-    }
-
-    .value-card:hover {
-      transform: translateY(-12px);
-      border-color: var(--primary);
-      box-shadow: 0 30px 60px rgba(168, 85, 247, 0.15);
-    }
-
-    .value-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .value-icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 24px;
-      background: linear-gradient(135deg, var(--bg-elevated), var(--bg));
-      border-radius: 20px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 36px;
-      border: 1px solid var(--border);
-      transition: all 0.4s;
+      font-size: 1.1rem;
     }
 
-    .value-card:hover .value-icon {
-      transform: scale(1.1) rotate(5deg);
-      border-color: var(--primary);
-      box-shadow: 0 10px 30px var(--glow-primary);
-    }
-
-    .value-title {
-      font-size: 20px;
+    .section-title {
+      font-size: 1.1rem;
       font-weight: 700;
-      margin-bottom: 12px;
     }
 
-    .value-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    /* ========== SLOTS SECTION ========== */
-    .slots-section {
-      background: var(--bg);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .slots-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 60px;
-    }
-
-    .slots-stats {
-      display: flex;
-      gap: 40px;
-    }
-
-    .stat-item {
-      text-align: right;
-    }
-
-    .stat-value {
-      font-family: var(--font-display);
-      font-size: 48px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary-light), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    .slots-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 16px;
-    }
-
-    .slot-card {
+    /* ========== 명함 ========== */
+    .card-section {
       background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px;
-      text-align: center;
-      transition: all 0.4s var(--ease-out-expo);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
-    .slot-card::after {
+    .namecard {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .namecard-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+    }
+
+    .namecard-info h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .namecard-info .title {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .namecard-info .tagline {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .namecard-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .namecard-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 8px;
+      background: var(--bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .namecard-btn:active {
+      transform: scale(0.96);
+    }
+
+    .namecard-btn.primary {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    /* ========== 포탈 ========== */
+    .portal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .portal-gate {
+      aspect-ratio: 1;
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portal-gate:active {
+      transform: scale(0.96);
+    }
+
+    .portal-gate::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background: var(--gradient);
       opacity: 0;
-      transition: opacity 0.4s;
-      z-index: 0;
+      transition: opacity 0.3s;
     }
 
-    .slot-card > * {
+    .portal-gate:hover::before {
+      opacity: 0.1;
+    }
+
+    .portal-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
       position: relative;
       z-index: 1;
     }
 
-    .slot-card.active {
+    .portal-name {
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      max-width: 90%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .portal-gate.anchor {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), transparent);
+    }
+
+    .portal-gate.anchor .portal-avatar {
+      background: linear-gradient(135deg, var(--accent), #D97706);
+    }
+
+    .portal-gate.empty {
+      opacity: 0.35;
+    }
+
+    /* ========== 블로그 ========== */
+    .blog-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .blog-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .blog-card:active {
       border-color: var(--primary);
-      box-shadow: 0 0 40px var(--glow-primary);
     }
 
-    .slot-card.active::after {
-      opacity: 0.1;
+    .blog-card-inner {
+      display: flex;
+      gap: 12px;
+      padding: 14px;
     }
 
-    .slot-card.empty {
-      opacity: 0.4;
-    }
-
-    .slot-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      border-color: var(--primary);
-    }
-
-    .slot-number {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-    }
-
-    .slot-avatar {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 12px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+    .blog-thumb {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      background: var(--bg);
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      font-weight: 700;
-      color: white;
-      box-shadow: 0 8px 24px var(--glow-primary);
+      font-size: 1.5rem;
     }
 
-    .slot-card.empty .slot-avatar {
-      background: var(--bg);
-      box-shadow: none;
-      border: 2px dashed var(--border-light);
+    .blog-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
       color: var(--text-muted);
-    }
-
-    .slot-name {
-      font-size: 14px;
-      font-weight: 600;
       margin-bottom: 4px;
     }
 
-    .slot-status {
-      font-size: 11px;
-      color: var(--green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-    }
-
-    .slot-card.empty .slot-status {
-      color: var(--text-muted);
-    }
-
-    .slot-status::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: currentColor;
+    .blog-author-avatar {
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
-    }
-
-    /* ========== HOW IT WORKS ========== */
-    .how-section {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 100%);
-    }
-
-    .how-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .how-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    .how-step {
-      display: flex;
-      gap: 24px;
-      padding: 24px;
-      border-radius: 20px;
-      transition: all 0.4s var(--ease-out-expo);
-      cursor: pointer;
-    }
-
-    .how-step:hover {
-      background: var(--bg-glass);
-    }
-
-    .how-step.active {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-    }
-
-    .step-number {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: var(--primary);
+      font-size: 0.45rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-display);
-      font-size: 24px;
-      font-weight: 800;
-      color: white;
-      flex-shrink: 0;
-      box-shadow: 0 8px 24px var(--glow-primary);
     }
 
-    .step-content h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 8px;
+    .blog-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
-    .step-content p {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.7;
+    /* ========== 초크보드 ========== */
+    .chalkboard-container {
+      background: #1a2a1a;
+      border-radius: var(--radius);
+      border: 3px solid #4a3728;
+      padding: 16px;
+      margin-bottom: 20px;
     }
 
-    .how-visual {
-      position: relative;
-    }
-
-    .how-phone {
-      width: 100%;
-      max-width: 320px;
-      margin: 0 auto;
-      background: var(--bg-card);
-      border-radius: 40px;
-      padding: 12px;
-      border: 1px solid var(--border);
-      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
-    }
-
-    .phone-screen {
-      background: var(--bg);
-      border-radius: 32px;
-      padding: 20px;
-      min-height: 500px;
-    }
-
-    .phone-header {
+    .chalkboard-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 30px;
+      margin-bottom: 12px;
     }
 
-    .phone-time {
-      font-size: 14px;
-      font-weight: 600;
+    .chalkboard-title {
+      color: #8fbc8f;
+      font-family: monospace;
+      font-size: 0.8rem;
     }
 
-    .phone-icons {
+    .chalkboard-tools {
       display: flex;
-      gap: 4px;
-      font-size: 12px;
+      gap: 6px;
     }
 
-    /* ========== PRICING ========== */
-    .pricing-section {
-      background: var(--bg-elevated);
-      position: relative;
+    .chalk-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.2);
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .pricing-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    .chalk-btn.active {
+      background: #8fbc8f;
+      border-color: #8fbc8f;
     }
 
-    .pricing-grid {
+    .chalkboard-canvas {
+      width: 100%;
+      height: 180px;
+      border-radius: 6px;
+      touch-action: none;
+      cursor: crosshair;
+      background: #1a2a1a;
+    }
+
+    .chalkboard-actions {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      max-width: 900px;
-      margin: 60px auto 0;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 12px;
     }
 
-    .pricing-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 48px;
+    .chalk-action {
+      padding: 10px;
+      background: rgba(143, 188, 143, 0.15);
+      border: 1px solid rgba(143, 188, 143, 0.3);
+      border-radius: 8px;
+      color: #8fbc8f;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    /* ========== 워키토키 ========== */
+    .walkie-card {
+      background: linear-gradient(135deg, var(--primary-dark), #1E1B4B);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 20px;
       position: relative;
       overflow: hidden;
-      transition: all 0.4s var(--ease-out-expo);
-      backdrop-filter: blur(10px);
     }
 
-    .pricing-card.featured {
-      border-color: var(--primary);
-      box-shadow: 0 0 60px var(--glow-primary);
-    }
-
-    .pricing-card.featured::before {
-      content: 'BEST';
+    .walkie-card::before {
+      content: '';
       position: absolute;
-      top: 24px;
-      right: -32px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-light));
-      color: var(--bg);
-      padding: 6px 48px;
-      font-size: 12px;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+    }
+
+    .walkie-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 12px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .walkie-title {
+      font-size: 1.1rem;
       font-weight: 700;
-      transform: rotate(45deg);
-      letter-spacing: 1px;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
     }
 
-    .pricing-card:hover {
-      transform: translateY(-8px);
-    }
-
-    .pricing-label {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    .walkie-desc {
+      color: var(--text-dim);
+      font-size: 0.85rem;
       margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .walkie-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      text-decoration: none;
+    }
+
+    /* ========== 가격 ========== */
+    .pricing-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -8px;
+      right: 16px;
+      background: var(--gradient);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .pricing-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
 
     .pricing-price {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-      margin-bottom: 8px;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--accent);
     }
 
-    .pricing-amount {
-      font-family: var(--font-display);
-      font-size: 56px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--text), var(--primary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .pricing-price span {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      font-weight: 400;
     }
 
-    .pricing-unit {
-      font-size: 18px;
-      color: var(--text-secondary);
-    }
-
-    .pricing-desc {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 32px;
+    .pricing-breakdown {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: 4px;
     }
 
     .pricing-features {
       list-style: none;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
 
     .pricing-features li {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 0;
-      font-size: 15px;
-      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.85rem;
     }
 
-    .pricing-features li:last-child {
-      border-bottom: none;
-    }
-
-    .pricing-features .check {
-      width: 24px;
-      height: 24px;
-      background: linear-gradient(135deg, var(--green), #16a34a);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: white;
+    .pricing-features li::before {
+      content: '✓';
+      color: #10B981;
+      font-weight: 700;
     }
 
     .pricing-cta {
       width: 100%;
-      text-align: center;
+      padding: 14px;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
     }
 
-    /* ========== TESTIMONIALS ========== */
-    .testimonial-section {
-      background: var(--bg);
-      overflow: hidden;
-    }
-
-    .testimonial-track {
+    /* ========== FLOATING CTA ========== */
+    .floating-cta {
+      position: fixed;
+      bottom: 16px;
+      bottom: calc(16px + var(--safe-bottom));
+      left: 16px;
+      right: 16px;
+      z-index: 900;
       display: flex;
-      gap: 24px;
-      animation: scroll-testimonials 30s linear infinite;
+      gap: 8px;
+      max-width: 400px;
+      margin: 0 auto;
     }
 
-    @keyframes scroll-testimonials {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .testimonial-card {
-      flex-shrink: 0;
-      width: 400px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 32px;
-      backdrop-filter: blur(10px);
-    }
-
-    .testimonial-content {
-      font-size: 16px;
-      line-height: 1.8;
-      margin-bottom: 24px;
-      color: var(--text-secondary);
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .author-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+    .float-btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
+      gap: 6px;
+      text-decoration: none;
     }
 
-    .author-name {
-      font-weight: 600;
-      margin-bottom: 2px;
+    .float-btn.primary {
+      background: var(--gradient);
+      color: white;
     }
 
-    .author-role {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    /* ========== CTA SECTION ========== */
-    .cta-section {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-      padding: 160px 20px;
-      text-align: center;
-      position: relative;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, var(--primary) 0%, transparent 60%);
-      opacity: 0.15;
-      filter: blur(100px);
-    }
-
-    .cta-title {
-      font-family: var(--font-display);
-      font-size: clamp(40px, 6vw, 72px);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      position: relative;
-    }
-
-    .cta-subtitle {
-      font-size: 20px;
-      color: var(--text-secondary);
-      margin-bottom: 48px;
-      position: relative;
+    .float-btn.secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     /* ========== FOOTER ========== */
     .footer {
-      background: var(--bg-deep);
-      padding: 80px 20px 40px;
-      border-top: 1px solid var(--border);
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 60px;
-    }
-
-    .footer-brand {
-      max-width: 300px;
-    }
-
-    .footer-logo {
-      font-family: var(--font-display);
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, var(--text), var(--primary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .footer-desc {
-      font-size: 14px;
+      text-align: center;
+      padding: 30px 20px;
       color: var(--text-muted);
-      line-height: 1.7;
+      font-size: 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
 
-    .footer-links {
-      display: flex;
-      gap: 80px;
-    }
-
-    .footer-col h4 {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 20px;
-      color: var(--text);
-    }
-
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col a {
-      color: var(--text-muted);
+    .footer a {
+      color: var(--primary);
       text-decoration: none;
-      font-size: 14px;
-      display: block;
-      padding: 6px 0;
-      transition: color 0.3s;
-    }
-
-    .footer-col a:hover {
-      color: var(--primary-light);
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 40px;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-copy {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .footer-copy a {
-      color: var(--primary-light);
-      text-decoration: none;
-    }
-
-    /* Console Link */
-    .console-float {
-      position: fixed;
-      bottom: 32px;
-      left: 32px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 14px 24px;
-      border-radius: 16px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s var(--ease-out-expo);
-    }
-
-    .console-float:hover {
-      border-color: var(--primary);
-      color: var(--text);
-      transform: translateY(-4px);
-    }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 1024px) {
-      .value-grid { grid-template-columns: repeat(2, 1fr); }
-      .slots-grid { grid-template-columns: repeat(4, 1fr); }
-      .how-content { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-    }
-
-    @media (max-width: 768px) {
-      .nav { padding: 16px 20px; }
-      .hero { padding: 100px 20px 60px; }
-      .hero-title { font-size: 40px; }
-      .hero-subtitle { font-size: 16px; }
-      .btn { padding: 14px 28px; font-size: 14px; }
-      .section { padding: 80px 20px; }
-      .value-grid { grid-template-columns: 1fr; }
-      .slots-grid { grid-template-columns: repeat(3, 1fr); }
-      .slots-header { flex-direction: column; gap: 30px; align-items: flex-start; }
-      .slots-stats { gap: 24px; }
-      .stat-item { text-align: left; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .mockup-content { grid-template-columns: repeat(2, 1fr); }
-      .footer-content { flex-direction: column; gap: 40px; }
-      .footer-links { flex-direction: column; gap: 30px; }
-      .console-float { bottom: 16px; left: 16px; padding: 12px 18px; font-size: 13px; }
-    }
-
-    @media (max-width: 480px) {
-      .slots-grid { grid-template-columns: repeat(2, 1fr); }
-      .hero-cta-group { flex-direction: column; width: 100%; }
-      .btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
-  <!-- Background Effects -->
-  <canvas id="particles-canvas"></canvas>
-  <div class="noise"></div>
-  <div class="gradient-orb orb-1"></div>
-  <div class="gradient-orb orb-2"></div>
-  <div class="gradient-orb orb-3"></div>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">🏠</div>
+        <span>남원골</span>
+      </div>
+      <button class="header-cta" onclick="scrollTo('pricing')">입장 신청</button>
+    </div>
+  </header>
 
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <a href="/" class="nav-logo">남원골</a>
-    <ul class="nav-links">
-      <li><a href="#value">소개</a></li>
-      <li><a href="#slots">슬롯 현황</a></li>
-      <li><a href="#how">이용 방법</a></li>
-      <li><a href="#pricing">가격</a></li>
-    </ul>
-    <a href="#pricing" class="nav-cta">시작하기</a>
-  </nav>
-
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
-    <div class="hero-badge">
-      <span class="dot"></span>
-      <span>12슬롯 한정 · 선착순 마감</span>
-    </div>
-
-    <h1 class="hero-title">
-      <span class="line"><span class="gradient">AI 쓰는</span></span>
-      <span class="line">중개인</span>
-    </h1>
-
-    <p class="hero-subtitle">
-      부동산 중개인의 말이 자동으로 네이버에 쌓이는<br>
-      <strong>12슬롯 한정</strong> 직업 운영 길드
-    </p>
-
-    <div class="hero-cta-group">
-      <a href="#pricing" class="btn btn-primary">
-        <span>지금 시작하기</span>
-        <span class="btn-icon">→</span>
-      </a>
-      <a href="#how" class="btn btn-secondary">
-        <span>어떻게 되는 거야?</span>
-      </a>
-    </div>
-
-    <div class="hero-visual">
-      <div class="hero-mockup">
-        <div class="mockup-header">
-          <div class="mockup-dot"></div>
-          <div class="mockup-dot"></div>
-          <div class="mockup-dot"></div>
+    <div class="hero-content">
+      <div class="hero-badge">12슬롯 한정 운영</div>
+      <h1>AI 쓰는 중개인<br>길드</h1>
+      <p class="hero-sub">말하면 글이 된다. 시흥 부동산 중개인을 위한 디지털 스테이션.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value">12</div>
+          <div class="hero-stat-label">슬롯</div>
         </div>
-        <div class="mockup-content">
-          <div class="mockup-card">
-            <div class="mockup-card-icon">📇</div>
-            <div class="mockup-card-title">디지털 명함</div>
-            <div class="mockup-card-desc">QR 코드로 공유</div>
-          </div>
-          <div class="mockup-card">
-            <div class="mockup-card-icon">📝</div>
-            <div class="mockup-card-title">디지털 블로그</div>
-            <div class="mockup-card-desc">자동 글 생성</div>
-          </div>
-          <div class="mockup-card">
-            <div class="mockup-card-icon">🎬</div>
-            <div class="mockup-card-title">디지털 유튜브</div>
-            <div class="mockup-card-desc">영상 갤러리</div>
-          </div>
-          <div class="mockup-card">
-            <div class="mockup-card-icon">🎤</div>
-            <div class="mockup-card-title">AI 워키토키</div>
-            <div class="mockup-card-desc">말하면 글이 된다</div>
-          </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" id="activeSlots">8</div>
+          <div class="hero-stat-label">활성</div>
         </div>
-      </div>
-    </div>
-
-    <div class="scroll-indicator">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- Value Section -->
-  <section class="section value-section" id="value">
-    <div class="container">
-      <div class="section-label">허세 포트폴리오</div>
-      <h2 class="section-title">남원골이 뭐야?</h2>
-      <p class="section-desc">
-        허세가 먼저 팔리고, 생산성은 나중에 따라온다.<br>
-        "나는 AI 쓰는 중개인이다"를 자랑할 수 있게 만들어주는 <strong>허세 소비재</strong>
-      </p>
-
-      <div class="value-grid">
-        <div class="value-card">
-          <div class="value-icon">📇</div>
-          <h3 class="value-title">내 디지털 명함</h3>
-          <p class="value-desc">"나는 디지털 명함이 있다"<br>QR 코드로 바로 공유하고 자랑하세요</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">📝</div>
-          <h3 class="value-title">내 디지털 블로그</h3>
-          <p class="value-desc">"나는 내 블로그가 있다"<br>매물 소개가 자동으로 글이 됩니다</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🎬</div>
-          <h3 class="value-title">내 디지털 유튜브</h3>
-          <p class="value-desc">"나는 내 유튜브가 있다"<br>화면 녹화만 하면 채널이 완성</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🎤</div>
-          <h3 class="value-title">AI 워키토키</h3>
-          <p class="value-desc">"나는 AI를 이렇게 쓴다"<br>말하면 글이 되는 마법</p>
+        <div class="hero-stat">
+          <div class="hero-stat-value" id="remainSlots">4</div>
+          <div class="hero-stat-label">남음</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Slots Section -->
-  <section class="section slots-section" id="slots">
-    <div class="container">
-      <div class="slots-header">
-        <div>
-          <div class="section-label">12슬롯 시스템</div>
-          <h2 class="section-title">슬롯 현황</h2>
-          <p class="section-desc">각 슬롯은 독립된 디지털 사무실입니다</p>
-        </div>
-        <div class="slots-stats">
-          <div class="stat-item">
-            <div class="stat-value" id="activeCount">1</div>
-            <div class="stat-label">활성 슬롯</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" id="emptyCount">11</div>
-            <div class="stat-label">남은 슬롯</div>
-          </div>
+  <!-- Station -->
+  <main class="station">
+
+    <!-- 명함 -->
+    <section class="card-section">
+      <div class="namecard">
+        <div class="namecard-avatar">남</div>
+        <div class="namecard-info">
+          <h2>남원골 HQ</h2>
+          <p class="title">AI 쓰는 중개인 길드 본부</p>
+          <p class="tagline">시흥 부동산 중개인의 디지털 전환. 말만 하면 블로그가 됩니다.</p>
         </div>
       </div>
+      <div class="namecard-actions">
+        <a href="tel:010-1234-5678" class="namecard-btn">📞 전화</a>
+        <a href="#" class="namecard-btn">💬 카톡</a>
+        <button class="namecard-btn primary" onclick="shareCard()">📤 공유</button>
+      </div>
+    </section>
 
-      <div class="slots-grid" id="slotsGrid">
-        <!-- Slots will be rendered here -->
+    <!-- 포탈 -->
+    <div class="section-header">
+      <div class="section-icon">🚪</div>
+      <h2 class="section-title">멤버 작업실</h2>
+    </div>
+    <div class="portal-grid" id="portalGrid"></div>
+
+    <!-- 블로그 -->
+    <div class="section-header">
+      <div class="section-icon">📝</div>
+      <h2 class="section-title">최신 소식</h2>
+    </div>
+    <div class="blog-feed" id="blogFeed"></div>
+
+    <!-- 초크보드 -->
+    <div class="section-header">
+      <div class="section-icon">🎨</div>
+      <h2 class="section-title">초크보드</h2>
+    </div>
+    <div class="chalkboard-container">
+      <div class="chalkboard-header">
+        <span class="chalkboard-title">✍️ 자유롭게 그려보세요</span>
+        <div class="chalkboard-tools">
+          <button class="chalk-btn active" data-color="#FFFFFF">⚪</button>
+          <button class="chalk-btn" data-color="#FFD93D">🟡</button>
+          <button class="chalk-btn" data-color="#6BCB77">🟢</button>
+          <button class="chalk-btn" data-color="#FF6B6B">🔴</button>
+          <button class="chalk-btn" data-eraser>🧹</button>
+        </div>
+      </div>
+      <canvas id="chalkCanvas" class="chalkboard-canvas"></canvas>
+      <div class="chalkboard-actions">
+        <button class="chalk-action" onclick="clearCanvas()">🗑️ 지우기</button>
+        <button class="chalk-action" onclick="saveCanvas()">💾 저장</button>
+        <button class="chalk-action" id="recordBtn" onclick="toggleRecording()">🔴 녹화</button>
       </div>
     </div>
-  </section>
 
-  <!-- How It Works -->
-  <section class="section how-section" id="how">
-    <div class="container">
-      <div class="section-label">이용 방법</div>
-      <h2 class="section-title">딱 이것만 하면 된다</h2>
-      <p class="section-desc">편집도, 기획도, 브랜딩 강의도 없다. 말하고 붙이기만 한다.</p>
-
-      <div class="how-content" style="margin-top: 60px;">
-        <div class="how-steps">
-          <div class="how-step active">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <h3>폰으로 말한다</h3>
-              <p>매물 설명, 시세 분석, 뭐든 그냥 말하면 됩니다. AI 워키토키가 음성을 텍스트로 변환합니다.</p>
-            </div>
-          </div>
-          <div class="how-step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <h3>ChatGPT에 붙인다</h3>
-              <p>워키토키가 만들어준 프롬프트를 ChatGPT에 붙여넣습니다. AI가 글을 다듬어줍니다.</p>
-            </div>
-          </div>
-          <div class="how-step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <h3>블로그에 붙인다</h3>
-              <p>생성된 글을 내 디지털 블로그에 올립니다. 복사-붙여넣기 끝.</p>
-            </div>
-          </div>
-          <div class="how-step">
-            <div class="step-number">4</div>
-            <div class="step-content">
-              <h3>네이버에 끼운다</h3>
-              <p>링크를 네이버 블로그/카페에 공유합니다. 이제 검색에 노출됩니다.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="how-visual">
-          <div class="how-phone">
-            <div class="phone-screen">
-              <div class="phone-header">
-                <span class="phone-time">9:41</span>
-                <span class="phone-icons">📶 📡 🔋</span>
-              </div>
-              <div style="text-align: center; padding: 40px 0;">
-                <div style="font-size: 80px; margin-bottom: 20px;">🎤</div>
-                <div style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">AI 워키토키</div>
-                <div style="font-size: 14px; color: var(--text-muted);">버튼을 누르고 말하세요</div>
-                <div style="margin-top: 40px;">
-                  <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 32px;">🎙️</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- 워키토키 -->
+    <div class="walkie-card">
+      <div class="walkie-icon">🎤</div>
+      <h3 class="walkie-title">AI 워키토키</h3>
+      <p class="walkie-desc">버튼 누르고 말하세요.<br>AI가 블로그 글로 만들어드립니다.</p>
+      <a href="/modules/walkie.html" class="walkie-btn">🎙️ 워키토키 열기</a>
     </div>
-  </section>
 
-  <!-- Pricing -->
-  <section class="section pricing-section" id="pricing">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 60px;">
-        <div class="section-label" style="justify-content: center;">가격</div>
-        <h2 class="section-title">월 10만 원으로<br>디지털 캐릭터가 된다</h2>
-        <p class="section-desc" style="margin: 20px auto 0;">이건 도구 값이 아니라 <strong>캐릭터 값</strong>입니다</p>
-      </div>
-
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <div class="pricing-label">입장비</div>
-          <div class="pricing-price">
-            <span class="pricing-amount">50만</span>
-            <span class="pricing-unit">원</span>
-          </div>
-          <p class="pricing-desc">1회성 초기 세팅비</p>
-          <ul class="pricing-features">
-            <li><span class="check">✓</span>슬롯 생성</li>
-            <li><span class="check">✓</span>도메인 연결</li>
-            <li><span class="check">✓</span>남원골 키트 세팅</li>
-            <li><span class="check">✓</span>첫 글 / 첫 멘트 세팅</li>
-            <li><span class="check">✓</span>길드 등록</li>
-          </ul>
-          <a href="#" class="btn btn-secondary pricing-cta">상담하기</a>
-        </div>
-
-        <div class="pricing-card featured">
-          <div class="pricing-label">월 패키지</div>
-          <div class="pricing-price">
-            <span class="pricing-amount">10만</span>
-            <span class="pricing-unit">원/월</span>
-          </div>
-          <p class="pricing-desc">ChatGPT 3만 + 남원골 7만</p>
-          <ul class="pricing-features">
-            <li><span class="check">✓</span>개인 슬롯 유지</li>
-            <li><span class="check">✓</span>남원골 HQ 관제</li>
-            <li><span class="check">✓</span>PR 채널 사용</li>
-            <li><span class="check">✓</span>캡처 지원</li>
-            <li><span class="check">✓</span>"AI 쓰는 중개인" 멤버십</li>
-          </ul>
-          <a href="#" class="btn btn-primary pricing-cta">지금 시작하기</a>
-        </div>
-      </div>
+    <!-- 가격 -->
+    <div class="section-header" id="pricing">
+      <div class="section-icon">💰</div>
+      <h2 class="section-title">멤버십 안내</h2>
     </div>
-  </section>
+    <div class="pricing-card">
+      <div class="pricing-badge">4자리 남음</div>
+      <div class="pricing-header">
+        <h3 class="pricing-title">길드 멤버십</h3>
+        <div class="pricing-price">10만원 <span>/월</span></div>
+        <div class="pricing-breakdown">ChatGPT 3만 + 남원골 7만</div>
+      </div>
+      <ul class="pricing-features">
+        <li>내 디지털 사무실 (개인 URL)</li>
+        <li>디지털 명함 + QR코드</li>
+        <li>AI 워키토키 무제한</li>
+        <li>블로그/유튜브 자동 연동</li>
+        <li>PR 버튼 (수정 요청)</li>
+        <li>HQ 관제 지원</li>
+      </ul>
+      <button class="pricing-cta" onclick="applyMembership()">입장 신청 (입장비 50만원)</button>
+    </div>
 
-  <!-- Testimonials -->
-  <section class="section testimonial-section">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 60px;">
-        <div class="section-label" style="justify-content: center;">멤버 후기</div>
-        <h2 class="section-title">먼저 시작한 중개인들</h2>
-      </div>
-    </div>
-    <div class="testimonial-track">
-      <div class="testimonial-card">
-        <p class="testimonial-content">"처음엔 그냥 허세로 시작했는데, 진짜 손님이 '블로그 보고 왔다'고 하더라고요. AI가 이렇게 쓰이는 거구나 싶었어요."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">박</div>
-          <div>
-            <div class="author-name">박** 중개사</div>
-            <div class="author-role">시흥 남원동 · slot01</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-content">"디지털 명함 QR 보여주면 다들 신기해해요. '요즘 부동산도 이렇게 해?'라는 반응이 제일 좋았어요."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">김</div>
-          <div>
-            <div class="author-name">김** 중개사</div>
-            <div class="author-role">시흥 정왕동 · 예정</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-content">"말만 하면 글이 되니까 너무 편해요. 이제 블로그 쓴다고 밤새지 않아도 돼요."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">이</div>
-          <div>
-            <div class="author-name">이** 중개사</div>
-            <div class="author-role">시흥 대야동 · 예정</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-content">"처음엔 그냥 허세로 시작했는데, 진짜 손님이 '블로그 보고 왔다'고 하더라고요. AI가 이렇게 쓰이는 거구나 싶었어요."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">박</div>
-          <div>
-            <div class="author-name">박** 중개사</div>
-            <div class="author-role">시흥 남원동 · slot01</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-content">"디지털 명함 QR 보여주면 다들 신기해해요. '요즘 부동산도 이렇게 해?'라는 반응이 제일 좋았어요."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">김</div>
-          <div>
-            <div class="author-name">김** 중개사</div>
-            <div class="author-role">시흥 정왕동 · 예정</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </main>
 
-  <!-- Final CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <h2 class="cta-title">
-        <span class="gradient">12자리</span> 중<br>
-        <span id="remainingSlots">11</span>자리 남았습니다
-      </h2>
-      <p class="cta-subtitle">지금 시작하면, 당신도 "AI 쓰는 중개인"이 됩니다</p>
-      <a href="#pricing" class="btn btn-primary" style="font-size: 18px; padding: 20px 48px;">
-        <span>지금 바로 시작하기</span>
-        <span class="btn-icon">→</span>
-      </a>
-    </div>
-  </section>
+  <!-- Floating CTA -->
+  <div class="floating-cta">
+    <a href="/modules/walkie.html" class="float-btn secondary">🎤 워키토키</a>
+    <button class="float-btn primary" onclick="applyMembership()">🚀 입장 신청</button>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <div class="footer-logo">남원골</div>
-          <p class="footer-desc">AI 리터러시를 허세 소비재로 파는 직업 운영 길드. 부동산 중개인을 현대적 직업인으로 만들어드립니다.</p>
-        </div>
-        <div class="footer-links">
-          <div class="footer-col">
-            <h4>서비스</h4>
-            <ul>
-              <li><a href="/modules/walkie.html">AI 워키토키</a></li>
-              <li><a href="/modules/card.html">디지털 명함</a></li>
-              <li><a href="/modules/blog.html">디지털 블로그</a></li>
-              <li><a href="/modules/video.html">디지털 유튜브</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>회사</h4>
-            <ul>
-              <li><a href="/docs/concept.md">컨셉 문서</a></li>
-              <li><a href="/console/">관제 콘솔</a></li>
-              <li><a href="https://dtslib.com">DTSLIB HQ</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2026 남원골. Powered by <a href="https://dtslib.com">DTSLIB Branch OS</a></p>
-        <p class="footer-copy">First Vertical Pilot</p>
-      </div>
-    </div>
+    <p>© 2026 남원골 | AI 쓰는 중개인 길드</p>
+    <p>Powered by <a href="https://dtslib.com">DTSLIB HQ</a></p>
   </footer>
 
-  <!-- Console Float -->
-  <a href="/console/" class="console-float">
-    <span>🎛️</span>
-    <span>관제 콘솔</span>
-  </a>
-
   <script>
-    // ========== PARTICLES ==========
-    const canvas = document.getElementById('particles-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
+    // 슬롯 데이터
+    const slots = [
+      { id: 'slot01', name: '박씨 중개사', avatar: '박', type: 'anchor', active: true },
+      { id: 'slot02', name: '김철수', avatar: '김', type: 'paid', active: true },
+      { id: 'slot03', name: '이영희', avatar: '이', type: 'paid', active: true },
+      { id: 'slot04', name: '정민수', avatar: '정', type: 'paid', active: true },
+      { id: 'slot05', name: '최지현', avatar: '최', type: 'paid', active: true },
+      { id: 'slot06', name: '박성훈', avatar: '박', type: 'paid', active: true },
+      { id: 'slot07', name: '강미영', avatar: '강', type: 'paid', active: true },
+      { id: 'slot08', name: '윤재혁', avatar: '윤', type: 'paid', active: true },
+      { id: 'slot09', name: '빈 슬롯', avatar: '?', type: 'empty', active: false },
+      { id: 'slot10', name: '빈 슬롯', avatar: '?', type: 'empty', active: false },
+      { id: 'slot11', name: '빈 슬롯', avatar: '?', type: 'empty', active: false },
+      { id: 'slot12', name: '빈 슬롯', avatar: '?', type: 'empty', active: false },
+    ];
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
+    // 블로그 데이터
+    const blogPosts = [
+      { title: '시흥 배곧 신도시 아파트 시세 동향', author: '박씨', avatar: '박', date: '2시간 전', emoji: '🏢' },
+      { title: '전세 사기 예방 체크리스트 5가지', author: '최지현', avatar: '최', date: '5시간 전', emoji: '🔒' },
+      { title: '재개발 투자, 지금이 적기인 이유', author: '정민수', avatar: '정', date: '1일 전', emoji: '📈' },
+    ];
 
-    function createParticles() {
-      particles = [];
-      const count = Math.min(80, Math.floor(window.innerWidth / 20));
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 2 + 0.5,
-          speedX: (Math.random() - 0.5) * 0.3,
-          speedY: (Math.random() - 0.5) * 0.3,
-          opacity: Math.random() * 0.5 + 0.1
-        });
-      }
-    }
+    // 포탈 렌더링
+    function renderPortals() {
+      const grid = document.getElementById('portalGrid');
+      const activeCount = slots.filter(s => s.active).length;
+      document.getElementById('activeSlots').textContent = activeCount;
+      document.getElementById('remainSlots').textContent = 12 - activeCount;
 
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach(p => {
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(168, 85, 247, ${p.opacity})`;
-        ctx.fill();
-      });
-
-      // Draw connections
-      particles.forEach((p1, i) => {
-        particles.slice(i + 1).forEach(p2 => {
-          const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(168, 85, 247, ${0.1 * (1 - dist / 150)})`;
-            ctx.stroke();
-          }
-        });
-      });
-
-      requestAnimationFrame(animateParticles);
-    }
-
-    resizeCanvas();
-    createParticles();
-    animateParticles();
-    window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
-
-    // ========== GSAP ANIMATIONS ==========
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Hero animations
-    const heroTl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-
-    heroTl
-      .to('.hero-badge', { opacity: 1, y: 0, duration: 1 }, 0.2)
-      .to('.hero-title', { opacity: 1, y: 0, duration: 1.2 }, 0.4)
-      .to('.hero-subtitle', { opacity: 1, y: 0, duration: 1 }, 0.7)
-      .to('.hero-cta-group', { opacity: 1, y: 0, duration: 1 }, 0.9)
-      .to('.hero-visual', { opacity: 1, y: 0, duration: 1.2 }, 1.1);
-
-    // Nav scroll effect
-    window.addEventListener('scroll', () => {
-      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Section animations
-    gsap.utils.toArray('.section').forEach(section => {
-      gsap.from(section.querySelectorAll('.section-label, .section-title, .section-desc'), {
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          toggleActions: 'play none none none'
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'expo.out'
-      });
-    });
-
-    // Value cards
-    gsap.from('.value-card', {
-      scrollTrigger: {
-        trigger: '.value-grid',
-        start: 'top 80%'
-      },
-      y: 60,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'expo.out'
-    });
-
-    // Slot cards
-    gsap.from('.slot-card', {
-      scrollTrigger: {
-        trigger: '.slots-grid',
-        start: 'top 80%'
-      },
-      scale: 0.9,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.05,
-      ease: 'back.out(1.5)'
-    });
-
-    // Pricing cards
-    gsap.from('.pricing-card', {
-      scrollTrigger: {
-        trigger: '.pricing-grid',
-        start: 'top 80%'
-      },
-      y: 60,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: 'expo.out'
-    });
-
-    // ========== SLOTS RENDER ==========
-    function renderSlots() {
-      const slotsKey = 'nmg_slots';
-      let slots = JSON.parse(localStorage.getItem(slotsKey) || 'null');
-
-      if (!slots) {
-        slots = [
-          { id: 'slot01', owner: '앵커', status: 'active', type: 'free' },
-          { id: 'slot02', owner: null, status: 'empty', type: 'paid' },
-          { id: 'slot03', owner: null, status: 'empty', type: 'paid' },
-          { id: 'slot04', owner: null, status: 'empty', type: 'paid' },
-          { id: 'slot05', owner: null, status: 'empty', type: 'paid' },
-          { id: 'slot06', owner: null, status: 'empty', type: 'paid' },
-          { id: 'slot07', owner: null, status: 'empty', type: 'paid' },
-          { id: 'slot08', owner: null, status: 'empty', type: 'paid' },
-          { id: 'slot09', owner: null, status: 'empty', type: 'paid' },
-          { id: 'slot10', owner: null, status: 'empty', type: 'paid' },
-          { id: 'slot11', owner: null, status: 'empty', type: 'paid' },
-          { id: 'slot12', owner: null, status: 'empty', type: 'paid' }
-        ];
-        localStorage.setItem(slotsKey, JSON.stringify(slots));
-      }
-
-      const activeCount = slots.filter(s => s.status === 'active').length;
-      const emptyCount = slots.filter(s => s.status === 'empty').length;
-
-      document.getElementById('activeCount').textContent = activeCount;
-      document.getElementById('emptyCount').textContent = emptyCount;
-      document.getElementById('remainingSlots').textContent = emptyCount;
-
-      const grid = document.getElementById('slotsGrid');
       grid.innerHTML = slots.map(slot => `
-        <div class="slot-card ${slot.status}" onclick="location.href='/slots/${slot.id}/'">
-          <div class="slot-number">${slot.id.toUpperCase()}</div>
-          <div class="slot-avatar">${slot.owner ? slot.owner[0] : '?'}</div>
-          <div class="slot-name">${slot.owner || '빈 슬롯'}</div>
-          <div class="slot-status">${slot.status === 'active' ? '활성' : '대기'}</div>
-        </div>
+        <a href="${slot.active ? '/slots/' + slot.id + '/' : '#'}"
+           class="portal-gate ${slot.type} ${!slot.active ? 'empty' : ''}">
+          <div class="portal-avatar">${slot.avatar}</div>
+          <div class="portal-name">${slot.name}</div>
+        </a>
       `).join('');
     }
 
-    document.addEventListener('DOMContentLoaded', renderSlots);
-
-    // ========== SERVICE WORKER ==========
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(console.error);
+    // 블로그 렌더링
+    function renderBlog() {
+      const feed = document.getElementById('blogFeed');
+      feed.innerHTML = blogPosts.map(post => `
+        <article class="blog-card">
+          <div class="blog-card-inner">
+            <div class="blog-thumb">${post.emoji}</div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <div class="blog-author-avatar">${post.avatar}</div>
+                ${post.author} · ${post.date}
+              </div>
+              <h3 class="blog-title">${post.title}</h3>
+            </div>
+          </div>
+        </article>
+      `).join('');
     }
+
+    // 초크보드
+    let canvas, ctx, isDrawing = false, currentColor = '#FFFFFF', isEraser = false;
+    let mediaRecorder, recordedChunks = [];
+
+    function initChalkboard() {
+      canvas = document.getElementById('chalkCanvas');
+      ctx = canvas.getContext('2d');
+
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 3;
+
+      canvas.addEventListener('mousedown', startDraw);
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mouseup', () => isDrawing = false);
+      canvas.addEventListener('mouseleave', () => isDrawing = false);
+      canvas.addEventListener('touchstart', handleTouch, { passive: false });
+      canvas.addEventListener('touchmove', handleTouch, { passive: false });
+      canvas.addEventListener('touchend', () => isDrawing = false);
+
+      document.querySelectorAll('.chalk-btn[data-color]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.chalk-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentColor = btn.dataset.color;
+          isEraser = false;
+        });
+      });
+
+      document.querySelector('.chalk-btn[data-eraser]').addEventListener('click', function() {
+        document.querySelectorAll('.chalk-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        isEraser = true;
+      });
+    }
+
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.clientX || e.touches[0].clientX) - rect.left;
+      const y = (e.clientY || e.touches[0].clientY) - rect.top;
+      return { x, y };
+    }
+
+    function startDraw(e) {
+      isDrawing = true;
+      const pos = getPos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+      e.preventDefault();
+      const pos = getPos(e);
+
+      if (isEraser) {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.lineWidth = 20;
+      } else {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = currentColor;
+      }
+
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+    }
+
+    function handleTouch(e) {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const type = e.type === 'touchstart' ? 'mousedown' : 'mousemove';
+      canvas.dispatchEvent(new MouseEvent(type, { clientX: touch.clientX, clientY: touch.clientY }));
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function saveCanvas() {
+      const link = document.createElement('a');
+      link.download = 'chalkboard.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+
+    function toggleRecording() {
+      const btn = document.getElementById('recordBtn');
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        btn.textContent = '🔴 녹화';
+        return;
+      }
+
+      const stream = canvas.captureStream(30);
+      mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+      recordedChunks = [];
+
+      mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'chalkboard-recording.webm';
+        a.click();
+      };
+
+      mediaRecorder.start();
+      btn.textContent = '⏹️ 중지';
+    }
+
+    // 유틸
+    function scrollTo(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function shareCard() {
+      if (navigator.share) {
+        navigator.share({ title: '남원골', text: 'AI 쓰는 중개인 길드', url: location.href });
+      } else {
+        navigator.clipboard.writeText(location.href);
+        alert('링크 복사됨!');
+      }
+    }
+
+    function applyMembership() {
+      window.open('https://open.kakao.com/o/example', '_blank');
+    }
+
+    // 초기화
+    document.addEventListener('DOMContentLoaded', () => {
+      renderPortals();
+      renderBlog();
+      initChalkboard();
+    });
   </script>
 </body>
 </html>

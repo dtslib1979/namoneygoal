@@ -2,247 +2,301 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>내 디지털 사무실 | 남원골</title>
   <meta name="description" content="AI 쓰는 중개인 - 내 디지털 사무실">
+  <meta name="theme-color" content="#7C3AED">
   <link rel="manifest" href="/assets/manifest.json">
-  <meta name="theme-color" content="#A855F7">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     :root {
-      --primary: #A855F7;
+      --primary: #7C3AED;
+      --primary-dark: #5B21B6;
       --accent: #F59E0B;
-      --bg: #0a0a14;
-      --card-bg: #1a1a2e;
-      --text: #f5f5f5;
-      --text-dim: #a0a0a0;
+      --bg: #0F0F1A;
+      --bg-card: #1A1A2E;
+      --text: #FFFFFF;
+      --text-dim: #9CA3AF;
+      --text-muted: #6B7280;
+      --gradient: linear-gradient(135deg, #7C3AED 0%, #EC4899 50%, #F59E0B 100%);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --safe-top: env(safe-area-inset-top);
+      --safe-bottom: env(safe-area-inset-bottom);
     }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Noto Sans KR', -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
+      line-height: 1.6;
       min-height: 100vh;
+      min-height: 100dvh;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
     }
 
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(245, 158, 11, 0.1));
-      padding: 60px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(15, 15, 26, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+      padding: 12px 16px;
+      padding-top: calc(12px + var(--safe-top));
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      margin: 0 auto 20px;
+    .back-btn {
+      width: 36px; height: 36px;
+      background: var(--bg-card);
+      border: none;
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 40px;
-      font-weight: bold;
-      box-shadow: 0 10px 40px rgba(168, 85, 247, 0.3);
+    }
+
+    .header-title {
+      flex: 1;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .header-badge {
+      background: var(--accent);
+      color: #000;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 16px 30px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(124, 58, 237, 0.1) 0%, transparent 100%);
+    }
+
+    .avatar {
+      width: 100px; height: 100px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 900;
+      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
     }
 
     .hero h1 {
-      font-size: 28px;
-      margin-bottom: 8px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
 
     .hero .title {
       color: var(--accent);
-      font-size: 16px;
-      margin-bottom: 15px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 8px;
     }
 
     .hero .tagline {
       color: var(--text-dim);
-      font-size: 14px;
-      max-width: 400px;
-      margin: 0 auto;
-      line-height: 1.6;
+      font-size: 0.85rem;
+      max-width: 300px;
+      margin: 0 auto 16px;
     }
 
     .badge {
       display: inline-block;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      padding: 8px 20px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
+      background: var(--gradient);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
       margin-top: 20px;
     }
 
-    /* Quick Contact */
-    .quick-contact {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 25px;
-    }
-
-    .contact-btn {
-      width: 50px;
-      height: 50px;
+    .action-btn {
+      width: 48px; height: 48px;
       border-radius: 50%;
-      background: var(--card-bg);
-      border: none;
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.1);
       color: var(--text);
-      font-size: 20px;
+      font-size: 1.2rem;
       cursor: pointer;
-      transition: all 0.3s;
-      text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-decoration: none;
+      transition: all 0.2s;
     }
 
-    .contact-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 20px rgba(168, 85, 247, 0.3);
+    .action-btn:active {
+      transform: scale(0.92);
+      background: var(--primary);
     }
 
-    /* Container */
-    .container {
-      max-width: 800px;
+    /* Main */
+    .main {
+      padding: 20px 16px 120px;
+      max-width: 600px;
       margin: 0 auto;
-      padding: 30px 20px;
     }
 
     /* Menu Grid */
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin-bottom: 30px;
-    }
-
-    @media (max-width: 400px) {
-      .menu-grid {
-        grid-template-columns: 1fr;
-      }
+      gap: 12px;
+      margin-bottom: 24px;
     }
 
     .menu-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 25px 20px;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 20px 16px;
       text-align: center;
-      cursor: pointer;
-      transition: all 0.3s;
       text-decoration: none;
       color: var(--text);
-      border: 1px solid transparent;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: all 0.2s;
     }
 
-    .menu-card:hover {
-      transform: translateY(-4px);
+    .menu-card:active {
+      transform: scale(0.96);
       border-color: var(--primary);
-      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
     }
 
     .menu-icon {
-      font-size: 36px;
-      margin-bottom: 12px;
+      font-size: 2rem;
+      margin-bottom: 8px;
     }
 
     .menu-title {
-      font-size: 16px;
+      font-size: 0.9rem;
       font-weight: 600;
       margin-bottom: 4px;
     }
 
     .menu-desc {
-      font-size: 12px;
-      color: var(--text-dim);
+      font-size: 0.7rem;
+      color: var(--text-muted);
     }
 
     /* Stats */
-    .stats-section {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 25px;
-      margin-bottom: 30px;
+    .stats-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 16px;
       text-align: center;
     }
 
-    .stat-item .value {
-      font-size: 24px;
-      font-weight: 700;
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 900;
       color: var(--primary);
     }
 
-    .stat-item .label {
-      font-size: 12px;
-      color: var(--text-dim);
-      margin-top: 4px;
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2px;
     }
 
-    /* Recent Posts */
-    .section-title {
-      font-size: 18px;
-      margin-bottom: 15px;
+    /* Section */
+    .section-header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 1rem;
+      font-weight: 700;
     }
 
+    /* Posts */
     .post-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .post-item {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 15px;
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      padding: 14px;
       display: flex;
-      gap: 15px;
+      gap: 12px;
       cursor: pointer;
-      transition: background 0.2s;
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
-    .post-item:hover {
-      background: rgba(168, 85, 247, 0.1);
+    .post-item:active {
+      border-color: var(--primary);
     }
 
     .post-thumb {
-      width: 80px;
-      height: 60px;
+      width: 60px; height: 60px;
       border-radius: 8px;
       background: var(--bg);
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
     }
 
     .post-info {
       flex: 1;
+      min-width: 0;
     }
 
     .post-title {
-      font-size: 14px;
+      font-size: 0.85rem;
       font-weight: 500;
       margin-bottom: 4px;
       display: -webkit-box;
@@ -252,47 +306,74 @@
     }
 
     .post-meta {
-      font-size: 12px;
-      color: var(--text-dim);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* Floating CTA */
+    .floating-cta {
+      position: fixed;
+      bottom: 16px;
+      bottom: calc(16px + var(--safe-bottom));
+      left: 16px; right: 16px;
+      z-index: 900;
+      display: flex;
+      gap: 8px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .float-btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .float-btn.primary {
+      background: var(--gradient);
+      color: white;
+    }
+
+    .float-btn.secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     /* Footer */
     .footer {
       text-align: center;
-      padding: 30px 20px;
-      color: var(--text-dim);
-      font-size: 12px;
+      padding: 20px;
+      color: var(--text-muted);
+      font-size: 0.7rem;
     }
 
     .footer a {
       color: var(--primary);
       text-decoration: none;
     }
-
-    /* PR Button */
-    .pr-float {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border: none;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
-      z-index: 100;
-      transition: transform 0.2s;
-    }
-
-    .pr-float:hover {
-      transform: scale(1.1);
-    }
   </style>
 </head>
 <body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <button class="back-btn" onclick="history.back()">←</button>
+      <span class="header-title">내 디지털 사무실</span>
+      <span class="header-badge">AI 멤버</span>
+    </div>
+  </header>
+
+  <!-- Hero -->
   <section class="hero">
     <div class="avatar" id="avatar">박</div>
     <h1 id="name">박씨 중개사</h1>
@@ -300,171 +381,167 @@
     <p class="tagline" id="tagline">시흥 남원골에서 20년, AI와 함께하는 현대적 중개인</p>
     <span class="badge">AI 쓰는 중개인</span>
 
-    <div class="quick-contact">
-      <a href="tel:010-1234-5678" class="contact-btn" id="phoneBtn">📞</a>
-      <a href="#" class="contact-btn" id="kakaoBtn">💬</a>
-      <a href="card.html" class="contact-btn">📇</a>
+    <div class="quick-actions">
+      <a href="tel:010-1234-5678" class="action-btn" id="phoneBtn">📞</a>
+      <a href="#" class="action-btn" id="kakaoBtn">💬</a>
+      <a href="card.html" class="action-btn">📇</a>
+      <button class="action-btn" onclick="shareOffice()">📤</button>
     </div>
   </section>
 
-  <main class="container">
+  <!-- Main -->
+  <main class="main">
+    <!-- Menu -->
     <div class="menu-grid">
       <a href="card.html" class="menu-card">
         <div class="menu-icon">📇</div>
-        <div class="menu-title">내 디지털 명함</div>
-        <div class="menu-desc">연락처 & QR 코드</div>
+        <div class="menu-title">디지털 명함</div>
+        <div class="menu-desc">연락처 & QR코드</div>
       </a>
       <a href="blog.html" class="menu-card">
         <div class="menu-icon">📝</div>
-        <div class="menu-title">내 디지털 블로그</div>
+        <div class="menu-title">블로그</div>
         <div class="menu-desc">매물 소개 & 시세</div>
       </a>
       <a href="video.html" class="menu-card">
         <div class="menu-icon">🎬</div>
-        <div class="menu-title">내 디지털 유튜브</div>
+        <div class="menu-title">유튜브</div>
         <div class="menu-desc">영상 갤러리</div>
       </a>
-      <a href="/modules/walkie.html" class="menu-card">
+      <a href="/modules/walkie.html?slot=slot05" class="menu-card">
         <div class="menu-icon">🎤</div>
-        <div class="menu-title">AI 워키토키</div>
+        <div class="menu-title">워키토키</div>
         <div class="menu-desc">말하면 글이 된다</div>
       </a>
     </div>
 
-    <div class="stats-section">
+    <!-- Stats -->
+    <div class="stats-card">
       <div class="stats-grid">
-        <div class="stat-item">
-          <div class="value" id="postCount">0</div>
-          <div class="label">블로그 글</div>
+        <div class="stat">
+          <div class="stat-value" id="postCount">0</div>
+          <div class="stat-label">블로그 글</div>
         </div>
-        <div class="stat-item">
-          <div class="value" id="videoCount">0</div>
-          <div class="label">영상</div>
+        <div class="stat">
+          <div class="stat-value" id="videoCount">0</div>
+          <div class="stat-label">영상</div>
         </div>
-        <div class="stat-item">
-          <div class="value" id="viewCount">0</div>
-          <div class="label">방문자</div>
+        <div class="stat">
+          <div class="stat-value" id="viewCount">0</div>
+          <div class="stat-label">방문자</div>
         </div>
       </div>
     </div>
 
-    <section>
-      <h2 class="section-title">📌 최근 소식</h2>
-      <div class="post-list" id="recentPosts">
-        <div class="post-item">
-          <div class="post-thumb"></div>
-          <div class="post-info">
-            <div class="post-title">아직 글이 없습니다</div>
-            <div class="post-meta">블로그에서 첫 글을 작성해보세요</div>
-          </div>
+    <!-- Recent Posts -->
+    <div class="section-header">📌 최근 소식</div>
+    <div class="post-list" id="recentPosts">
+      <div class="post-item">
+        <div class="post-thumb">📝</div>
+        <div class="post-info">
+          <div class="post-title">아직 글이 없습니다</div>
+          <div class="post-meta">블로그에서 첫 글을 작성해보세요</div>
         </div>
       </div>
-    </section>
+    </div>
   </main>
 
-  <button class="pr-float" id="prBtn">🔔</button>
+  <!-- Floating CTA -->
+  <div class="floating-cta">
+    <a href="/modules/walkie.html?slot=slot05" class="float-btn secondary">🎤 워키토키</a>
+    <button class="float-btn primary" id="prBtn">🔔 문의하기</button>
+  </div>
 
+  <!-- Footer -->
   <footer class="footer">
-    <p>Powered by <a href="https://namoneygoal.kr">남원골</a></p>
-    <p style="margin-top: 5px;">AI 쓰는 중개인 길드</p>
+    <p>Powered by <a href="/">남원골</a> | AI 쓰는 중개인 길드</p>
   </footer>
 
   <script src="/modules/pr.js"></script>
   <script>
-    // Slot Office System
-    class SlotOffice {
-      constructor() {
-        this.config = null;
-        this.slotId = 'slot05';
-        this.init();
-      }
+    const slotId = 'slot05';
+    let config = null;
 
-      async init() {
-        await this.loadConfig();
-        this.render();
-        this.loadStats();
-        this.loadRecentPosts();
-        this.trackVisit();
-      }
+    async function init() {
+      await loadConfig();
+      render();
+      loadStats();
+      loadRecentPosts();
+      trackVisit();
+    }
 
-      async loadConfig() {
-        try {
-          const response = await fetch('config.json');
-          this.config = await response.json();
-        } catch (e) {
-          console.log('Config not found, using defaults');
-          this.config = {
-            member: {
-              name: '박씨 중개사',
-              title: '부동산 전문 중개인',
-              tagline: 'AI와 함께하는 현대적 중개인',
-              avatar: '박'
-            },
-            contact: {
-              phone: '010-1234-5678'
-            }
-          };
-        }
-      }
-
-      render() {
-        const m = this.config.member;
-        const c = this.config.contact;
-
-        // Avatar with photo support
-        const avatarEl = document.getElementById('avatar');
-        if (m.photo) {
-          avatarEl.innerHTML = `<img src="${m.photo}" alt="${m.name}" onerror="this.parentElement.textContent='${m.avatar || m.name[0]}'" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
-        } else {
-          avatarEl.textContent = m.avatar || m.name[0];
-        }
-
-        document.getElementById('name').textContent = m.name;
-        document.getElementById('title').textContent = m.title;
-        document.getElementById('tagline').textContent = m.tagline;
-
-        document.getElementById('phoneBtn').href = `tel:${c.phone}`;
-        document.title = `${m.name} | 내 디지털 사무실`;
-      }
-
-      loadStats() {
-        // Load from localStorage
-        const blogPosts = JSON.parse(localStorage.getItem(`nmg_blog_${this.slotId}`) || '[]');
-        const videos = JSON.parse(localStorage.getItem(`nmg_videos_${this.slotId}`) || '[]');
-        const visits = parseInt(localStorage.getItem(`nmg_visits_${this.slotId}`) || '0');
-
-        document.getElementById('postCount').textContent = blogPosts.length;
-        document.getElementById('videoCount').textContent = videos.length;
-        document.getElementById('viewCount').textContent = visits;
-      }
-
-      loadRecentPosts() {
-        const blogPosts = JSON.parse(localStorage.getItem(`nmg_blog_${this.slotId}`) || '[]');
-        const container = document.getElementById('recentPosts');
-
-        if (blogPosts.length === 0) return;
-
-        container.innerHTML = blogPosts.slice(0, 3).map(post => `
-          <div class="post-item" onclick="location.href='blog.html'">
-            <div class="post-thumb"></div>
-            <div class="post-info">
-              <div class="post-title">${post.title}</div>
-              <div class="post-meta">${new Date(post.date).toLocaleDateString('ko-KR')}</div>
-            </div>
-          </div>
-        `).join('');
-      }
-
-      trackVisit() {
-        const key = `nmg_visits_${this.slotId}`;
-        const visits = parseInt(localStorage.getItem(key) || '0') + 1;
-        localStorage.setItem(key, visits);
+    async function loadConfig() {
+      try {
+        const res = await fetch('config.json');
+        config = await res.json();
+      } catch (e) {
+        config = {
+          member: { name: '박씨 중개사', title: '부동산 전문 중개인', tagline: 'AI와 함께하는 중개인', avatar: '박' },
+          contact: { phone: '010-1234-5678' }
+        };
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      new SlotOffice();
-    });
+    function render() {
+      const m = config.member;
+      const c = config.contact;
+
+      const avatarEl = document.getElementById('avatar');
+      if (m.photo) {
+        avatarEl.innerHTML = `<img src="${m.photo}" alt="${m.name}" onerror="this.parentElement.textContent='${m.avatar || m.name[0]}'">`;
+      } else {
+        avatarEl.textContent = m.avatar || m.name[0];
+      }
+
+      document.getElementById('name').textContent = m.name;
+      document.getElementById('title').textContent = m.title;
+      document.getElementById('tagline').textContent = m.tagline;
+      document.getElementById('phoneBtn').href = `tel:${c.phone}`;
+      document.title = `${m.name} | 내 디지털 사무실`;
+    }
+
+    function loadStats() {
+      const posts = JSON.parse(localStorage.getItem(`nmg_blog_${slotId}`) || '[]');
+      const videos = JSON.parse(localStorage.getItem(`nmg_videos_${slotId}`) || '[]');
+      const visits = parseInt(localStorage.getItem(`nmg_visits_${slotId}`) || '0');
+
+      document.getElementById('postCount').textContent = posts.length;
+      document.getElementById('videoCount').textContent = videos.length;
+      document.getElementById('viewCount').textContent = visits;
+    }
+
+    function loadRecentPosts() {
+      const posts = JSON.parse(localStorage.getItem(`nmg_blog_${slotId}`) || '[]');
+      const container = document.getElementById('recentPosts');
+
+      if (posts.length === 0) return;
+
+      container.innerHTML = posts.slice(0, 3).map(post => `
+        <div class="post-item" onclick="location.href='blog.html'">
+          <div class="post-thumb">📝</div>
+          <div class="post-info">
+            <div class="post-title">${post.title}</div>
+            <div class="post-meta">${new Date(post.date).toLocaleDateString('ko-KR')}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function trackVisit() {
+      const key = `nmg_visits_${slotId}`;
+      localStorage.setItem(key, parseInt(localStorage.getItem(key) || '0') + 1);
+    }
+
+    function shareOffice() {
+      if (navigator.share) {
+        navigator.share({ title: config.member.name, text: config.member.tagline, url: location.href });
+      } else {
+        navigator.clipboard.writeText(location.href);
+        alert('링크 복사됨!');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
