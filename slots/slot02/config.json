@@ -1,16 +1,31 @@
 {
   "slot": {
     "id": "slot02",
-    "type": "free",
+    "type": "paid",
     "status": "active"
   },
   "member": {
-    "name": "권양숙 공인중개사",
-    "title": "부동산 전문 중개인",
-    "tagline": "AI 쓰는 중개인",
+    "name": "권영숙",
+    "title": "유승한내들 부동산",
+    "tagline": "시흥 장곡동 전문 공인중개사",
     "avatar": "권",
-    "photo": "/assets/members/kwonyangsook.png",
+    "photo": "/assets/members/slot02.png",
     "logo": "/assets/logos/slot02.png"
+  },
+  "office": {
+    "name": "유승한내들 부동산",
+    "address": "경기도 시흥시 장곡동",
+    "complex": "시흥장현유승한내들퍼스트파크",
+    "complexInfo": {
+      "address": "경기도 시흥시 장현장곡로 12 (장곡동)",
+      "units": "676세대",
+      "buildings": "7개동",
+      "floors": "지하 2층, 지상 24~25층",
+      "parking": "1,084대 (세대당 1.6대)",
+      "moveIn": "2022년 12월",
+      "builder": "유승종합건설",
+      "types": "84㎡ A·B, 104㎡"
+    }
   },
   "contact": {
     "phone": "",
@@ -20,12 +35,12 @@
   },
   "website": {
     "url": "namoneygoal.kr/slots/slot02",
-    "blogTitle": "권양숙의 부동산 이야기",
-    "blogSubtitle": "신뢰로 거래하는 AI 쓰는 중개인",
-    "channelName": "권양숙TV"
+    "blogTitle": "권영숙의 부동산 이야기",
+    "blogSubtitle": "시흥 장곡동 유승한내들 전문",
+    "channelName": "권영숙TV"
   },
   "theme": {
-    "primary": "#A855F7",
+    "primary": "#D4AF37",
     "accent": "#F59E0B"
   },
   "features": {
@@ -40,5 +55,6 @@
     "youtube": "",
     "instagram": ""
   },
-  "createdAt": "2026-01-29T00:00:00Z"
+  "createdAt": "2026-01-29T00:00:00Z",
+  "updatedAt": "2026-02-06T00:00:00Z"
 }
