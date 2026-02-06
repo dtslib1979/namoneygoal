@@ -4,7 +4,7 @@
     "description": "AI 쓰는 중개인 12슬롯 길드",
     "totalSlots": 12,
     "version": "1.0.0",
-    "updatedAt": "2026-01-29"
+    "updatedAt": "2026-02-06"
   },
   "slots": [
     {
@@ -33,14 +33,14 @@
     {
       "id": "slot02",
       "status": "active",
-      "type": "free",
+      "type": "paid",
       "member": {
-        "name": "권양숙",
-        "fullName": "권양숙 공인중개사",
+        "name": "권영숙",
+        "fullName": "유승한내들 부동산",
         "avatar": "권",
-        "photo": "/assets/members/kwonyangsook.png",
-        "title": "부동산 전문 중개인",
-        "tagline": ""
+        "photo": "/assets/members/slot02.png",
+        "title": "시흥 장곡동 전문 공인중개사",
+        "tagline": "시흥장현유승한내들퍼스트파크 전문"
       },
       "contact": {
         "phone": "",
@@ -51,7 +51,7 @@
         "blog": ""
       },
       "joinedAt": "2026-01-29",
-      "theme": "purple"
+      "theme": "gold"
     },
     {
       "id": "slot03",
