@@ -1,19 +1,25 @@
 /**
- * 남원골 PR System
+ * Guild PR System (Core-integrated)
  * PR 버튼 → 카카오톡 접수 시스템
  *
  * Usage:
- *   <button data-pr-type="edit" data-pr-slot="slot01">수정 요청</button>
+ *   <script src="/core/config/loader.js"></script>
+ *   <script src="/core/storage/keys.js"></script>
+ *   <script src="/core/pr/interface.js"></script>
+ *   <script src="/modules/pr.js"></script>
+ *
+ * Or standalone (will use defaults):
  *   <script src="/modules/pr.js"></script>
  */
 
 (function() {
   'use strict';
 
+  // Config loaded from core or defaults
   const PR_CONFIG = {
-    storageKey: 'nmg_pr_requests',
-    kakaoChannelId: 'namoneygoal',
-    webhookUrl: null, // Optional: Set your webhook URL
+    storageKey: null, // Set dynamically from GuildStorage
+    kakaoChannelId: null, // Set dynamically from GuildConfig
+    webhookUrl: null,
     types: {
       edit: { name: '페이지 수정', price: 10000, emoji: '✏️' },
       pwa: { name: 'PWA/APK 제작', price: 50000, emoji: '📱' },
@@ -23,13 +29,48 @@
     }
   };
 
+  // Initialize config from core modules
+  function initConfig() {
+    if (window.GuildConfig && window.GuildConfig.isLoaded()) {
+      const prConfig = window.GuildConfig.getPRConfig();
+      PR_CONFIG.kakaoChannelId = prConfig.kakaoId;
+      PR_CONFIG.webhookUrl = prConfig.webhookEnabled ? null : null; // webhook URL from config
+    }
+    if (window.GuildStorage) {
+      PR_CONFIG.storageKey = window.GuildStorage.key('pr_requests');
+    } else {
+      // Fallback: try to get prefix from config
+      const prefix = window.GuildConfig?.get('site.shortName', 'guild').toLowerCase();
+      PR_CONFIG.storageKey = `${prefix}_pr_requests`;
+    }
+  }
+
   class PRSystem {
     constructor() {
-      this.requests = this.loadRequests();
+      this.requests = [];
+      this.configReady = false;
       this.init();
     }
 
     init() {
+      // Wait for config to be ready
+      if (window.GuildConfig) {
+        window.GuildConfig.onReady(() => {
+          initConfig();
+          this.configReady = true;
+          this.requests = this.loadRequests();
+          this.bindUI();
+        });
+      } else {
+        // No core modules, use defaults
+        initConfig();
+        this.configReady = true;
+        this.requests = this.loadRequests();
+        this.bindUI();
+      }
+    }
+
+    bindUI() {
       // Bind PR buttons
       document.querySelectorAll('[data-pr-type]').forEach(btn => {
         btn.addEventListener('click', (e) => this.handlePRClick(e));
@@ -265,7 +306,8 @@
     }
 
     generateKakaoMessage(request, typeInfo) {
-      return `[남원골 PR 요청]
+      const guildName = window.GuildConfig?.get('site.name') || 'Guild';
+      return `[${guildName} PR 요청]
 
 📋 요청 ID: ${request.id}
 ${typeInfo.emoji} 유형: ${typeInfo.name}
