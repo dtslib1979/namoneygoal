@@ -1036,12 +1036,6 @@
 
     document.addEventListener('DOMContentLoaded', init);
 
-    // Service Worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js', { scope: './' })
-        .then(() => console.log('SW registered'))
-        .catch(e => console.log('SW failed', e));
-    }
   </script>
 </body>
 </html>
