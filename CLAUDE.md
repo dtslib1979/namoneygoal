@@ -294,3 +294,15 @@ Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
 *Version: 3.0*
 *Last Updated: 2026-01-27*
 *Affiliation: DTSLIB HQ (Collaborator - Vertical Branch)*
+---
+
+## Browser Runtime
+
+> Parksy OS 2+2 매트릭스 — 이 레포 전담 브라우저
+
+| 항목 | 값 |
+|------|-----|
+| **브라우저** | Naver Whale |
+| **이유** | 부동산/사업 분석 — 수익 비교 듀얼탭 |
+| **URL** | https://github.com/dtslib1979/namoneygoal |
+
