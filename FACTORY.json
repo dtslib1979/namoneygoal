@@ -1,0 +1,29 @@
+{
+  "$schema": "factory.v3.0",
+  "id": "namoneygoal",
+  "version": "4.0.0",
+  "identity": {
+    "name": "NAMONEYGOAL",
+    "tagline": "부동산 길드",
+    "type": "vertical",
+    "domain": "namoneygoal.kr",
+    "github": "dtslib1979/namoneygoal",
+    "established": "2026-03-13"
+  },
+  "design": {
+    "palette": {
+      "bg": "#0a0a0a",
+      "accent": "#D4AF37",
+      "text": "#f5f5f5"
+    }
+  },
+  "pipeline": {
+    "stages": ["ingest", "transform", "render", "deploy"]
+  },
+  "channels": {
+    "coupang": { "enabled": true },
+    "naver": { "enabled": true },
+    "youtube": { "enabled": true },
+    "showroom": { "enabled": true }
+  }
+}
