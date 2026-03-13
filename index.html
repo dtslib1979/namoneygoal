@@ -4,35 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>남원골 | AI 쓰는 중개인 길드</title>
-  <meta name="description" content="시흥 부동산 중개인을 위한 AI 워키토키 길드. 12슬롯 한정.">
+  <meta name="description" content="신안산선 개통 전에 시흥에서 유일하게 AI가 블로그를 써주는 중개인이 되는 길드. 12슬롯 한정.">
   <meta name="theme-color" content="#7C3AED">
+  <meta property="og:title" content="남원골 — AI 쓰는 중개인 길드">
+  <meta property="og:description" content="말하면 글이 된다. 시흥 부동산 중개인 12명만을 위한 디지털 운영 시스템.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://namoneygoal.kr">
   <link rel="manifest" href="/assets/manifest.json">
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
   <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    /* ============================================================
+       NAMONEYGOAL — Award-Level Landing
+       Pure CSS + Vanilla JS. No frameworks.
+       ============================================================ */
+
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     :root {
       --primary: #7C3AED;
+      --primary-light: #A78BFA;
       --primary-dark: #5B21B6;
       --accent: #F59E0B;
-      --bg: #0F0F1A;
-      --bg-card: #1A1A2E;
-      --bg-card-hover: #252542;
-      --text: #FFFFFF;
+      --accent-light: #FCD34D;
+      --success: #10B981;
+      --danger: #EF4444;
+      --bg: #06060E;
+      --bg-elevated: #0D0D1A;
+      --bg-card: #111127;
+      --bg-card-hover: #1A1A3A;
+      --text: #F5F5F7;
       --text-dim: #9CA3AF;
-      --text-muted: #6B7280;
-      --gradient: linear-gradient(135deg, #7C3AED 0%, #EC4899 50%, #F59E0B 100%);
-      --shadow: 0 4px 24px rgba(124, 58, 237, 0.15);
-      --radius: 16px;
+      --text-muted: #4B5563;
+      --border: rgba(255,255,255,0.06);
+      --gradient-brand: linear-gradient(135deg, #7C3AED 0%, #EC4899 50%, #F59E0B 100%);
+      --gradient-subtle: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(236,72,153,0.08), rgba(245,158,11,0.05));
+      --gradient-gold: linear-gradient(135deg, #F59E0B, #D97706);
+      --radius: 20px;
       --radius-sm: 12px;
+      --radius-xs: 8px;
       --safe-top: env(safe-area-inset-top);
       --safe-bottom: env(safe-area-inset-bottom);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    html { font-size: 16px; scroll-behavior: smooth; }
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-dark) var(--bg);
+    }
 
     body {
       font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -42,9 +70,83 @@
       min-height: 100vh;
       min-height: 100dvh;
       overflow-x: hidden;
-      padding-top: var(--safe-top);
-      padding-bottom: var(--safe-bottom);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
+
+    /* Noise texture overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-dark); border-radius: 2px; }
+
+    /* ========== UTILITY ========== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .container-narrow { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: 'Space Grotesk', 'SF Mono', monospace; }
+    .gradient-text {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .accent-text { color: var(--accent); }
+    .dim-text { color: var(--text-dim); }
+    .muted-text { color: var(--text-muted); }
+
+    /* ========== REVEAL ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-80px);
+      transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(80px);
+      transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+    }
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .stagger-1 { transition-delay: 0.05s; }
+    .stagger-2 { transition-delay: 0.1s; }
+    .stagger-3 { transition-delay: 0.15s; }
+    .stagger-4 { transition-delay: 0.2s; }
+    .stagger-5 { transition-delay: 0.25s; }
 
     /* ========== HEADER ========== */
     .header {
@@ -53,854 +155,1373 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      background: rgba(15, 15, 26, 0.9);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(124, 58, 237, 0.2);
-      padding: 12px 20px;
-      padding-top: calc(12px + var(--safe-top));
+      padding: 16px 24px;
+      padding-top: calc(16px + var(--safe-top));
+      transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
     }
-
+    .header.scrolled {
+      background: rgba(6, 6, 14, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 600px;
+      max-width: 1200px;
       margin: 0 auto;
     }
-
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 900;
-      font-size: 1.1rem;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
     }
-
-    .logo-icon {
-      width: 32px;
-      height: 32px;
-      background: var(--gradient);
-      border-radius: 8px;
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--gradient-brand);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
-    }
-
-    .header-cta {
-      background: var(--gradient);
+      font-size: 0.9rem;
+      font-weight: 900;
       color: white;
+    }
+    .logo-text {
+      font-weight: 900;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+    .logo-tag {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .header-link {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 100px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .header-link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .header-cta {
+      background: var(--text);
+      color: var(--bg);
       border: none;
-      padding: 8px 16px;
+      padding: 8px 20px;
       border-radius: 100px;
       font-weight: 700;
       font-size: 0.8rem;
       cursor: pointer;
+      transition: transform 0.2s var(--ease-spring), box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .header-cta:hover {
+      transform: scale(1.04);
+      box-shadow: 0 4px 20px rgba(255,255,255,0.15);
+    }
+    @media (max-width: 640px) {
+      .header-link { display: none; }
     }
 
     /* ========== HERO ========== */
     .hero {
-      padding: 90px 20px 40px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      padding: 120px 24px 80px;
       position: relative;
       overflow: hidden;
     }
-
-    .hero::before {
-      content: '';
+    .hero-bg {
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
-      animation: pulse 8s ease-in-out infinite;
+      inset: 0;
+      z-index: 0;
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
+    .hero-bg .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      animation: orbFloat 12s ease-in-out infinite;
     }
-
+    .hero-bg .orb-1 {
+      width: 600px; height: 600px;
+      background: rgba(124, 58, 237, 0.12);
+      top: -15%; left: -10%;
+    }
+    .hero-bg .orb-2 {
+      width: 500px; height: 500px;
+      background: rgba(236, 72, 153, 0.08);
+      bottom: -10%; right: -10%;
+      animation-delay: -4s;
+    }
+    .hero-bg .orb-3 {
+      width: 400px; height: 400px;
+      background: rgba(245, 158, 11, 0.06);
+      top: 30%; right: 20%;
+      animation-delay: -8s;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -20px) scale(1.05); }
+      66% { transform: translate(-20px, 15px) scale(0.95); }
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(124,58,237,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    }
     .hero-content {
       position: relative;
       z-index: 1;
+      max-width: 860px;
     }
-
-    .hero-badge {
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(124, 58, 237, 0.2);
-      border: 1px solid rgba(124, 58, 237, 0.3);
-      padding: 6px 14px;
-      border-radius: 100px;
+      gap: 8px;
       font-size: 0.75rem;
-      font-weight: 500;
-      color: #A78BFA;
-      margin-bottom: 16px;
+      font-weight: 600;
+      color: var(--primary-light);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeInUp 0.8s var(--ease-out-expo) 0.2s forwards;
     }
-
-    .hero-badge::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: #10B981;
+    .hero-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--success);
       border-radius: 50%;
-      animation: blink 2s infinite;
+      animation: pulse-dot 2s infinite;
     }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+      50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(16,185,129,0); }
     }
-
     .hero h1 {
-      font-size: 2rem;
+      font-size: clamp(2.5rem, 7vw, 5rem);
       font-weight: 900;
-      line-height: 1.2;
-      margin-bottom: 12px;
-      background: var(--gradient);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeInUp 0.8s var(--ease-out-expo) 0.35s forwards;
+    }
+    .hero h1 .line { display: block; }
+    .hero h1 .line-accent {
+      background: var(--gradient-brand);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
-    .hero-sub {
-      font-size: 0.95rem;
+    .hero-description {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
       color: var(--text-dim);
-      margin-bottom: 24px;
-      max-width: 320px;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 540px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeInUp 0.8s var(--ease-out-expo) 0.5s forwards;
     }
-
-    .hero-stats {
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+      opacity: 0;
+      animation: fadeInUp 0.8s var(--ease-out-expo) 0.65s forwards;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--gradient-brand);
+      color: white;
+      border: none;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s var(--ease-spring), box-shadow 0.3s;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 40px rgba(124,58,237,0.35);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+    }
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.04);
+    }
+    .hero-metrics {
       display: flex;
       justify-content: center;
-      gap: 24px;
+      gap: 48px;
+      opacity: 0;
+      animation: fadeInUp 0.8s var(--ease-out-expo) 0.8s forwards;
     }
-
-    .hero-stat {
+    .metric {
       text-align: center;
     }
-
-    .hero-stat-value {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--accent);
+    .metric-value {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
     }
-
-    .hero-stat-label {
+    .metric-value .unit {
+      font-size: 1rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .metric-label {
       font-size: 0.7rem;
       color: var(--text-muted);
       text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 6px;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ========== STATION ========== */
-    .station {
-      padding: 0 16px 120px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    /* ========== SECTION COMMON ========== */
+    section { padding: 120px 0; position: relative; }
+    .section-label {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--primary-light);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       margin-bottom: 16px;
-      padding: 16px 0 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-
-    .section-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--bg-card);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-    }
-
-    .section-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-
-    /* ========== 명함 ========== */
-    .card-section {
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 20px;
+    .section-heading {
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
       margin-bottom: 20px;
-      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 0;
     }
 
-    .namecard {
-      display: flex;
-      gap: 16px;
+    /* ========== PAIN SECTION ========== */
+    .pain {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
       align-items: center;
     }
+    .pain-quote {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 700;
+      line-height: 1.5;
+      color: var(--text);
+      position: relative;
+      padding-left: 24px;
+      border-left: 3px solid var(--accent);
+    }
+    .pain-source {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .pain-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .pain-stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      transition: border-color 0.3s, transform 0.3s var(--ease-spring);
+    }
+    .pain-stat:hover {
+      border-color: rgba(124,58,237,0.3);
+      transform: translateY(-2px);
+    }
+    .pain-stat-value {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .pain-stat-value.danger { color: var(--danger); }
+    .pain-stat-value.accent { color: var(--accent); }
+    .pain-stat-value.primary { color: var(--primary-light); }
+    .pain-stat-value.success { color: var(--success); }
+    .pain-stat-label {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+    @media (max-width: 768px) {
+      .pain-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
 
-    .namecard-avatar {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: var(--gradient);
+    /* ========== PIPELINE SECTION ========== */
+    .pipeline-flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-top: 64px;
+      position: relative;
+    }
+    .pipeline-step {
+      flex: 1;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-card);
+      margin: 0 -1px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .pipeline-step:hover {
+      border-color: var(--primary);
+      background: var(--bg-card-hover);
+      z-index: 1;
+    }
+    .pipeline-step::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -18px;
+      width: 36px;
+      height: 2px;
+      background: var(--gradient-brand);
+      z-index: 2;
+    }
+    .pipeline-step:last-child::after { display: none; }
+    .pipeline-num {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--primary-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .pipeline-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 16px;
+      background: var(--gradient-subtle);
+      border: 1px solid rgba(124,58,237,0.15);
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      font-weight: 900;
-      flex-shrink: 0;
-      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
     }
-
-    .namecard-info h2 {
-      font-size: 1.25rem;
+    .pipeline-title {
+      font-size: 1rem;
       font-weight: 700;
-      margin-bottom: 2px;
+      margin-bottom: 8px;
     }
-
-    .namecard-info .title {
-      color: var(--accent);
+    .pipeline-desc {
       font-size: 0.8rem;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    .namecard-info .tagline {
       color: var(--text-dim);
-      font-size: 0.8rem;
-      line-height: 1.4;
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .pipeline-flow { flex-direction: column; gap: 12px; }
+      .pipeline-step { margin: 0; }
+      .pipeline-step::after {
+        top: auto;
+        bottom: -18px;
+        right: 50%;
+        width: 2px;
+        height: 24px;
+        transform: translateX(50%);
+      }
     }
 
-    .namecard-actions {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 16px;
+    /* ========== COMPARISON TABLE ========== */
+    .comparison {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
-
-    .namecard-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 12px 8px;
-      background: var(--bg);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      color: var(--text);
-      font-size: 0.8rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
+    .compare-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 48px;
+      font-size: 0.85rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
     }
-
-    .namecard-btn:active {
-      transform: scale(0.96);
-    }
-
-    .namecard-btn.primary {
-      background: var(--primary);
-      border-color: var(--primary);
-    }
-
-    /* ========== 포탈 ========== */
-    .portal-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .portal-gate {
-      aspect-ratio: 1;
+    .compare-table thead th {
       background: var(--bg-card);
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(255,255,255,0.05);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
+      padding: 16px 20px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+    }
+    .compare-table thead th:last-child {
+      color: var(--accent);
+    }
+    .compare-table tbody td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-dim);
+      vertical-align: top;
+    }
+    .compare-table tbody tr:last-child td { border-bottom: none; }
+    .compare-table tbody td:first-child {
+      font-weight: 600;
       color: var(--text);
+    }
+    .compare-table tbody td:last-child {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .compare-highlight {
+      background: rgba(124,58,237,0.06);
+    }
+    @media (max-width: 768px) {
+      .compare-table { font-size: 0.75rem; }
+      .compare-table th, .compare-table td { padding: 10px 12px; }
+    }
+
+    /* ========== TERRITORY MAP ========== */
+    .territory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .territory-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: border-color 0.3s, transform 0.3s var(--ease-spring);
       position: relative;
       overflow: hidden;
     }
-
-    .portal-gate:active {
-      transform: scale(0.96);
-    }
-
-    .portal-gate::before {
+    .territory-card::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: var(--gradient);
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-brand);
       opacity: 0;
       transition: opacity 0.3s;
     }
-
-    .portal-gate:hover::before {
-      opacity: 0.1;
+    .territory-card:hover {
+      border-color: rgba(124,58,237,0.3);
+      transform: translateY(-4px);
     }
-
-    .portal-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .portal-name {
-      font-size: 0.65rem;
-      font-weight: 500;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      max-width: 90%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .portal-gate.anchor {
-      border-color: var(--accent);
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), transparent);
-    }
-
-    .portal-gate.anchor .portal-avatar {
-      background: linear-gradient(135deg, var(--accent), #D97706);
-    }
-
-    .portal-gate.empty {
-      opacity: 0.35;
-    }
-
-    /* ========== 블로그 ========== */
-    .blog-feed {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .blog-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.05);
-      cursor: pointer;
-      transition: border-color 0.2s;
-    }
-
-    .blog-card:active {
-      border-color: var(--primary);
-    }
-
-    .blog-card-inner {
-      display: flex;
-      gap: 12px;
-      padding: 14px;
-    }
-
-    .blog-thumb {
-      width: 60px;
-      height: 60px;
-      border-radius: 8px;
-      background: var(--bg);
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-
-    .blog-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .blog-meta {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .blog-author-avatar {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--primary);
-      font-size: 0.45rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .blog-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    /* ========== 초크보드 ========== */
-    .chalkboard-container {
-      background: #1a2a1a;
-      border-radius: var(--radius);
-      border: 3px solid #4a3728;
-      padding: 16px;
-      margin-bottom: 20px;
-    }
-
-    .chalkboard-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .chalkboard-title {
-      color: #8fbc8f;
-      font-family: monospace;
-      font-size: 0.8rem;
-    }
-
-    .chalkboard-tools {
-      display: flex;
-      gap: 6px;
-    }
-
-    .chalk-btn {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.2);
-      background: transparent;
-      cursor: pointer;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .chalk-btn.active {
-      background: #8fbc8f;
-      border-color: #8fbc8f;
-    }
-
-    .chalkboard-canvas {
-      width: 100%;
-      height: 180px;
-      border-radius: 6px;
-      touch-action: none;
-      cursor: crosshair;
-      background: #1a2a1a;
-    }
-
-    .chalkboard-actions {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .chalk-action {
-      padding: 10px;
-      background: rgba(143, 188, 143, 0.15);
-      border: 1px solid rgba(143, 188, 143, 0.3);
-      border-radius: 8px;
-      color: #8fbc8f;
-      font-size: 0.75rem;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-    }
-
-    /* ========== 워키토키 ========== */
-    .walkie-card {
-      background: linear-gradient(135deg, var(--primary-dark), #1E1B4B);
-      border-radius: var(--radius);
-      padding: 24px;
-      text-align: center;
-      margin-bottom: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .walkie-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
-    }
-
-    .walkie-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 12px;
-      background: var(--gradient);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .walkie-title {
+    .territory-card:hover::before { opacity: 1; }
+    .territory-name {
       font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 6px;
-      position: relative;
-      z-index: 1;
     }
-
-    .walkie-desc {
+    .territory-type {
+      font-size: 0.7rem;
+      color: var(--primary-light);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .territory-desc {
+      font-size: 0.8rem;
       color: var(--text-dim);
-      font-size: 0.85rem;
+      line-height: 1.5;
       margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
     }
-
-    .walkie-btn {
+    .territory-persona {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 12px 24px;
-      background: var(--accent);
-      color: #000;
-      border: none;
-      border-radius: 100px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      position: relative;
-      z-index: 1;
-      text-decoration: none;
-    }
-
-    /* ========== 가격 ========== */
-    .pricing-card {
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 20px;
-      border: 1px solid rgba(124, 58, 237, 0.3);
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    .pricing-badge {
-      position: absolute;
-      top: -8px;
-      right: 16px;
-      background: var(--gradient);
-      color: white;
-      padding: 4px 12px;
-      border-radius: 100px;
       font-size: 0.7rem;
-      font-weight: 700;
-    }
-
-    .pricing-header {
-      text-align: center;
-      margin-bottom: 20px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .pricing-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .pricing-price {
-      font-size: 2rem;
-      font-weight: 900;
+      font-weight: 600;
       color: var(--accent);
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.2);
+      padding: 4px 10px;
+      border-radius: 100px;
     }
 
-    .pricing-price span {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      font-weight: 400;
+    /* ========== SLOTS SECTION ========== */
+    .slots-section { background: var(--bg-elevated); border-top: 1px solid var(--border); }
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 48px;
     }
-
-    .pricing-breakdown {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      margin-top: 4px;
-    }
-
-    .pricing-features {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-
-    .pricing-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      font-size: 0.85rem;
-    }
-
-    .pricing-features li::before {
-      content: '✓';
-      color: #10B981;
-      font-weight: 700;
-    }
-
-    .pricing-cta {
-      width: 100%;
-      padding: 14px;
-      background: var(--gradient);
-      color: white;
-      border: none;
+    .slot-card {
+      aspect-ratio: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       border-radius: var(--radius-sm);
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    /* ========== FLOATING CTA ========== */
-    .floating-cta {
-      position: fixed;
-      bottom: 16px;
-      bottom: calc(16px + var(--safe-bottom));
-      left: 16px;
-      right: 16px;
-      z-index: 900;
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       gap: 8px;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    .float-btn {
-      flex: 1;
-      padding: 14px;
-      border-radius: var(--radius-sm);
-      border: none;
-      font-size: 0.85rem;
-      font-weight: 700;
       cursor: pointer;
+      transition: all 0.3s var(--ease-spring);
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+    }
+    .slot-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+    .slot-card.active {
+      border-color: rgba(124,58,237,0.4);
+      background: linear-gradient(135deg, rgba(124,58,237,0.08), var(--bg-card));
+    }
+    .slot-card.anchor {
+      border-color: rgba(245,158,11,0.4);
+      background: linear-gradient(135deg, rgba(245,158,11,0.08), var(--bg-card));
+    }
+    .slot-card.empty {
+      opacity: 0.3;
+      cursor: default;
+    }
+    .slot-card.empty:hover {
+      opacity: 0.5;
+      transform: none;
+    }
+    .slot-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .slot-card.anchor .slot-avatar { background: var(--gradient-gold); }
+    .slot-card.active .slot-avatar { background: var(--gradient-brand); }
+    .slot-card.empty .slot-avatar { background: var(--bg-card-hover); color: var(--text-muted); }
+    .slot-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-align: center;
+      max-width: 90%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .slot-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 0.55rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .slot-card.anchor .slot-badge { background: rgba(245,158,11,0.2); color: var(--accent); }
+    .slot-card.active .slot-badge { background: rgba(16,185,129,0.2); color: var(--success); }
+
+    /* ========== TIMELINE ========== */
+    .timeline-container {
+      margin-top: 48px;
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 1px;
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 40px 32px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -26px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.3);
+    }
+    .timeline-item.highlight .timeline-dot {
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.3);
+    }
+    .timeline-year {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--primary-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+    .timeline-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.5;
     }
 
-    .float-btn.primary {
-      background: var(--gradient);
+    /* ========== PRICING ========== */
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s var(--ease-spring);
+    }
+    .pricing-card:hover {
+      transform: translateY(-4px);
+    }
+    .pricing-card.featured {
+      border-color: rgba(124,58,237,0.4);
+      background: linear-gradient(135deg, rgba(124,58,237,0.06), var(--bg-card));
+    }
+    .pricing-card.featured:hover {
+      border-color: var(--primary);
+    }
+    .pricing-tag {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gradient-brand);
+      color: white;
+      padding: 4px 16px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .pricing-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .pricing-amount {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pricing-period {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .pricing-list {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+    .pricing-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    .pricing-list li::before {
+      content: '—';
+      color: var(--primary-light);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .pricing-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s var(--ease-spring), box-shadow 0.2s;
+    }
+    .pricing-btn:hover {
+      transform: scale(1.02);
+    }
+    .pricing-btn.primary {
+      background: var(--gradient-brand);
       color: white;
     }
-
-    .float-btn.secondary {
-      background: var(--bg-card);
+    .pricing-btn.primary:hover {
+      box-shadow: 0 8px 32px rgba(124,58,237,0.3);
+    }
+    .pricing-btn.outline {
+      background: transparent;
       color: var(--text);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .pricing-breakdown-note {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    @media (max-width: 640px) {
+      .pricing-cards { grid-template-columns: 1fr; }
+    }
+
+    /* ========== CTA SECTION ========== */
+    .cta-section {
+      text-align: center;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+    }
+    .cta-headline {
+      font-size: clamp(1.75rem, 4.5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .cta-sub {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     /* ========== FOOTER ========== */
     .footer {
-      text-align: center;
-      padding: 30px 20px;
+      padding: 48px 24px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-brand-mark {
+      width: 28px; height: 28px;
+      background: var(--gradient-brand);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 900;
+      color: white;
+    }
+    .footer-brand-text {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-link {
+      font-size: 0.8rem;
       color: var(--text-muted);
-      font-size: 0.75rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--text-dim); }
+    .footer-copy {
+      width: 100%;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-copy a { color: var(--primary-light); text-decoration: none; }
+
+    /* ========== FLOATING CTA ========== */
+    .floating-cta {
+      position: fixed;
+      bottom: 20px;
+      bottom: calc(20px + var(--safe-bottom));
+      right: 20px;
+      z-index: 900;
+      display: flex;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s, transform 0.4s var(--ease-out-expo);
+      pointer-events: none;
+    }
+    .floating-cta.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .float-btn {
+      padding: 12px 20px;
+      border-radius: 100px;
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: transform 0.2s var(--ease-spring), box-shadow 0.2s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .float-btn:hover { transform: scale(1.05); }
+    .float-btn.primary {
+      background: var(--gradient-brand);
+      color: white;
+    }
+    .float-btn.ghost {
+      background: rgba(17,17,39,0.9);
+      backdrop-filter: blur(12px);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
-    .footer a {
-      color: var(--primary);
-      text-decoration: none;
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 480px) {
+      section { padding: 80px 0; }
+      .hero { padding: 100px 20px 60px; }
+      .hero-metrics { gap: 24px; }
+      .metric-value { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header" id="header">
     <div class="header-inner">
-      <div class="logo">
-        <div class="logo-icon">🏠</div>
-        <span>남원골</span>
-      </div>
-      <button class="header-cta" onclick="scrollTo('pricing')">입장 신청</button>
+      <a href="/" class="logo">
+        <div class="logo-mark">N</div>
+        <div>
+          <div class="logo-text">남원골</div>
+          <div class="logo-tag">Guild OS</div>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="#how" class="header-link">작동 방식</a>
+        <a href="#territory" class="header-link">시흥 권역</a>
+        <a href="#pricing" class="header-link">멤버십</a>
+        <a href="#apply" class="header-cta">입장 신청</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="hero-grid"></div>
     <div class="hero-content">
-      <div class="hero-badge">12슬롯 한정 운영</div>
-      <h1>AI 쓰는 중개인<br>길드</h1>
-      <p class="hero-sub">말하면 글이 된다. 시흥 부동산 중개인을 위한 디지털 스테이션.</p>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-value">12</div>
-          <div class="hero-stat-label">슬롯</div>
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        12슬롯 한정 운영 중
+      </div>
+      <h1>
+        <span class="line">말하면</span>
+        <span class="line line-accent">블로그가 된다</span>
+      </h1>
+      <p class="hero-description">
+        시흥 부동산 중개인 12명만을 위한<br>
+        AI 디지털 운영 길드. 도구를 파는 게 아니라<br>
+        <strong>운영을 대신해드립니다.</strong>
+      </p>
+      <div class="hero-actions">
+        <a href="#apply" class="btn-primary">입장 신청하기</a>
+        <a href="modules/walkie.html" class="btn-secondary">워키토키 체험</a>
+      </div>
+      <div class="hero-metrics">
+        <div class="metric">
+          <div class="metric-value"><span data-count="12">0</span></div>
+          <div class="metric-label">Total Slots</div>
         </div>
-        <div class="hero-stat">
-          <div class="hero-stat-value" id="activeSlots">8</div>
-          <div class="hero-stat-label">활성</div>
+        <div class="metric">
+          <div class="metric-value" id="activeMetric"><span data-count="0">0</span></div>
+          <div class="metric-label">Active</div>
         </div>
-        <div class="hero-stat">
-          <div class="hero-stat-value" id="remainSlots">4</div>
-          <div class="hero-stat-label">남음</div>
+        <div class="metric">
+          <div class="metric-value" id="remainMetric"><span data-count="0">0</span><span class="unit"> left</span></div>
+          <div class="metric-label">Remaining</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Station -->
-  <main class="station">
-
-    <!-- 명함 -->
-    <section class="card-section">
-      <div class="namecard">
-        <div class="namecard-avatar">남</div>
-        <div class="namecard-info">
-          <h2>남원골 HQ</h2>
-          <p class="title">AI 쓰는 중개인 길드 본부</p>
-          <p class="tagline">시흥 부동산 중개인의 디지털 전환. 말만 하면 블로그가 됩니다.</p>
+  <!-- ==================== PAIN POINT ==================== -->
+  <section class="pain">
+    <div class="container">
+      <div class="pain-grid">
+        <div class="reveal-left">
+          <div class="section-label">Problem</div>
+          <div class="pain-quote">
+            "교육은 받았는데<br>혼자는 못 하겠다"
+            <div class="pain-source">
+              — 시흥공인중개사협회 AI 마케팅 교육 후 중개인 반응
+            </div>
+          </div>
+        </div>
+        <div class="pain-stats reveal-right">
+          <div class="pain-stat stagger-1">
+            <div class="pain-stat-value danger">80%+</div>
+            <div class="pain-stat-label">1인 사무소 비율<br>혼자서 모든 걸 해야 함</div>
+          </div>
+          <div class="pain-stat stagger-2">
+            <div class="pain-stat-value accent">55만</div>
+            <div class="pain-stat-label">공인중개사 자격 보유자<br>파편화된 시장</div>
+          </div>
+          <div class="pain-stat stagger-3">
+            <div class="pain-stat-value primary">50대+</div>
+            <div class="pain-stat-label">평균 연령대<br>AI를 알지만 못 쓰는 세대</div>
+          </div>
+          <div class="pain-stat stagger-4">
+            <div class="pain-stat-value success">0</div>
+            <div class="pain-stat-label">운영 대행 서비스<br>이 포지션은 비어있다</div>
+          </div>
         </div>
       </div>
-      <div class="namecard-actions">
-        <a href="tel:010-1234-5678" class="namecard-btn">📞 전화</a>
-        <a href="#" class="namecard-btn">💬 카톡</a>
-        <button class="namecard-btn primary" onclick="shareCard()">📤 공유</button>
+    </div>
+  </section>
+
+  <!-- ==================== HOW IT WORKS ==================== -->
+  <section id="how">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-heading">
+          버튼 누르고 <span class="gradient-text">말만 하세요</span><br>
+          나머지는 저희가 합니다
+        </h2>
+        <p class="section-desc" style="margin:0 auto;">
+          AI 워키토키로 음성을 텍스트로, 텍스트를 네이버 블로그 글로.<br>
+          중개인은 부동산만 하면 됩니다.
+        </p>
       </div>
-    </section>
-
-    <!-- 포탈 -->
-    <div class="section-header">
-      <div class="section-icon">🚪</div>
-      <h2 class="section-title">멤버 작업실</h2>
-    </div>
-    <div class="portal-grid" id="portalGrid"></div>
-
-    <!-- 블로그 -->
-    <div class="section-header">
-      <div class="section-icon">📝</div>
-      <h2 class="section-title">최신 소식</h2>
-    </div>
-    <div class="blog-feed" id="blogFeed"></div>
-
-    <!-- 초크보드 -->
-    <div class="section-header">
-      <div class="section-icon">🎨</div>
-      <h2 class="section-title">초크보드</h2>
-    </div>
-    <div class="chalkboard-container">
-      <div class="chalkboard-header">
-        <span class="chalkboard-title">✍️ 자유롭게 그려보세요</span>
-        <div class="chalkboard-tools">
-          <button class="chalk-btn active" data-color="#FFFFFF">⚪</button>
-          <button class="chalk-btn" data-color="#FFD93D">🟡</button>
-          <button class="chalk-btn" data-color="#6BCB77">🟢</button>
-          <button class="chalk-btn" data-color="#FF6B6B">🔴</button>
-          <button class="chalk-btn" data-eraser>🧹</button>
+      <div class="pipeline-flow">
+        <div class="pipeline-step reveal stagger-1">
+          <div class="pipeline-num">Step 01</div>
+          <div class="pipeline-icon">🎤</div>
+          <div class="pipeline-title">말한다</div>
+          <div class="pipeline-desc">워키토키 버튼을 누르고<br>"장곡동 유승한내들 34평 급매"</div>
+        </div>
+        <div class="pipeline-step reveal stagger-2">
+          <div class="pipeline-num">Step 02</div>
+          <div class="pipeline-icon">🤖</div>
+          <div class="pipeline-title">AI가 쓴다</div>
+          <div class="pipeline-desc">네이버 SEO 최적화된<br>블로그 글로 자동 변환</div>
+        </div>
+        <div class="pipeline-step reveal stagger-3">
+          <div class="pipeline-num">Step 03</div>
+          <div class="pipeline-icon">✅</div>
+          <div class="pipeline-title">확인하고 발행</div>
+          <div class="pipeline-desc">미리보기 후 터치 한 번으로<br>네이버 블로그에 게시</div>
+        </div>
+        <div class="pipeline-step reveal stagger-4">
+          <div class="pipeline-num">Step 04</div>
+          <div class="pipeline-icon">📈</div>
+          <div class="pipeline-title">고객이 온다</div>
+          <div class="pipeline-desc">"시흥 장현동 아파트" 검색하면<br>내 블로그가 뜬다</div>
         </div>
       </div>
-      <canvas id="chalkCanvas" class="chalkboard-canvas"></canvas>
-      <div class="chalkboard-actions">
-        <button class="chalk-action" onclick="clearCanvas()">🗑️ 지우기</button>
-        <button class="chalk-action" onclick="saveCanvas()">💾 저장</button>
-        <button class="chalk-action" id="recordBtn" onclick="toggleRecording()">🔴 녹화</button>
+    </div>
+  </section>
+
+  <!-- ==================== COMPARISON ==================== -->
+  <section class="comparison">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">Why Us</div>
+        <h2 class="section-heading">
+          도구를 파는 게 아닙니다<br>
+          <span class="gradient-text">운영을 대신합니다</span>
+        </h2>
+      </div>
+      <table class="compare-table reveal">
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th>ERA/센추리21</th>
+            <th>직방PRO</th>
+            <th>남원골</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>모델</td>
+            <td>글로벌 프랜차이즈</td>
+            <td>SaaS 구독</td>
+            <td class="compare-highlight">길드 멤버십 + 운영대행</td>
+          </tr>
+          <tr>
+            <td>가맹비</td>
+            <td>수천만 원</td>
+            <td>없음</td>
+            <td class="compare-highlight">50만 원</td>
+          </tr>
+          <tr>
+            <td>월비용</td>
+            <td>수십만 원+</td>
+            <td>월 3~5만 원</td>
+            <td class="compare-highlight">월 10만 원</td>
+          </tr>
+          <tr>
+            <td>운영 방식</td>
+            <td>간판만 제공</td>
+            <td>본인이 직접 사용</td>
+            <td class="compare-highlight">본사가 직접 운영</td>
+          </tr>
+          <tr>
+            <td>AI 활용</td>
+            <td>없음</td>
+            <td>매물 설명 자동생성</td>
+            <td class="compare-highlight">음성→블로그→SEO 전자동</td>
+          </tr>
+          <tr>
+            <td>정원</td>
+            <td>무제한</td>
+            <td>무제한</td>
+            <td class="compare-highlight">12명 한정</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== TERRITORY ==================== -->
+  <section id="territory">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">Territory</div>
+        <h2 class="section-heading">
+          시흥 <span class="gradient-text">5대 권역</span><br>
+          각자의 영역이 있다
+        </h2>
+        <p class="section-desc" style="margin:0 auto;">
+          권역당 최대 2~3슬롯. 같은 동네에서 경쟁하지 않습니다.<br>
+          당신만의 디지털 영토를 확보하세요.
+        </p>
+      </div>
+      <div class="territory-grid">
+        <div class="territory-card reveal stagger-1">
+          <div class="territory-name">배곧신도시</div>
+          <div class="territory-type">해안 + 서울대 캠퍼스 + 고가 단지</div>
+          <div class="territory-desc">프리미엄 주거 단지가 밀집한 시흥의 핵심 신도시. 서울대 캠퍼스 효과로 교육 수요 폭발.</div>
+          <div class="territory-persona">프리미엄 전문가</div>
+        </div>
+        <div class="territory-card reveal stagger-2">
+          <div class="territory-name">정왕동</div>
+          <div class="territory-type">공단 배후 + 노후 아파트 + 외국인</div>
+          <div class="territory-desc">준공 30년차 아파트 정비사업 수요 폭발 예정. 외국인 비율 12%로 다문화 특화 기회.</div>
+          <div class="territory-persona">실속파 로컬전문가</div>
+        </div>
+        <div class="territory-card reveal stagger-3">
+          <div class="territory-name">은계지구</div>
+          <div class="territory-type">생태 전원 + 중산층</div>
+          <div class="territory-desc">보문산 자연환경과 생태공원이 어우러진 전원형 주거지. 안정적 중산층 수요.</div>
+          <div class="territory-persona">자연친화 라이프</div>
+        </div>
+        <div class="territory-card reveal stagger-4">
+          <div class="territory-name">장현지구</div>
+          <div class="territory-type">신시가지 + 트리플 역세권</div>
+          <div class="territory-desc">2027년 입주 본격화. 신안산선+서해선+월판선 트리플 역세권으로 미래가치 최고.</div>
+          <div class="territory-persona">미래가치 선도자</div>
+        </div>
+        <div class="territory-card reveal stagger-5">
+          <div class="territory-name">월곶/소래</div>
+          <div class="territory-type">해안 + 개발예정 + 복합</div>
+          <div class="territory-desc">월곶~판교 복선전철 개통 예정. 해안 관광+주거 복합 개발의 블루오션.</div>
+          <div class="territory-persona">뉴웨이브 개척자</div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- 워키토키 -->
-    <div class="walkie-card">
-      <div class="walkie-icon">🎤</div>
-      <h3 class="walkie-title">AI 워키토키</h3>
-      <p class="walkie-desc">버튼 누르고 말하세요.<br>AI가 블로그 글로 만들어드립니다.</p>
-      <a href="modules/walkie.html" class="walkie-btn">🎙️ 워키토키 열기</a>
-    </div>
-
-    <!-- 가격 -->
-    <div class="section-header" id="pricing">
-      <div class="section-icon">💰</div>
-      <h2 class="section-title">멤버십 안내</h2>
-    </div>
-    <div class="pricing-card">
-      <div class="pricing-badge">4자리 남음</div>
-      <div class="pricing-header">
-        <h3 class="pricing-title">길드 멤버십</h3>
-        <div class="pricing-price">10만원 <span>/월</span></div>
-        <div class="pricing-breakdown">ChatGPT 3만 + 남원골 7만</div>
+  <!-- ==================== TIMELINE ==================== -->
+  <section style="background:var(--bg-elevated); border-top:1px solid var(--border);">
+    <div class="container-narrow">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">Timeline</div>
+        <h2 class="section-heading">
+          <span class="gradient-text">개통 전</span>에<br>유명해져 있어야 한다
+        </h2>
+        <p class="section-desc" style="margin:0 auto;">
+          시흥의 교통 혁명이 다가오고 있습니다.<br>
+          지금 디지털 브랜딩을 시작해야 개통 후 수요를 선점합니다.
+        </p>
       </div>
-      <ul class="pricing-features">
-        <li>내 디지털 사무실 (개인 URL)</li>
-        <li>디지털 명함 + QR코드</li>
-        <li>AI 워키토키 무제한</li>
-        <li>블로그/유튜브 자동 연동</li>
-        <li>PR 버튼 (수정 요청)</li>
-        <li>HQ 관제 지원</li>
-      </ul>
-      <button class="pricing-cta" onclick="applyMembership()">입장 신청 (입장비 50만원)</button>
+      <div class="timeline-container">
+        <div class="timeline-item highlight reveal stagger-1">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2026.3</div>
+          <div class="timeline-title">서해선 완전개통</div>
+          <div class="timeline-desc">서화성~원시 구간 개통. 시흥 서부 접근성 대폭 개선.</div>
+        </div>
+        <div class="timeline-item reveal stagger-2">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2026</div>
+          <div class="timeline-title">정왕권 정비사업 본격화</div>
+          <div class="timeline-desc">준공 30년차 노후 아파트 재건축/리모델링 수요 폭발.</div>
+        </div>
+        <div class="timeline-item reveal stagger-3">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2027</div>
+          <div class="timeline-title">장현지구 입주 본격화</div>
+          <div class="timeline-desc">대규모 신규 입주 시작. 매매/전세 거래량 급증 예상.</div>
+        </div>
+        <div class="timeline-item highlight reveal stagger-4">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2028~</div>
+          <div class="timeline-title">신안산선 개통</div>
+          <div class="timeline-desc">광명역~여의도. 시흥→서울 30분대 진입. 부동산 가격 재평가.</div>
+        </div>
+        <div class="timeline-item reveal stagger-5">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2028~</div>
+          <div class="timeline-title">월곶~판교 복선전철</div>
+          <div class="timeline-desc">판교 IT밸리 직통. 시흥 남부 가치 재평가.</div>
+        </div>
+      </div>
     </div>
+  </section>
 
-  </main>
+  <!-- ==================== SLOTS ==================== -->
+  <section class="slots-section" id="slots">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">Members</div>
+        <h2 class="section-heading">
+          <span class="gradient-text">12</span>개의 슬롯<br>
+          당신의 자리가 있습니다
+        </h2>
+      </div>
+      <div class="slots-grid" id="slotsGrid"></div>
+    </div>
+  </section>
 
-  <!-- Floating CTA -->
-  <div class="floating-cta">
-    <a href="modules/walkie.html" class="float-btn secondary">🎤 워키토키</a>
-    <button class="float-btn primary" onclick="applyMembership()">🚀 입장 신청</button>
-  </div>
+  <!-- ==================== PRICING ==================== -->
+  <section id="pricing">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">Membership</div>
+        <h2 class="section-heading">
+          허세가 먼저 팔리고<br>
+          <span class="gradient-text">생산성은 나중에 따라온다</span>
+        </h2>
+        <p class="section-desc" style="margin:0 auto;">
+          ChatGPT는 어차피 쓰는데, 거기에 7만 원만 더 내면<br>
+          디지털 사무실이 생깁니다.
+        </p>
+      </div>
+      <div class="pricing-cards">
+        <div class="pricing-card reveal stagger-1">
+          <div class="pricing-label">입장비 (1회)</div>
+          <div class="pricing-amount gradient-text">50<span style="font-size:1rem;">만원</span></div>
+          <div class="pricing-period">최초 1회 결제</div>
+          <ul class="pricing-list">
+            <li>디지털 사무실 셋업</li>
+            <li>디지털 명함 + QR코드</li>
+            <li>전용 서브도메인</li>
+            <li>온보딩 1:1 세팅</li>
+            <li>PWA 앱 제작</li>
+          </ul>
+          <button class="pricing-btn outline" onclick="applyMembership()">상담 문의</button>
+        </div>
+        <div class="pricing-card featured reveal stagger-2">
+          <div class="pricing-tag" id="remainTag">잔여 슬롯 확인 중</div>
+          <div class="pricing-label">월 멤버십</div>
+          <div class="pricing-amount gradient-text">10<span style="font-size:1rem;">만원</span><span style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">/월</span></div>
+          <div class="pricing-period">ChatGPT 3만 + 남원골 7만</div>
+          <ul class="pricing-list">
+            <li>AI 워키토키 무제한</li>
+            <li>네이버 블로그 자동발행</li>
+            <li>블로그/유튜브 연동</li>
+            <li>PR 버튼 (수정 요청)</li>
+            <li>HQ 관제 지원</li>
+            <li>권역 전담 SEO 세팅</li>
+          </ul>
+          <button class="pricing-btn primary" onclick="applyMembership()">입장 신청</button>
+        </div>
+      </div>
+      <div class="pricing-breakdown-note reveal">
+        부가 서비스: PWA/APK 제작 5만/건 &middot; 페이지 수정 1만/건
+      </div>
+    </div>
+  </section>
 
-  <!-- Footer -->
+  <!-- ==================== FINAL CTA ==================== -->
+  <section class="cta-section" id="apply">
+    <div class="container">
+      <div class="reveal">
+        <div class="cta-headline">
+          신안산선 개통 전에<br>
+          <span class="gradient-text">유명해지세요</span>
+        </div>
+        <p class="cta-sub">
+          시흥에서 AI가 블로그를 써주는 유일한 중개인.<br>
+          12자리 중 당신의 슬롯을 확보하세요.
+        </p>
+        <div class="cta-actions">
+          <button class="btn-primary" onclick="applyMembership()">카카오로 입장 신청</button>
+          <a href="tel:010-2831-7909" class="btn-secondary">전화 문의</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
-    <p>© 2026 남원골 | AI 쓰는 중개인 길드</p>
-    <p>Powered by <a href="https://dtslib.com">DTSLIB HQ</a></p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-mark">N</div>
+        <span class="footer-brand-text">남원골</span>
+      </div>
+      <div class="footer-links">
+        <a href="modules/walkie.html" class="footer-link">워키토키</a>
+        <a href="console/" class="footer-link">콘솔</a>
+        <a href="docs/concept.md" class="footer-link">컨셉</a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2026 남원골 &middot; AI 쓰는 중개인 길드 &middot;
+      Powered by <a href="https://dtslib.com">DTSLIB HQ</a>
+    </div>
   </footer>
 
+  <!-- ==================== FLOATING CTA ==================== -->
+  <div class="floating-cta" id="floatingCta">
+    <a href="modules/walkie.html" class="float-btn ghost">🎤 워키토키</a>
+    <button class="float-btn primary" onclick="applyMembership()">입장 신청</button>
+  </div>
+
+  <!-- ==================== SCRIPTS ==================== -->
   <script>
-    // 슬롯 데이터 (registry.json에서 로딩)
+    /* ===== Registry & Slots ===== */
     let slots = [];
     let registry = null;
 
-    // registry.json 로딩
     async function loadRegistry() {
       try {
         const res = await fetch('/registry.json');
         registry = await res.json();
-
-        // registry 데이터를 렌더링용으로 변환
         slots = registry.slots.map(slot => ({
           id: slot.id,
           name: slot.member?.name || '빈 슬롯',
@@ -908,11 +1529,7 @@
           type: slot.type,
           active: slot.status === 'active'
         }));
-
-        return true;
       } catch (e) {
-        console.error('Registry load failed:', e);
-        // 폴백 데이터
         slots = Array.from({length: 12}, (_, i) => ({
           id: `slot${String(i+1).padStart(2, '0')}`,
           name: '빈 슬롯',
@@ -920,251 +1537,131 @@
           type: i === 0 ? 'anchor' : 'paid',
           active: false
         }));
-        return false;
       }
     }
 
-    // 블로그 데이터 (활성 슬롯에서 수집)
-    async function loadBlogPosts() {
-      const posts = [];
-      for (const slot of slots.filter(s => s.active)) {
-        try {
-          const stored = localStorage.getItem(`nmg_blog_${slot.id}`);
-          if (stored) {
-            const slotPosts = JSON.parse(stored);
-            slotPosts.slice(0, 2).forEach(p => {
-              posts.push({
-                ...p,
-                author: slot.name,
-                avatar: slot.avatar,
-                slotId: slot.id
-              });
-            });
-          }
-        } catch (e) {}
-      }
-      // 최신순 정렬
-      return posts.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
-    }
-
-    // 포탈 렌더링
-    function renderPortals() {
-      const grid = document.getElementById('portalGrid');
+    function renderSlots() {
+      const grid = document.getElementById('slotsGrid');
       const activeCount = slots.filter(s => s.active).length;
-      document.getElementById('activeSlots').textContent = activeCount;
-      document.getElementById('remainSlots').textContent = 12 - activeCount;
+      const remainCount = 12 - activeCount;
 
-      grid.innerHTML = slots.map(slot => `
-        <a href="${slot.active ? '/slots/' + slot.id + '/' : '#'}"
-           class="portal-gate ${slot.type} ${!slot.active ? 'empty' : ''}"
-           ${!slot.active ? 'onclick="event.preventDefault(); alert(\'빈 슬롯입니다. 입장 신청하세요!\');"' : ''}>
-          <div class="portal-avatar">${slot.avatar}</div>
-          <div class="portal-name">${slot.name}</div>
-        </a>
-      `).join('');
-    }
+      // Update hero metrics
+      const activeEl = document.querySelector('#activeMetric [data-count]');
+      const remainEl = document.querySelector('#remainMetric [data-count]');
+      if (activeEl) activeEl.setAttribute('data-count', activeCount);
+      if (remainEl) remainEl.setAttribute('data-count', remainCount);
 
-    // 블로그 렌더링
-    async function renderBlog() {
-      const feed = document.getElementById('blogFeed');
-      const posts = await loadBlogPosts();
+      // Update pricing tag
+      const tag = document.getElementById('remainTag');
+      if (tag) tag.textContent = `${remainCount}자리 남음`;
 
-      if (posts.length === 0) {
-        feed.innerHTML = `
-          <div class="blog-card">
-            <div class="blog-card-inner">
-              <div class="blog-thumb">📝</div>
-              <div class="blog-content">
-                <div class="blog-meta">남원골 HQ</div>
-                <h3 class="blog-title">아직 소식이 없습니다. 멤버들의 첫 글을 기다려주세요!</h3>
-              </div>
-            </div>
-          </div>
+      grid.innerHTML = slots.map((slot, i) => {
+        const typeClass = slot.type === 'anchor' ? 'anchor' : (slot.active ? 'active' : 'empty');
+        const badge = slot.type === 'anchor' ? 'Anchor' : (slot.active ? 'Active' : '');
+        const href = slot.active ? `/slots/${slot.id}/` : '#';
+        return `
+          <a href="${href}" class="slot-card ${typeClass} reveal stagger-${(i % 5) + 1}"
+             ${!slot.active ? 'onclick="event.preventDefault();"' : ''}>
+            ${badge ? `<span class="slot-badge">${badge}</span>` : ''}
+            <div class="slot-avatar">${slot.avatar}</div>
+            <div class="slot-name">${slot.name}</div>
+          </a>
         `;
-        return;
-      }
+      }).join('');
 
-      feed.innerHTML = posts.map(post => `
-        <article class="blog-card" onclick="location.href='/slots/${post.slotId}/blog.html'">
-          <div class="blog-card-inner">
-            <div class="blog-thumb">${getCategoryIcon(post.category)}</div>
-            <div class="blog-content">
-              <div class="blog-meta">
-                <div class="blog-author-avatar">${post.avatar}</div>
-                ${post.author} · ${formatDate(post.date)}
-              </div>
-              <h3 class="blog-title">${post.title}</h3>
-            </div>
-          </div>
-        </article>
-      `).join('');
+      // Re-observe new elements
+      observeReveals();
     }
 
-    function getCategoryIcon(category) {
-      const icons = { '매물소개': '🏠', '시세정보': '📊', '투자팁': '💡', '지역소식': '📰', '일상': '☕' };
-      return icons[category] || '📝';
+    /* ===== Scroll Reveal (IntersectionObserver) ===== */
+    function observeReveals() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+        if (!el.classList.contains('visible')) {
+          observer.observe(el);
+        }
+      });
     }
 
-    function formatDate(dateStr) {
-      const date = new Date(dateStr);
-      const now = new Date();
-      const diff = now - date;
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      if (hours < 1) return '방금 전';
-      if (hours < 24) return `${hours}시간 전`;
-      const days = Math.floor(hours / 24);
-      if (days < 7) return `${days}일 전`;
-      return date.toLocaleDateString('ko-KR');
+    /* ===== Counter Animation ===== */
+    function animateCounters() {
+      const counters = document.querySelectorAll('[data-count]');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.dataset.animated) {
+            entry.target.dataset.animated = 'true';
+            const target = parseInt(entry.target.getAttribute('data-count'));
+            const duration = 1200;
+            const start = performance.now();
+            const startVal = 0;
+
+            function update(now) {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              entry.target.textContent = Math.round(startVal + (target - startVal) * eased);
+              if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(c => observer.observe(c));
     }
 
-    // 초크보드
-    let canvas, ctx, isDrawing = false, currentColor = '#FFFFFF', isEraser = false;
-    let mediaRecorder, recordedChunks = [];
+    /* ===== Header Scroll Effect ===== */
+    function initHeader() {
+      const header = document.getElementById('header');
+      const floatingCta = document.getElementById('floatingCta');
+      let ticking = false;
 
-    function initChalkboard() {
-      canvas = document.getElementById('chalkCanvas');
-      ctx = canvas.getContext('2d');
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            header.classList.toggle('scrolled', scrollY > 50);
+            floatingCta.classList.toggle('visible', scrollY > 600);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
 
-      const rect = canvas.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.scale(dpr, dpr);
-      canvas.style.width = rect.width + 'px';
-      canvas.style.height = rect.height + 'px';
-
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.lineWidth = 3;
-
-      canvas.addEventListener('mousedown', startDraw);
-      canvas.addEventListener('mousemove', draw);
-      canvas.addEventListener('mouseup', () => isDrawing = false);
-      canvas.addEventListener('mouseleave', () => isDrawing = false);
-      canvas.addEventListener('touchstart', handleTouch, { passive: false });
-      canvas.addEventListener('touchmove', handleTouch, { passive: false });
-      canvas.addEventListener('touchend', () => isDrawing = false);
-
-      document.querySelectorAll('.chalk-btn[data-color]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.chalk-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentColor = btn.dataset.color;
-          isEraser = false;
+    /* ===== Smooth scroll for anchor links ===== */
+    function initSmoothScroll() {
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const target = document.querySelector(a.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         });
       });
-
-      document.querySelector('.chalk-btn[data-eraser]').addEventListener('click', function() {
-        document.querySelectorAll('.chalk-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        isEraser = true;
-      });
     }
 
-    function getPos(e) {
-      const rect = canvas.getBoundingClientRect();
-      const x = (e.clientX || e.touches[0].clientX) - rect.left;
-      const y = (e.clientY || e.touches[0].clientY) - rect.top;
-      return { x, y };
-    }
-
-    function startDraw(e) {
-      isDrawing = true;
-      const pos = getPos(e);
-      ctx.beginPath();
-      ctx.moveTo(pos.x, pos.y);
-    }
-
-    function draw(e) {
-      if (!isDrawing) return;
-      e.preventDefault();
-      const pos = getPos(e);
-
-      if (isEraser) {
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.lineWidth = 20;
-      } else {
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.lineWidth = 3;
-        ctx.strokeStyle = currentColor;
-      }
-
-      ctx.lineTo(pos.x, pos.y);
-      ctx.stroke();
-    }
-
-    function handleTouch(e) {
-      e.preventDefault();
-      const touch = e.touches[0];
-      const type = e.type === 'touchstart' ? 'mousedown' : 'mousemove';
-      canvas.dispatchEvent(new MouseEvent(type, { clientX: touch.clientX, clientY: touch.clientY }));
-    }
-
-    function clearCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    function saveCanvas() {
-      const link = document.createElement('a');
-      link.download = 'chalkboard.png';
-      link.href = canvas.toDataURL();
-      link.click();
-    }
-
-    function toggleRecording() {
-      const btn = document.getElementById('recordBtn');
-      if (mediaRecorder && mediaRecorder.state === 'recording') {
-        mediaRecorder.stop();
-        btn.textContent = '🔴 녹화';
-        return;
-      }
-
-      const stream = canvas.captureStream(30);
-      mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
-      recordedChunks = [];
-
-      mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
-      mediaRecorder.onstop = () => {
-        const blob = new Blob(recordedChunks, { type: 'video/webm' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'chalkboard-recording.webm';
-        a.click();
-      };
-
-      mediaRecorder.start();
-      btn.textContent = '⏹️ 중지';
-    }
-
-    // 유틸
-    function scrollTo(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function shareCard() {
-      if (navigator.share) {
-        navigator.share({ title: '남원골', text: 'AI 쓰는 중개인 길드', url: location.href });
-      } else {
-        navigator.clipboard.writeText(location.href);
-        alert('링크 복사됨!');
-      }
-    }
-
+    /* ===== Actions ===== */
     function applyMembership() {
       window.open('https://open.kakao.com/o/example', '_blank');
     }
 
-    // 초기화
+    /* ===== Init ===== */
     document.addEventListener('DOMContentLoaded', async () => {
-      // 1. registry.json 로딩
       await loadRegistry();
-
-      // 2. 렌더링
-      renderPortals();
-      await renderBlog();
-      initChalkboard();
-
-      console.log('남원골 HQ 초기화 완료', { slots: slots.length, active: slots.filter(s => s.active).length });
+      renderSlots();
+      observeReveals();
+      animateCounters();
+      initHeader();
+      initSmoothScroll();
     });
   </script>
 </body>
