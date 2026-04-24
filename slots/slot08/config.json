@@ -2,7 +2,14 @@
   "slot": {
     "id": "slot08",
     "type": "paid",
-    "status": "active"
+    "status": "recruiting",
+    "role": "법무사",
+    "region": "시흥 전역",
+    "placeholder": {
+      "title": "등기 · 명의이전 전담 법무사",
+      "tagline": "매매·전세 계약 후 소유권 이전까지 원스톱",
+      "emoji": "⚖️"
+    }
   },
   "member": {
     "name": "윤재혁 공인중개사",
@@ -10,7 +17,10 @@
     "tagline": "시흥 시화공단 산업용 부동산 전문가",
     "avatar": "윤",
     "photo": "/assets/members/slot08.jpg",
-    "logo": "/assets/logos/slot08.png"
+    "logo": "/assets/logos/slot08.png",
+    "recruitingTitle": "등기 · 명의이전 전담 법무사",
+    "recruitingTagline": "매매·전세 계약 후 소유권 이전까지 원스톱",
+    "recruitingEmoji": "⚖️"
   },
   "contact": {
     "phone": "010-8888-8888",

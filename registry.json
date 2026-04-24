@@ -1,16 +1,19 @@
 {
   "meta": {
     "name": "남원골",
-    "description": "AI 쓰는 중개인 12슬롯 길드",
+    "description": "AI 쓰는 시흥 부동산 생태계 12슬롯 길드 — 중개사·법무사·세무사·감정사·홈스타일리스트·대출상담사 원스톱",
     "totalSlots": 12,
-    "version": "1.0.0",
-    "updatedAt": "2026-02-06"
+    "version": "1.1.0",
+    "updatedAt": "2026-04-24",
+    "guildConcept": "매물부터 등기까지, 한 골목에서 끝나는 부동산"
   },
   "slots": [
     {
       "id": "slot01",
       "status": "active",
       "type": "anchor",
+      "role": "공인중개사",
+      "region": "시흥 남원동",
       "member": {
         "name": "김남원",
         "fullName": "김남원 공인중개사",
@@ -23,10 +26,7 @@
         "phone": "010-2831-7909",
         "email": "namone@gmail.com"
       },
-      "social": {
-        "youtube": "",
-        "blog": ""
-      },
+      "social": { "youtube": "", "blog": "" },
       "joinedAt": "2026-01-27",
       "theme": "gold"
     },
@@ -34,6 +34,8 @@
       "id": "slot02",
       "status": "active",
       "type": "paid",
+      "role": "공인중개사",
+      "region": "시흥 장곡동",
       "member": {
         "name": "권영숙",
         "fullName": "유승한내들 부동산",
@@ -42,86 +44,150 @@
         "title": "시흥 장곡동 전문 공인중개사",
         "tagline": "시흥장현유승한내들퍼스트파크 전문"
       },
-      "contact": {
-        "phone": "",
-        "email": ""
-      },
-      "social": {
-        "youtube": "",
-        "blog": ""
-      },
+      "contact": { "phone": "", "email": "" },
+      "social": { "youtube": "", "blog": "" },
       "joinedAt": "2026-01-29",
       "theme": "gold"
     },
     {
       "id": "slot03",
-      "status": "empty",
+      "status": "recruiting",
       "type": "paid",
+      "role": "공인중개사",
+      "region": "배곧 신도시",
       "member": null,
-      "contact": null
+      "contact": null,
+      "placeholder": {
+        "title": "배곧 신도시 전문 공인중개사 모집",
+        "tagline": "한라비발디·서해그랑블·호반써밋 라인 전담",
+        "emoji": "🏙️"
+      }
     },
     {
       "id": "slot04",
-      "status": "empty",
+      "status": "recruiting",
       "type": "paid",
+      "role": "공인중개사",
+      "region": "정왕동 · 오이도",
       "member": null,
-      "contact": null
+      "contact": null,
+      "placeholder": {
+        "title": "정왕·오이도 전문 공인중개사 모집",
+        "tagline": "시흥시청권 · 오이도역세권 상업·주거 매물",
+        "emoji": "🌊"
+      }
     },
     {
       "id": "slot05",
-      "status": "empty",
+      "status": "recruiting",
       "type": "paid",
+      "role": "공인중개사",
+      "region": "은행·거모·목감",
       "member": null,
-      "contact": null
+      "contact": null,
+      "placeholder": {
+        "title": "시흥 북부 전문 공인중개사 모집",
+        "tagline": "은행·거모·목감 택지지구 아파트/단독 전담",
+        "emoji": "🌳"
+      }
     },
     {
       "id": "slot06",
-      "status": "empty",
+      "status": "recruiting",
       "type": "paid",
+      "role": "공인중개사",
+      "region": "월곶·소래",
       "member": null,
-      "contact": null
+      "contact": null,
+      "placeholder": {
+        "title": "월곶·소래 포구 권역 공인중개사",
+        "tagline": "수도권 서남부 해안 라이프스타일 매물",
+        "emoji": "⚓"
+      }
     },
     {
       "id": "slot07",
-      "status": "empty",
+      "status": "recruiting",
       "type": "paid",
+      "role": "공인중개사",
+      "region": "서울 남부 광역",
       "member": null,
-      "contact": null
+      "contact": null,
+      "placeholder": {
+        "title": "서울 접근권 공인중개사",
+        "tagline": "구로·금천·광명·시흥 교차 수요 담당",
+        "emoji": "🗼"
+      }
     },
     {
       "id": "slot08",
-      "status": "empty",
+      "status": "recruiting",
       "type": "paid",
+      "role": "법무사",
+      "region": "시흥 전역",
       "member": null,
-      "contact": null
+      "contact": null,
+      "placeholder": {
+        "title": "등기 · 명의이전 전담 법무사",
+        "tagline": "매매·전세 계약 후 소유권 이전까지 원스톱",
+        "emoji": "⚖️"
+      }
     },
     {
       "id": "slot09",
-      "status": "empty",
+      "status": "recruiting",
       "type": "paid",
+      "role": "세무사",
+      "region": "시흥 전역",
       "member": null,
-      "contact": null
+      "contact": null,
+      "placeholder": {
+        "title": "부동산 전담 세무사",
+        "tagline": "양도소득세·취득세·임대소득 신고 서비스",
+        "emoji": "🧾"
+      }
     },
     {
       "id": "slot10",
-      "status": "empty",
+      "status": "recruiting",
       "type": "paid",
+      "role": "감정평가사",
+      "region": "시흥 전역",
       "member": null,
-      "contact": null
+      "contact": null,
+      "placeholder": {
+        "title": "담보·상속·증여 감정평가사",
+        "tagline": "은행 담보감정·상속세 감정·협의이혼 재산분할",
+        "emoji": "📐"
+      }
     },
     {
       "id": "slot11",
-      "status": "empty",
+      "status": "recruiting",
       "type": "paid",
+      "role": "홈스타일리스트·사진",
+      "region": "시흥 전역",
       "member": null,
-      "contact": null
+      "contact": null,
+      "placeholder": {
+        "title": "매물 촬영 · 홈스테이징",
+        "tagline": "팔리는 사진 · 보여지는 인테리어",
+        "emoji": "📸"
+      }
     },
     {
       "id": "slot12",
-      "status": "empty",
+      "status": "recruiting",
       "type": "paid",
+      "role": "대출·금융 컨설턴트",
+      "region": "시흥 전역",
       "member": null,
-      "contact": null
+      "contact": null,
+      "placeholder": {
+        "title": "주택담보대출 전문 상담사",
+        "tagline": "매수 전 대출 한도·금리 비교 → 실행까지",
+        "emoji": "💰"
+      }
     }
   ]
 }

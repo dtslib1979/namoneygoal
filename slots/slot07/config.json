@@ -2,7 +2,14 @@
   "slot": {
     "id": "slot07",
     "type": "paid",
-    "status": "active"
+    "status": "recruiting",
+    "role": "공인중개사",
+    "region": "서울 남부 광역",
+    "placeholder": {
+      "title": "서울 접근권 공인중개사",
+      "tagline": "구로·금천·광명·시흥 교차 수요 담당",
+      "emoji": "🗼"
+    }
   },
   "member": {
     "name": "강미영 공인중개사",
@@ -10,7 +17,10 @@
     "tagline": "마당 있는 집, 여유로운 삶을 찾아드립니다",
     "avatar": "강",
     "photo": "/assets/members/slot07.jpg",
-    "logo": "/assets/logos/slot07.png"
+    "logo": "/assets/logos/slot07.png",
+    "recruitingTitle": "서울 접근권 공인중개사",
+    "recruitingTagline": "구로·금천·광명·시흥 교차 수요 담당",
+    "recruitingEmoji": "🗼"
   },
   "contact": {
     "phone": "010-7777-7777",

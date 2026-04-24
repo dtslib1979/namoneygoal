@@ -2,7 +2,14 @@
   "slot": {
     "id": "slot05",
     "type": "paid",
-    "status": "active"
+    "status": "recruiting",
+    "role": "공인중개사",
+    "region": "은행·거모·목감",
+    "placeholder": {
+      "title": "시흥 북부 전문 공인중개사 모집",
+      "tagline": "은행·거모·목감 택지지구 아파트/단독 전담",
+      "emoji": "🌳"
+    }
   },
   "member": {
     "name": "최지현 공인중개사",
@@ -10,7 +17,10 @@
     "tagline": "안전한 전세, 합리적인 월세를 찾아드립니다",
     "avatar": "최",
     "photo": "/assets/members/slot05.jpg",
-    "logo": "/assets/logos/slot05.png"
+    "logo": "/assets/logos/slot05.png",
+    "recruitingTitle": "시흥 북부 전문 공인중개사 모집",
+    "recruitingTagline": "은행·거모·목감 택지지구 아파트/단독 전담",
+    "recruitingEmoji": "🌳"
   },
   "contact": {
     "phone": "010-5555-5555",

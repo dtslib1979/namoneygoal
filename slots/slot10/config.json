@@ -2,7 +2,14 @@
   "slot": {
     "id": "slot10",
     "type": "paid",
-    "status": "active"
+    "status": "recruiting",
+    "role": "감정평가사",
+    "region": "시흥 전역",
+    "placeholder": {
+      "title": "담보·상속·증여 감정평가사",
+      "tagline": "은행 담보감정·상속세 감정·협의이혼 재산분할",
+      "emoji": "📐"
+    }
   },
   "member": {
     "name": "서준호 공인중개사",
@@ -10,7 +17,10 @@
     "tagline": "법원 경매로 시세보다 저렴하게 내 집 마련",
     "avatar": "서",
     "photo": "/assets/members/slot10.jpg",
-    "logo": "/assets/logos/slot10.png"
+    "logo": "/assets/logos/slot10.png",
+    "recruitingTitle": "담보·상속·증여 감정평가사",
+    "recruitingTagline": "은행 담보감정·상속세 감정·협의이혼 재산분할",
+    "recruitingEmoji": "📐"
   },
   "contact": {
     "phone": "010-1010-1010",

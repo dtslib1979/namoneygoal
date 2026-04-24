@@ -2,7 +2,14 @@
   "slot": {
     "id": "slot06",
     "type": "paid",
-    "status": "active"
+    "status": "recruiting",
+    "role": "공인중개사",
+    "region": "월곶·소래",
+    "placeholder": {
+      "title": "월곶·소래 포구 권역 공인중개사",
+      "tagline": "수도권 서남부 해안 라이프스타일 매물",
+      "emoji": "⚓"
+    }
   },
   "member": {
     "name": "박성훈 공인중개사",
@@ -10,7 +17,10 @@
     "tagline": "1인 가구와 투자자를 위한 소형 부동산 전문",
     "avatar": "박",
     "photo": "/assets/members/slot06.jpg",
-    "logo": "/assets/logos/slot06.png"
+    "logo": "/assets/logos/slot06.png",
+    "recruitingTitle": "월곶·소래 포구 권역 공인중개사",
+    "recruitingTagline": "수도권 서남부 해안 라이프스타일 매물",
+    "recruitingEmoji": "⚓"
   },
   "contact": {
     "phone": "010-6666-6666",

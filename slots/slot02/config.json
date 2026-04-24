@@ -2,15 +2,18 @@
   "slot": {
     "id": "slot02",
     "type": "paid",
-    "status": "active"
+    "status": "active",
+    "role": "공인중개사",
+    "region": "시흥 장곡동"
   },
   "member": {
     "name": "권영숙",
-    "title": "유승한내들 부동산",
-    "tagline": "시흥 장곡동 전문 공인중개사",
+    "title": "시흥 장곡동 전문 공인중개사",
+    "tagline": "시흥장현유승한내들퍼스트파크 전문",
     "avatar": "권",
     "photo": "/assets/members/slot02.png",
-    "logo": "/assets/logos/slot02.png"
+    "logo": "/assets/logos/slot02.png",
+    "fullName": "유승한내들 부동산"
   },
   "office": {
     "name": "유승한내들 부동산",

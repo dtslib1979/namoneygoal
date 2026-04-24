@@ -2,7 +2,14 @@
   "slot": {
     "id": "slot04",
     "type": "paid",
-    "status": "active"
+    "status": "recruiting",
+    "role": "공인중개사",
+    "region": "정왕동 · 오이도",
+    "placeholder": {
+      "title": "정왕·오이도 전문 공인중개사 모집",
+      "tagline": "시흥시청권 · 오이도역세권 상업·주거 매물",
+      "emoji": "🌊"
+    }
   },
   "member": {
     "name": "정민수 공인중개사",
@@ -10,7 +17,10 @@
     "tagline": "투자 가치 분석과 미래 가치를 함께 봅니다",
     "avatar": "정",
     "photo": "/assets/members/slot04.jpg",
-    "logo": "/assets/logos/slot04.png"
+    "logo": "/assets/logos/slot04.png",
+    "recruitingTitle": "정왕·오이도 전문 공인중개사 모집",
+    "recruitingTagline": "시흥시청권 · 오이도역세권 상업·주거 매물",
+    "recruitingEmoji": "🌊"
   },
   "contact": {
     "phone": "010-4444-4444",

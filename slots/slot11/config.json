@@ -2,7 +2,14 @@
   "slot": {
     "id": "slot11",
     "type": "paid",
-    "status": "active"
+    "status": "recruiting",
+    "role": "홈스타일리스트·사진",
+    "region": "시흥 전역",
+    "placeholder": {
+      "title": "매물 촬영 · 홈스테이징",
+      "tagline": "팔리는 사진 · 보여지는 인테리어",
+      "emoji": "📸"
+    }
   },
   "member": {
     "name": "오수진 공인중개사",
@@ -10,7 +17,10 @@
     "tagline": "자녀 교육을 위한 최적의 학군 매물 추천",
     "avatar": "오",
     "photo": "/assets/members/slot11.jpg",
-    "logo": "/assets/logos/slot11.png"
+    "logo": "/assets/logos/slot11.png",
+    "recruitingTitle": "매물 촬영 · 홈스테이징",
+    "recruitingTagline": "팔리는 사진 · 보여지는 인테리어",
+    "recruitingEmoji": "📸"
   },
   "contact": {
     "phone": "010-1111-1111",

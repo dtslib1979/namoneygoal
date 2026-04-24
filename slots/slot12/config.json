@@ -2,7 +2,14 @@
   "slot": {
     "id": "slot12",
     "type": "paid",
-    "status": "active"
+    "status": "recruiting",
+    "role": "대출·금융 컨설턴트",
+    "region": "시흥 전역",
+    "placeholder": {
+      "title": "주택담보대출 전문 상담사",
+      "tagline": "매수 전 대출 한도·금리 비교 → 실행까지",
+      "emoji": "💰"
+    }
   },
   "member": {
     "name": "임태우 공인중개사",
@@ -10,7 +17,10 @@
     "tagline": "은퇴 후 편안한 삶을 위한 주거 솔루션",
     "avatar": "임",
     "photo": "/assets/members/slot12.jpg",
-    "logo": "/assets/logos/slot12.png"
+    "logo": "/assets/logos/slot12.png",
+    "recruitingTitle": "주택담보대출 전문 상담사",
+    "recruitingTagline": "매수 전 대출 한도·금리 비교 → 실행까지",
+    "recruitingEmoji": "💰"
   },
   "contact": {
     "phone": "010-1212-1212",

@@ -2,7 +2,14 @@
   "slot": {
     "id": "slot09",
     "type": "paid",
-    "status": "active"
+    "status": "recruiting",
+    "role": "세무사",
+    "region": "시흥 전역",
+    "placeholder": {
+      "title": "부동산 전담 세무사",
+      "tagline": "양도소득세·취득세·임대소득 신고 서비스",
+      "emoji": "🧾"
+    }
   },
   "member": {
     "name": "한소연 공인중개사",
@@ -10,7 +17,10 @@
     "tagline": "배곧신도시 신축 아파트 분양 상담 전문",
     "avatar": "한",
     "photo": "/assets/members/slot09.jpg",
-    "logo": "/assets/logos/slot09.png"
+    "logo": "/assets/logos/slot09.png",
+    "recruitingTitle": "부동산 전담 세무사",
+    "recruitingTagline": "양도소득세·취득세·임대소득 신고 서비스",
+    "recruitingEmoji": "🧾"
   },
   "contact": {
     "phone": "010-9999-9999",

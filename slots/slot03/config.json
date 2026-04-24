@@ -2,7 +2,14 @@
   "slot": {
     "id": "slot03",
     "type": "paid",
-    "status": "active"
+    "status": "recruiting",
+    "role": "공인중개사",
+    "region": "배곧 신도시",
+    "placeholder": {
+      "title": "배곧 신도시 전문 공인중개사 모집",
+      "tagline": "한라비발디·서해그랑블·호반써밋 라인 전담",
+      "emoji": "🏙️"
+    }
   },
   "member": {
     "name": "이영희 공인중개사",
@@ -10,7 +17,10 @@
     "tagline": "신혼부부와 함께하는 첫 집 찾기 전문가",
     "avatar": "이",
     "photo": "/assets/members/slot03.jpg",
-    "logo": "/assets/logos/slot03.png"
+    "logo": "/assets/logos/slot03.png",
+    "recruitingTitle": "배곧 신도시 전문 공인중개사 모집",
+    "recruitingTagline": "한라비발디·서해그랑블·호반써밋 라인 전담",
+    "recruitingEmoji": "🏙️"
   },
   "contact": {
     "phone": "010-3333-3333",
