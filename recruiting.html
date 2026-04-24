@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>슬롯 모집중 | 남원골</title>
+  <meta name="description" content="남원골 12슬롯 중 이 자리의 가입을 모집합니다">
+  <meta name="theme-color" content="#7C3AED">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --primary: #7C3AED;
+      --accent: #F59E0B;
+      --bg: #06060E;
+      --bg-card: #111127;
+      --text: #F5F5F7;
+      --text-dim: #9CA3AF;
+      --border: rgba(255,255,255,0.08);
+      --gradient-brand: linear-gradient(135deg, #7C3AED 0%, #EC4899 50%, #F59E0B 100%);
+      --radius: 20px;
+    }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background-image:
+        radial-gradient(circle at 20% 10%, rgba(124,58,237,0.18), transparent 50%),
+        radial-gradient(circle at 80% 90%, rgba(245,158,11,0.12), transparent 50%);
+    }
+    .wrap {
+      max-width: 640px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px 32px;
+      text-align: center;
+    }
+    .home-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+    .emoji {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .slot-id {
+      font-family: 'Space Grotesk', monospace;
+      color: var(--accent);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .role {
+      font-size: 1rem;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .region {
+      display: inline-block;
+      background: rgba(124,58,237,0.15);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .tagline {
+      font-size: 1rem;
+      color: var(--text);
+      opacity: 0.9;
+      margin-bottom: 32px;
+      padding: 20px;
+      background: rgba(124,58,237,0.06);
+      border-radius: 12px;
+      border-left: 3px solid var(--primary);
+      text-align: left;
+    }
+    .perks {
+      text-align: left;
+      margin: 24px 0;
+      padding: 20px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+    }
+    .perks h3 {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .perks ul {
+      list-style: none;
+      padding: 0;
+    }
+    .perks li {
+      padding: 6px 0;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      padding-left: 24px;
+      position: relative;
+    }
+    .perks li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .cta {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: transform 0.2s;
+    }
+    .cta:hover { transform: translateY(-2px); }
+    .cta.primary {
+      background: var(--gradient-brand);
+      color: #fff;
+    }
+    .cta.secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .fee {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+    .fee strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="/" class="home-link">← 남원골 홈</a>
+    <span class="emoji" id="emoji">💼</span>
+    <div class="slot-id" id="slotId">SLOT —</div>
+    <h1 id="title">모집중</h1>
+    <div class="role" id="role"></div>
+    <div class="region" id="region"></div>
+    <div class="tagline" id="tagline"></div>
+
+    <div class="perks">
+      <h3>슬롯 혜택</h3>
+      <ul>
+        <li>AI 워키토키 무제한 (말하면 글이 됨)</li>
+        <li>네이버 블로그 자동 발행</li>
+        <li>전용 서브도메인 + 디지털 명함</li>
+        <li>YouTube 채널 연동</li>
+        <li>권역 전담 SEO</li>
+        <li>Discord 길드원 VIP 채널</li>
+        <li>매월 HQ 관제 리포트</li>
+      </ul>
+    </div>
+
+    <div class="cta-group">
+      <a class="cta primary" id="ctaKakao" href="#">카카오로 상담 신청</a>
+      <a class="cta secondary" href="tel:010-2831-7909">전화 010-2831-7909</a>
+    </div>
+
+    <div class="fee">
+      입장 50만 · 월 <strong>10만</strong> (ChatGPT 3만 + 남원골 7만)<br>
+      부가: PWA/APK 5만, 페이지 수정 1만/건
+    </div>
+  </div>
+
+  <script>
+    (async function init() {
+      const params = new URLSearchParams(location.search);
+      const slotId = params.get('slot') || 'slot03';
+      try {
+        const reg = await fetch('/registry.json').then(r => r.json());
+        const slot = reg.slots.find(s => s.id === slotId);
+        if (!slot) return;
+        const ph = slot.placeholder || {};
+        document.getElementById('emoji').textContent = ph.emoji || '💼';
+        document.getElementById('slotId').textContent = `SLOT ${slot.id.replace('slot','').padStart(2,'0')}`;
+        document.getElementById('title').textContent = ph.title || '모집중';
+        document.getElementById('role').textContent = slot.role || '';
+        document.getElementById('region').textContent = slot.region || '';
+        document.getElementById('tagline').textContent = ph.tagline || '';
+        const kakao = `https://pf.kakao.com/_namoneygoal`;
+        document.getElementById('ctaKakao').href = kakao;
+        document.title = `${ph.title || '모집중'} | 남원골`;
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  </script>
+</body>
+</html>
