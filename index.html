@@ -798,6 +798,152 @@
     .slot-card.anchor .slot-badge { background: rgba(245,158,11,0.2); color: var(--accent); }
     .slot-card.active .slot-badge { background: rgba(16,185,129,0.2); color: var(--success); }
 
+    /* Recruiting state — 10명 모집중 슬롯 (생태계 직군 포함) */
+    .slot-card.recruiting {
+      opacity: 0.9;
+      background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(236,72,153,0.04));
+      border: 1px dashed rgba(124,58,237,0.35);
+    }
+    .slot-card.recruiting:hover {
+      transform: translateY(-3px);
+      border-color: rgba(124,58,237,0.7);
+      box-shadow: 0 8px 28px rgba(124,58,237,0.25);
+    }
+    .slot-card.recruiting .slot-avatar {
+      background: linear-gradient(135deg, rgba(124,58,237,0.25), rgba(236,72,153,0.2));
+      font-size: 1.3rem;
+    }
+    .slot-card.recruiting .slot-badge {
+      background: rgba(124,58,237,0.2);
+      color: var(--primary-light);
+    }
+    .slot-meta {
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      text-align: center;
+      max-width: 95%;
+      line-height: 1.3;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ========== DISCORD / COMMUNITY SECTION ========== */
+    .community-section {
+      padding: 96px 0;
+      background: linear-gradient(180deg, var(--bg), var(--bg-elevated));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .community-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+    @media (max-width: 768px) {
+      .community-grid { grid-template-columns: 1fr; }
+    }
+    .community-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      overflow: hidden;
+    }
+    .community-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .community-card iframe {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      border: none;
+    }
+    #discord-chat iframe { height: 480px; }
+    #yt-feed-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 540px) { #yt-feed-container { grid-template-columns: 1fr; } }
+    .yt-item {
+      background: var(--bg-elevated);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s var(--ease-out-expo);
+    }
+    .yt-item:hover { transform: translateY(-2px); }
+    .yt-item img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+    .yt-item-body { padding: 8px 10px; }
+    .yt-item-title { font-size: 0.8rem; font-weight: 600; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .yt-item-date { font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; }
+    .yt-placeholder {
+      grid-column: 1/-1;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .dc-presence {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dc-live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .dc-contact-form { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+    .dc-contact-form input,
+    .dc-contact-form textarea {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xs);
+      color: var(--text);
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      width: 100%;
+      outline: none;
+    }
+    .dc-contact-form textarea { min-height: 90px; resize: vertical; }
+    .dc-contact-form button {
+      background: var(--gradient-brand);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-xs);
+      padding: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .dc-join-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--primary-light);
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+
     /* ========== TIMELINE ========== */
     .timeline-container {
       margin-top: 48px;
@@ -1417,6 +1563,47 @@
     </div>
   </section>
 
+  <!-- ==================== COMMUNITY (DISCORD + YOUTUBE) ==================== -->
+  <section class="community-section" id="community">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">Community</div>
+        <h2 class="section-heading">
+          <span class="gradient-text">길드원</span>과 고객이<br>
+          함께 머무는 공간
+        </h2>
+        <p class="section-desc" style="margin:0 auto;">
+          Discord 에서 실시간 질의 · YouTube 에서 매물 이야기 · 모두 AI 가 받아 적습니다.
+        </p>
+      </div>
+
+      <div class="community-grid">
+        <!-- Discord: 실시간 채팅 -->
+        <div class="community-card reveal">
+          <h3>💬 실시간 채팅</h3>
+          <div class="dc-presence">
+            <span class="dc-live-dot"></span>
+            <span id="dc-online">서버 온라인 · <strong id="dc-online-count">—</strong>명</span>
+          </div>
+          <div id="discord-chat">
+            <iframe src="about:blank" title="Discord chat placeholder" loading="lazy"></iframe>
+          </div>
+          <a class="dc-join-link" id="dc-join" href="#" target="_blank" rel="noopener">Discord 서버 초대장 →</a>
+        </div>
+
+        <!-- YouTube: 최신 영상 + Discord 문의 폼 -->
+        <div class="community-card reveal">
+          <h3>📺 최신 영상 & 문의</h3>
+          <div id="yt-feed-container">
+            <div class="yt-placeholder">YouTube 채널 연결 대기 중 — 채널 ID 입력 후 자동 로드</div>
+          </div>
+
+          <div id="dc-contact-wrap" style="margin-top:20px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== PRICING ==================== -->
   <section id="pricing">
     <div class="container">
@@ -1524,18 +1711,28 @@
         registry = await res.json();
         slots = registry.slots.map(slot => ({
           id: slot.id,
-          name: slot.member?.name || '빈 슬롯',
-          avatar: slot.member?.avatar || '?',
+          name: slot.member?.name || slot.placeholder?.title || '모집중',
+          avatar: slot.member?.avatar || slot.placeholder?.emoji || '?',
           type: slot.type,
-          active: slot.status === 'active'
+          status: slot.status,
+          role: slot.role || '',
+          region: slot.region || '',
+          tagline: slot.member?.tagline || slot.placeholder?.tagline || '',
+          active: slot.status === 'active',
+          recruiting: slot.status === 'recruiting'
         }));
       } catch (e) {
         slots = Array.from({length: 12}, (_, i) => ({
           id: `slot${String(i+1).padStart(2, '0')}`,
-          name: '빈 슬롯',
+          name: '모집중',
           avatar: '?',
           type: i === 0 ? 'anchor' : 'paid',
-          active: false
+          status: 'empty',
+          role: '',
+          region: '',
+          tagline: '',
+          active: false,
+          recruiting: false
         }));
       }
     }
@@ -1556,15 +1753,24 @@
       if (tag) tag.textContent = `${remainCount}자리 남음`;
 
       grid.innerHTML = slots.map((slot, i) => {
-        const typeClass = slot.type === 'anchor' ? 'anchor' : (slot.active ? 'active' : 'empty');
-        const badge = slot.type === 'anchor' ? 'Anchor' : (slot.active ? 'Active' : '');
-        const href = slot.active ? `/slots/${slot.id}/` : '#';
+        const typeClass = slot.type === 'anchor' ? 'anchor'
+                        : (slot.active ? 'active' : (slot.recruiting ? 'recruiting' : 'empty'));
+        let badge = '';
+        if (slot.type === 'anchor') badge = 'Anchor';
+        else if (slot.active) badge = 'Active';
+        else if (slot.recruiting) badge = '모집중';
+        const href = slot.active ? `/slots/${slot.id}/`
+                   : (slot.recruiting ? `/recruiting.html?slot=${slot.id}` : '#');
+        const meta = slot.role
+          ? `<div class="slot-meta">${slot.role}${slot.region ? ' · ' + slot.region : ''}</div>`
+          : '';
         return `
           <a href="${href}" class="slot-card ${typeClass} reveal stagger-${(i % 5) + 1}"
-             ${!slot.active ? 'onclick="event.preventDefault();"' : ''}>
+             ${!slot.active && !slot.recruiting ? 'onclick="event.preventDefault();"' : ''}>
             ${badge ? `<span class="slot-badge">${badge}</span>` : ''}
             <div class="slot-avatar">${slot.avatar}</div>
             <div class="slot-name">${slot.name}</div>
+            ${meta}
           </a>
         `;
       }).join('');
@@ -1663,6 +1869,70 @@
       initHeader();
       initSmoothScroll();
     });
+  </script>
+
+  <!-- ==================== DISCORD + YOUTUBE MODULES ==================== -->
+  <link rel="stylesheet" href="/assets/discord/discord.css">
+  <script type="module">
+    import { CFG } from '/assets/discord/config.js';
+    import { initContactForm } from '/assets/discord/contact-form.js';
+    import { injectChat } from '/assets/discord/widget-embed.js';
+    import { showPresence } from '/assets/discord/presence.js';
+
+    // Only initialize when CFG has real values (not placeholder)
+    const hasReal = !CFG.CH_ID.startsWith('PLACEHOLDER');
+
+    if (hasReal) {
+      const chat = document.getElementById('discord-chat');
+      if (chat) { chat.innerHTML = ''; injectChat(chat); }
+      showPresence(document.getElementById('dc-online-count'));
+      const join = document.getElementById('dc-join');
+      if (join) join.href = `https://discord.gg/${CFG.GUILD_ID}`;
+      const wrap = document.getElementById('dc-contact-wrap');
+      if (wrap) initContactForm(wrap);
+    } else {
+      // Placeholder hints
+      const chat = document.getElementById('discord-chat');
+      if (chat) chat.innerHTML = '<div style="padding:40px;text-align:center;color:var(--text-muted);font-size:0.85rem;">Discord 채널 ID 입력 후 실시간 채팅 활성화</div>';
+      const wrap = document.getElementById('dc-contact-wrap');
+      if (wrap) wrap.innerHTML = '<div style="padding:20px;background:var(--bg-elevated);border-radius:12px;color:var(--text-muted);font-size:0.8rem;text-align:center;">Discord Webhook URL 입력 후 문의 폼 활성화</div>';
+    }
+  </script>
+
+  <script>
+    // YouTube RSS Feed (API key 불필요 — rss2json 프록시)
+    (async function loadYouTube() {
+      try {
+        const cache = await fetch('/data/youtube-cache.json').then(r => r.json());
+        const CH = cache.channelId;
+        if (!CH || CH.startsWith('PLACEHOLDER')) return;  // placeholder 상태면 로드 안 함
+
+        const RSS = `https://www.youtube.com/feeds/videos.xml?channel_id=${CH}`;
+        const API = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS)}&count=4`;
+        const data = await fetch(API).then(r => r.json());
+        const items = (data.items || []).slice(0, 4);
+        const box = document.getElementById('yt-feed-container');
+        if (!box) return;
+        if (items.length === 0) return;
+
+        box.innerHTML = items.map(v => {
+          const vid = (v.link || '').split('v=')[1]?.split('&')[0] || '';
+          const thumb = vid ? `https://i.ytimg.com/vi/${vid}/mqdefault.jpg` : (v.thumbnail || '');
+          const date = new Date(v.pubDate).toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' });
+          return `
+            <a class="yt-item" href="${v.link}" target="_blank" rel="noopener">
+              <img src="${thumb}" alt="">
+              <div class="yt-item-body">
+                <div class="yt-item-title">${v.title || ''}</div>
+                <div class="yt-item-date">${date}</div>
+              </div>
+            </a>
+          `;
+        }).join('');
+      } catch (e) {
+        console.log('[yt-feed] skip:', e.message);
+      }
+    })();
   </script>
 </body>
 </html>
