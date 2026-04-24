@@ -1,0 +1,16 @@
+{
+  "updated": "2026-04-24T00:00:00.000Z",
+  "handle": "PLACEHOLDER_YOUTUBE_HANDLE",
+  "repo": "namoneygoal",
+  "channelId": "PLACEHOLDER_CHANNEL_ID",
+  "name": "남원골",
+  "description": "시흥 부동산 12슬롯 길드. AI 워키토키로 중개인이 직접 말하는 매물 이야기.",
+  "thumbnail": "",
+  "stats": {
+    "subscriberCount": 0,
+    "viewCount": 0,
+    "videoCount": 0
+  },
+  "videos": [],
+  "_note": "박씨 입력 대기: YouTube 채널 ID + handle. 신규 개설 or @dtslib-branch 하위 재생목록 중 선택."
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>포럼 — phoneparis</title>
+<link rel="stylesheet" href="/assets/discord/discord.css">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Mono',monospace; }
+  .forum-header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.5rem 2rem;
+    border-bottom:1px solid var(--muted);
+  }
+  .forum-header h1 { color:var(--gold); font-size:1.2rem; letter-spacing:.15em; }
+  .back-link { color:var(--muted); text-decoration:none; font-size:.85rem; }
+  .back-link:hover { color:var(--gold); }
+  #forum-wrap { padding:1rem 2rem; }
+</style>
+</head>
+<body>
+<header class="forum-header">
+  <h1>💬 FORUM</h1>
+  <a href="/" class="back-link">← 홈으로</a>
+</header>
+<div id="forum-wrap"></div>
+<script type="module">
+  import { injectForum } from '/assets/discord/widget-embed.js';
+  injectForum(document.getElementById('forum-wrap'));
+</script>
+</body>
+</html>

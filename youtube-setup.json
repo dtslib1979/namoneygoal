@@ -1,0 +1,72 @@
+{
+  "_comment": "namoneygoal YouTube 설정 — 박씨 입력 대기 (_account/_channel_id_ref)",
+  "_account": "PLACEHOLDER",
+  "_channel_id_ref": "PLACEHOLDER_CHANNEL_ID",
+  "channel": {
+    "title": "남원골 namoneygoal",
+    "description": "🏠 AI를 쓰는 시흥 부동산 12슬롯 길드.\n\n남원골은 공인중개사 · 법무사 · 세무사 · 감정평가사가 모인 AI 워키토키 직업 운영 길드입니다.\n중개인이 말하면 자동으로 네이버 블로그/유튜브에 쌓입니다.\n\n✅ 매물 이야기 (시흥/장곡/배곧/정왕)\n✅ 계약 · 등기 · 세무 실무 팁\n✅ 인테리어 · 감정평가 사례\n✅ 12슬롯 길드원 인터뷰\n\n📍 경기 시흥 기반 | 문의 → namoneygoal.kr",
+    "keywords": [
+      "남원골",
+      "namoneygoal",
+      "시흥 부동산",
+      "공인중개사",
+      "시흥 장곡",
+      "배곧 신도시",
+      "정왕동 매물",
+      "부동산 길드",
+      "AI 부동산",
+      "중개사 협업",
+      "법무사",
+      "세무사",
+      "감정평가사"
+    ],
+    "language": "ko",
+    "country": "KR",
+    "trailer_video_id": null,
+    "banner_image_path": "assets/youtube-banner.jpg",
+    "profile_image_path": "assets/youtube-profile.jpg"
+  },
+  "upload_defaults": {
+    "categoryId": "22",
+    "language": "ko",
+    "license": "youtube",
+    "privacyStatus": "public",
+    "selfDeclaredMadeForKids": false
+  },
+  "playlists": [
+    {
+      "id_key": "slot_talks",
+      "title": "12슬롯 길드원 인터뷰",
+      "description": "공인중개사 · 법무사 · 세무사 등 남원골 12슬롯 길드원이 직접 말하는 이야기",
+      "privacyStatus": "public",
+      "tags": ["남원골", "길드원", "인터뷰"]
+    },
+    {
+      "id_key": "property_stories",
+      "title": "매물 이야기",
+      "description": "시흥 · 장곡 · 배곧 · 정왕 매물 해설",
+      "privacyStatus": "public",
+      "tags": ["시흥매물", "장곡", "배곧", "정왕"]
+    },
+    {
+      "id_key": "realestate_basics",
+      "title": "부동산 실무 Q&A",
+      "description": "계약 · 등기 · 세무 · 감정평가 실무 질문 풀이",
+      "privacyStatus": "public",
+      "tags": ["부동산실무", "계약", "세무"]
+    },
+    {
+      "id_key": "guild_roadmap",
+      "title": "남원골이란?",
+      "description": "AI 워키토키 길드 운영법 · 가입 안내 · 허세 포트폴리오",
+      "privacyStatus": "public",
+      "tags": ["길드", "가입", "AI"]
+    }
+  ],
+  "_playlist_ids": {
+    "slot_talks": "PLACEHOLDER_PL_SLOT_TALKS",
+    "property_stories": "PLACEHOLDER_PL_PROPERTY",
+    "realestate_basics": "PLACEHOLDER_PL_BASICS",
+    "guild_roadmap": "PLACEHOLDER_PL_ROADMAP"
+  }
+}
