@@ -1,0 +1,53 @@
+/* namoneygoal 팔레트 오버라이드
+ *
+ * discord.css (phoneparis 원본) 는 gold #D4AF37 기반.
+ * namoneygoal 랜딩은 purple #7C3AED 기반.
+ * 같은 변수명을 namoneygoal 팔레트로 재정의하여 Discord 컴포넌트가
+ * 자연스럽게 메인 테마에 녹아들도록 함.
+ *
+ * 로드 순서: discord.css → namoneygoal-theme.css (반드시 뒤)
+ */
+
+:root {
+  --gold:    #A78BFA;    /* purple-light (보라 톤) */
+  --bg:      #0D0D1A;    /* namoneygoal bg-elevated */
+  --emerald: #10B981;    /* 유지 (온라인 표시) */
+  --muted:   #6B7280;    /* neutral */
+  --surface: #111127;    /* namoneygoal bg-card */
+  --text:    #F5F5F7;    /* namoneygoal text */
+}
+
+/* Namoneygoal 전용 Discord 컴포넌트 오버라이드 */
+.auth-bar button {
+  border-color: #7C3AED;
+  color: #A78BFA;
+}
+.auth-bar button:hover {
+  background: linear-gradient(135deg, #7C3AED, #EC4899);
+  color: #fff;
+  border-color: transparent;
+}
+.auth-bar .avatar {
+  border-color: #7C3AED;
+}
+
+/* Contact form — namoneygoal 그라데이션 */
+.dc-contact-form button,
+#dc-contact-wrap button[type="submit"] {
+  background: linear-gradient(135deg, #7C3AED 0%, #EC4899 50%, #F59E0B 100%) !important;
+}
+
+/* Presence dot */
+.presence::before,
+.dc-live-dot {
+  background: #10B981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+/* Join link */
+.dc-join-link {
+  color: #A78BFA;
+}
+.dc-join-link:hover {
+  color: #F59E0B;
+}

@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "name": "남원골",
+    "description": "AI 쓰는 시흥 부동산 중개인 12슬롯 길드 — 공인중개사 전용 (박씨 원안)",
+    "totalSlots": 12,
+    "version": "1.0.0-realtors",
+    "updatedAt": "2026-04-25",
+    "guildConcept": "시흥 부동산 중개인의 말이 자동으로 네이버에 쌓이는 12슬롯 한정 직업 운영 길드"
+  },
+  "slots": [
+    {
+      "id": "slot01",
+      "status": "active",
+      "type": "anchor",
+      "role": "공인중개사",
+      "region": "시흥 남원동",
+      "member": {
+        "name": "김남원",
+        "fullName": "김남원 공인중개사",
+        "avatar": "김",
+        "photo": "/assets/members/kimnamwon.png",
+        "title": "부동산 전문 중개인",
+        "tagline": "시흥 남원골에서 신뢰로 거래하는 AI 쓰는 중개인"
+      },
+      "contact": { "phone": "010-2831-7909", "email": "namone@gmail.com", "address": null },
+      "social": { "youtube": "", "blog": "" },
+      "joinedAt": "2026-01-27",
+      "theme": "gold"
+    },
+    {
+      "id": "slot02",
+      "status": "active",
+      "type": "paid",
+      "role": "공인중개사",
+      "region": "시흥 장곡동",
+      "member": {
+        "name": "권영숙",
+        "fullName": "유승한내들 부동산",
+        "avatar": "권",
+        "photo": "/assets/members/slot02.png",
+        "title": "시흥 장곡동 전문 공인중개사",
+        "tagline": "시흥장현유승한내들퍼스트파크 전문"
+      },
+      "contact": { "phone": "", "email": "", "address": null },
+      "social": { "youtube": "", "blog": "" },
+      "joinedAt": "2026-01-29",
+      "theme": "gold"
+    },
+    { "id": "slot03", "status": "recruiting", "type": "paid", "role": "공인중개사", "region": "배곧 신도시",
+      "member": null, "contact": null,
+      "placeholder": { "title": "배곧 신도시 전문 공인중개사 모집", "tagline": "한라비발디·서해그랑블·호반써밋 라인 전담", "emoji": "🏙️" } },
+    { "id": "slot04", "status": "recruiting", "type": "paid", "role": "공인중개사", "region": "정왕동·오이도",
+      "member": null, "contact": null,
+      "placeholder": { "title": "정왕·오이도 전문 공인중개사 모집", "tagline": "시흥시청권·오이도역세권 상업·주거 매물", "emoji": "🌊" } },
+    { "id": "slot05", "status": "recruiting", "type": "paid", "role": "공인중개사", "region": "은행·거모·목감",
+      "member": null, "contact": null,
+      "placeholder": { "title": "시흥 북부 전문 공인중개사 모집", "tagline": "은행·거모·목감 택지지구 아파트/단독 전담", "emoji": "🌳" } },
+    { "id": "slot06", "status": "recruiting", "type": "paid", "role": "공인중개사", "region": "월곶·소래",
+      "member": null, "contact": null,
+      "placeholder": { "title": "월곶·소래 포구 권역 공인중개사", "tagline": "수도권 서남부 해안 라이프스타일 매물", "emoji": "⚓" } },
+    { "id": "slot07", "status": "recruiting", "type": "paid", "role": "공인중개사", "region": "서울 남부 광역",
+      "member": null, "contact": null,
+      "placeholder": { "title": "서울 접근권 공인중개사", "tagline": "구로·금천·광명·시흥 교차 수요 담당", "emoji": "🗼" } },
+    { "id": "slot08", "status": "recruiting", "type": "paid", "role": "공인중개사", "region": "능곡·하중·하상",
+      "member": null, "contact": null,
+      "placeholder": { "title": "능곡지구 전문 공인중개사", "tagline": "능곡·하중·하상 신도시 매물 전담", "emoji": "🏢" } },
+    { "id": "slot09", "status": "recruiting", "type": "paid", "role": "공인중개사", "region": "안산·광명 경계",
+      "member": null, "contact": null,
+      "placeholder": { "title": "수도권 서남 공인중개사", "tagline": "안산·광명·시흥 3각 교차 매물", "emoji": "🗺️" } },
+    { "id": "slot10", "status": "recruiting", "type": "paid", "role": "공인중개사", "region": "수원·화성 확장",
+      "member": null, "contact": null,
+      "placeholder": { "title": "경기 남부 확장 공인중개사", "tagline": "수원·화성 상업 매물 수도권 연계", "emoji": "🌆" } },
+    { "id": "slot11", "status": "recruiting", "type": "paid", "role": "공인중개사", "region": "상가·상업 전문",
+      "member": null, "contact": null,
+      "placeholder": { "title": "상가·상업 부동산 전문", "tagline": "시흥 전역 상가·오피스·근생 매물", "emoji": "🏬" } },
+    { "id": "slot12", "status": "recruiting", "type": "paid", "role": "공인중개사", "region": "토지·단독 전문",
+      "member": null, "contact": null,
+      "placeholder": { "title": "토지·단독주택 전문", "tagline": "시흥 외곽 토지·단독·전원주택", "emoji": "🌾" } }
+  ]
+}
