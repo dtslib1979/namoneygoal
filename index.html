@@ -1878,7 +1878,7 @@
     import { CFG } from '/assets/discord/config.js';
     import { initContactForm } from '/assets/discord/contact-form.js';
     import { injectChat } from '/assets/discord/widget-embed.js';
-    import { showPresence } from '/assets/discord/presence.js';
+    import { renderPresence } from '/assets/discord/presence.js';
 
     // Only initialize when CFG has real values (not placeholder)
     const hasReal = !CFG.CH_ID.startsWith('PLACEHOLDER');
@@ -1886,7 +1886,7 @@
     if (hasReal) {
       const chat = document.getElementById('discord-chat');
       if (chat) { chat.innerHTML = ''; injectChat(chat); }
-      showPresence(document.getElementById('dc-online-count'));
+      renderPresence(document.getElementById('dc-online-count'));
       const join = document.getElementById('dc-join');
       if (join) join.href = `https://discord.gg/${CFG.GUILD_ID}`;
       const wrap = document.getElementById('dc-contact-wrap');
