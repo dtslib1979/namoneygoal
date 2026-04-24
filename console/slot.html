@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>슬롯원 콘솔 | 남원골</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root {
+      --primary:#7C3AED;
+      --accent:#F59E0B;
+      --bg:#06060E;
+      --bg-card:#111127;
+      --bg-elevated:#0D0D1A;
+      --text:#F5F5F7;
+      --text-dim:#9CA3AF;
+      --text-muted:#6B7280;
+      --border:rgba(255,255,255,0.08);
+      --success:#10B981;
+      --danger:#EF4444;
+      --gradient-brand:linear-gradient(135deg,#7C3AED 0%,#EC4899 50%,#F59E0B 100%);
+      --radius:16px;
+    }
+    body {
+      font-family:'Noto Sans KR',sans-serif;
+      background:var(--bg); color:var(--text);
+      min-height:100vh; padding:24px;
+    }
+    .wrap { max-width:1000px; margin:0 auto; }
+    header { display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; padding-bottom:20px; border-bottom:1px solid var(--border); }
+    h1 { font-size:1.4rem; font-weight:900; }
+    .sub { font-size:0.8rem; color:var(--text-dim); margin-top:4px; }
+    .back { font-size:0.8rem; color:var(--text-dim); text-decoration:none; }
+    .back:hover { color:var(--accent); }
+
+    .gate { max-width:420px; margin:80px auto; padding:40px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); text-align:center; }
+    .gate h2 { margin-bottom:16px; font-size:1.1rem; }
+    .gate input, .gate select {
+      width:100%; padding:12px; margin:8px 0;
+      background:var(--bg-elevated); border:1px solid var(--border); border-radius:10px;
+      color:var(--text); font-family:inherit; font-size:0.9rem; outline:none;
+    }
+    .gate button {
+      width:100%; padding:12px; margin-top:16px;
+      background:var(--gradient-brand); color:#fff; border:none; border-radius:10px;
+      font-weight:700; cursor:pointer;
+    }
+    .hidden { display:none !important; }
+
+    .card-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-bottom:24px; }
+    .card {
+      background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);
+      padding:18px;
+    }
+    .card .label { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-dim); margin-bottom:6px; }
+    .card .value { font-size:1.6rem; font-weight:900; color:var(--text); }
+    .card .foot { font-size:0.72rem; color:var(--text-muted); margin-top:4px; }
+
+    .section { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:20px; margin-bottom:20px; }
+    .section h2 { font-size:0.9rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-bottom:16px; }
+    .list-item { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:0.85rem; }
+    .list-item:last-child { border-bottom:none; }
+    .list-item .date { font-size:0.72rem; color:var(--text-muted); font-family:'Space Grotesk',monospace; }
+    .tag { display:inline-block; padding:2px 8px; border-radius:100px; font-size:0.68rem; font-weight:700; letter-spacing:0.04em; }
+    .tag.edit { background:rgba(96,165,250,0.15); color:#60A5FA; }
+    .tag.pwa  { background:rgba(245,158,11,0.15); color:var(--accent); }
+    .tag.content { background:rgba(16,185,129,0.15); color:var(--success); }
+    .tag.done { background:rgba(16,185,129,0.1); color:var(--success); }
+    .tag.pending { background:rgba(239,68,68,0.1); color:var(--danger); }
+
+    .slot-header {
+      display:flex; align-items:center; gap:16px;
+      background:var(--bg-elevated); border:1px solid var(--border); border-radius:var(--radius);
+      padding:20px; margin-bottom:24px;
+    }
+    .slot-avatar {
+      width:56px; height:56px; border-radius:50%;
+      background:var(--gradient-brand);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900; font-size:1.3rem;
+    }
+    .slot-info h2 { font-size:1.1rem; font-weight:900; margin-bottom:4px; }
+    .slot-info p { font-size:0.82rem; color:var(--text-dim); }
+
+    .empty { text-align:center; padding:40px; color:var(--text-muted); font-size:0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Gate -->
+    <div id="gate" class="gate">
+      <h2>🔒 슬롯원 콘솔</h2>
+      <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:16px;">본인 슬롯 번호 + 개인 액세스 코드</p>
+      <select id="slotSelect">
+        <option value="slot01">slot01 — 김남원 (Anchor)</option>
+        <option value="slot02">slot02 — 권영숙</option>
+        <option value="slot03">slot03 — 배곧 모집중</option>
+        <option value="slot04">slot04 — 정왕 모집중</option>
+        <option value="slot05">slot05 — 은행/거모 모집중</option>
+        <option value="slot06">slot06 — 월곶/소래 모집중</option>
+        <option value="slot07">slot07 — 서울남부 모집중</option>
+        <option value="slot08">slot08 — 법무사 모집중</option>
+        <option value="slot09">slot09 — 세무사 모집중</option>
+        <option value="slot10">slot10 — 감정평가사 모집중</option>
+        <option value="slot11">slot11 — 사진/홈스타일 모집중</option>
+        <option value="slot12">slot12 — 대출상담 모집중</option>
+      </select>
+      <input type="password" id="accessCode" placeholder="개인 액세스 코드">
+      <button onclick="enter()">입장</button>
+      <p style="font-size:0.7rem;color:var(--text-muted);margin-top:12px;">※ 처음 입장 시 관리자(박씨)에게 코드 요청. 분실 시 재발급.</p>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="hidden">
+      <header>
+        <div>
+          <h1>슬롯원 콘솔</h1>
+          <div class="sub" id="whoami">—</div>
+        </div>
+        <div>
+          <a href="/console/" class="back">← HQ 콘솔</a>
+          &nbsp;&nbsp;
+          <a href="#" class="back" onclick="logout();return false;">로그아웃</a>
+        </div>
+      </header>
+
+      <div class="slot-header">
+        <div class="slot-avatar" id="slotAvatar">?</div>
+        <div class="slot-info">
+          <h2 id="slotName">—</h2>
+          <p id="slotMeta">—</p>
+        </div>
+      </div>
+
+      <div class="card-row">
+        <div class="card">
+          <div class="label">이번 달 포스팅</div>
+          <div class="value" id="mPosts">—</div>
+          <div class="foot">네이버 블로그 자동 발행</div>
+        </div>
+        <div class="card">
+          <div class="label">YouTube 조회수</div>
+          <div class="value" id="mViews">—</div>
+          <div class="foot">최근 30일</div>
+        </div>
+        <div class="card">
+          <div class="label">PR 요청 (대기)</div>
+          <div class="value" id="mPending">—</div>
+          <div class="foot">수정/콘텐츠/PWA</div>
+        </div>
+        <div class="card">
+          <div class="label">이번 달 청구</div>
+          <div class="value" id="mBill">—</div>
+          <div class="foot">월 10만 + 부가</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>📩 내 PR 요청 이력</h2>
+        <div id="prList" class="empty">요청 없음</div>
+      </div>
+
+      <div class="section">
+        <h2>💰 이번 달 정산</h2>
+        <div id="billList" class="empty">데이터 없음</div>
+      </div>
+
+      <div class="section">
+        <h2>🔗 내 링크</h2>
+        <div class="list-item"><span>내 디지털 사무실</span><a class="back" id="lnkOffice" href="#">→</a></div>
+        <div class="list-item"><span>내 디지털 명함</span><a class="back" id="lnkCard" href="#">→</a></div>
+        <div class="list-item"><span>내 블로그</span><a class="back" id="lnkBlog" href="#">→</a></div>
+        <div class="list-item"><span>내 YouTube</span><a class="back" id="lnkVideo" href="#">→</a></div>
+        <div class="list-item"><span>AI 워키토키</span><a class="back" href="/modules/walkie.html">→</a></div>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+  const LS_KEY = 'nmg_slot_session';
+
+  function enter() {
+    const slot = document.getElementById('slotSelect').value;
+    const code = document.getElementById('accessCode').value.trim();
+    // Placeholder gate: 실제 배포 시 slot config.staff.accessCode 비교로 교체
+    // 현재는 '1126' 공통 코드 허용 (기존 콘솔 관례)
+    if (!code || (code !== '1126' && code !== slot)) {
+      alert('액세스 코드가 올바르지 않습니다.');
+      return;
+    }
+    sessionStorage.setItem(LS_KEY, JSON.stringify({ slot, ts: Date.now() }));
+    renderDashboard(slot);
+  }
+
+  function logout() {
+    sessionStorage.removeItem(LS_KEY);
+    location.reload();
+  }
+
+  async function renderDashboard(slotId) {
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+
+    let slot = null;
+    try {
+      const reg = await fetch('/registry.json').then(r => r.json());
+      slot = reg.slots.find(s => s.id === slotId);
+    } catch (e) {}
+
+    const name = slot?.member?.name || slot?.placeholder?.title || '모집중';
+    const role = slot?.role || '';
+    const region = slot?.region || '';
+    const avatar = slot?.member?.avatar || slot?.placeholder?.emoji || '?';
+
+    document.getElementById('whoami').textContent = `${slotId.toUpperCase()} · ${role}${region ? ' · ' + region : ''}`;
+    document.getElementById('slotAvatar').textContent = avatar;
+    document.getElementById('slotName').textContent = name;
+    document.getElementById('slotMeta').textContent = `${role}${region ? ' · ' + region : ''}`;
+
+    // 메트릭 placeholder (실제는 GitHub Actions + data/slots-metrics.json 에서 fetch)
+    const isActive = slot?.status === 'active';
+    document.getElementById('mPosts').textContent    = isActive ? '—' : '0';
+    document.getElementById('mViews').textContent    = isActive ? '—' : '0';
+    document.getElementById('mPending').textContent  = '0';
+    document.getElementById('mBill').textContent     = isActive ? '10만' : '0';
+
+    // PR 이력: localStorage 에서 이 슬롯 것만 필터
+    try {
+      const all = JSON.parse(localStorage.getItem('pr_requests') || '[]');
+      const mine = all.filter(r => r.slot === slotId);
+      const list = document.getElementById('prList');
+      if (mine.length === 0) {
+        list.className = 'empty';
+        list.textContent = '요청 없음';
+      } else {
+        list.className = '';
+        list.innerHTML = mine.slice(-10).reverse().map(r => `
+          <div class="list-item">
+            <div>
+              <span class="tag ${r.type || 'edit'}">${r.type || 'edit'}</span>
+              <span style="margin-left:8px;">${(r.message || '').slice(0,40)}</span>
+            </div>
+            <div>
+              <span class="tag ${r.status === 'done' ? 'done' : 'pending'}">${r.status || 'pending'}</span>
+              <span class="date" style="margin-left:8px;">${new Date(r.ts).toLocaleDateString('ko-KR')}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+    } catch (e) {}
+
+    // 링크
+    document.getElementById('lnkOffice').href = `/slots/${slotId}/`;
+    document.getElementById('lnkCard').href = `/slots/${slotId}/card.html`;
+    document.getElementById('lnkBlog').href = `/slots/${slotId}/blog.html`;
+    document.getElementById('lnkVideo').href = `/slots/${slotId}/video.html`;
+  }
+
+  // Resume if session exists
+  (function resume() {
+    const raw = sessionStorage.getItem(LS_KEY);
+    if (!raw) return;
+    try {
+      const { slot, ts } = JSON.parse(raw);
+      // 세션 4시간 유지
+      if (Date.now() - ts > 4 * 3600 * 1000) { sessionStorage.removeItem(LS_KEY); return; }
+      renderDashboard(slot);
+    } catch (e) {}
+  })();
+</script>
+</body>
+</html>
