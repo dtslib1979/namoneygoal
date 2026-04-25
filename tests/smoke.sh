@@ -35,7 +35,10 @@ check() {
 echo "🌐 BASE: $BASE"
 echo ""
 echo "── 페이지 ──"
-check "/" 200 "community-section"
+check "/" 200 "네이버 생태계"
+check "/" 200 "Perplexity"
+check "/" 200 "Tier A"
+check "/" 200 "naver-toolbox"
 check "/recruiting.html?slot=slot08" 200 "slot-id"
 check "/forum.html" 200
 check "/console/slot.html" 200 "슬롯원 콘솔"
@@ -56,6 +59,8 @@ done
 echo ""
 echo "── 데이터/스크립트 자산 ──"
 check "/registry.json" 200 "totalSlots"
+check "/registry.json" 200 "Perplexity"
+check "/data/naver-tools.json" 200 "blog"
 check "/data/registry-realtors-only.json" 200 "공인중개사"
 check "/data/registry-ecosystem.json" 200 "totalSlots"
 check "/assets/discord/config.js" 200

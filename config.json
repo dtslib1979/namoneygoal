@@ -23,8 +23,22 @@
     "entry": 500000,
     "monthly": 100000,
     "monthlyBreakdown": {
-      "chatgpt": 30000,
+      "perplexity": 30000,
       "namoneygoal": 70000
+    },
+    "tiers": {
+      "A": {
+        "name": "LLM Track",
+        "monthly": 100000,
+        "default": true,
+        "tools": ["perplexity", "ai-walkie", "naver-blog", "naver-cafe", "naver-realestate", "naver-map"]
+      },
+      "B": {
+        "name": "Agent Track",
+        "monthly": 130000,
+        "limit_slots": 2,
+        "tools": ["+ deepseek-api", "+ aider", "+ parksy-mentoring"]
+      }
     },
     "addons": {
       "pwa": 50000,

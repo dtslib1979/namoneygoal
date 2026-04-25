@@ -85,7 +85,9 @@
         "icon": "📺",
         "url": "https://youtube.com/"
       }
-    ]
+    ],
+    "tier": "A",
+    "engine": "Perplexity Pro"
   },
   "createdAt": "2026-01-27T00:00:00Z"
 }

@@ -1,8 +1,24 @@
-# 🌅 박씨 아침 확인용 — namoneygoal 리팩토링 결과
+# 🌅 박씨 아침 확인용 — namoneygoal 리팩토링 (v2)
 
-**작업일**: 2026-04-24 밤 ~ 2026-04-25 새벽
-**작업자**: Claude Opus 4.7 (1M context) — 박씨 지시 "일단 만들어"
-**상태**: 로컬 커밋 대기 / Discord 4값 입력 후 즉시 라이브 가능
+**작업일**: 2026-04-24 밤 ~ 2026-04-25
+**작업자**: Claude Opus 4.7 (1M context)
+**버전**: v2 — 네이버 생태계 + LLM 전용 (Perplexity Pro)
+**상태**: ✅ 라이브 · Discord Bot 자동 활성화 (시각QA 8장)
+**상위 헌법**: `docs/CONCEPT-V2-NAVER-LLM-2026-04-25.md`
+
+---
+
+## 🔄 v1 → v2 변경 (2026-04-25 박씨 결정)
+
+| § | v1 | v2 |
+|:--:|---|---|
+| 1 | "AI 쓰는 중개인" | **"네이버 생태계 최고 전문가"** |
+| 2 | ChatGPT 3만 | **Perplexity Pro 3만** (출처 인용 자동) |
+| 3 | 슬롯원 자율 도구 | **LLM 만. 코드 접근 금지.** PR 버튼 위탁 |
+| 4 | 단일 트랙 | **Tier A (LLM) + Tier B (DeepSeek+Aider, 1~2명 옵션)** |
+| 5 | 12 슬롯 (1.1) | **12 슬롯 + tools.tier 메타** |
+
+상세: `docs/CONCEPT-V2-NAVER-LLM-2026-04-25.md`
 
 ---
 

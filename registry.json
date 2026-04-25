@@ -1,11 +1,18 @@
 {
   "meta": {
     "name": "남원골",
-    "description": "AI 쓰는 시흥 부동산 생태계 12슬롯 길드 — 중개사·법무사·세무사·감정사·홈스타일리스트·대출상담사 원스톱",
+    "description": "시흥 부동산 12명 한정 · LLM(Perplexity Pro) 만 쓰는 네이버 생태계 마스터 길드. 코드는 안 만진다.",
     "totalSlots": 12,
-    "version": "1.1.0",
-    "updatedAt": "2026-04-24",
-    "guildConcept": "매물부터 등기까지, 한 골목에서 끝나는 부동산"
+    "version": "2.0.0",
+    "updatedAt": "2026-04-25",
+    "guildConcept": "중개인은 부동산만 한다. 네이버는 LLM 이 한다.",
+    "primaryEngine": "Perplexity Pro",
+    "naverChannels": [
+      "blog",
+      "cafe",
+      "realestate",
+      "map"
+    ]
   },
   "slots": [
     {
@@ -28,9 +35,16 @@
         "address": null,
         "_address_note": "박씨 입력 대기 — 실제 사무실 주소 (예: '경기 시흥시 남원동 123-45 1층'). null 이면 region 중심 좌표로 대략 표시."
       },
-      "social": { "youtube": "", "blog": "" },
+      "social": {
+        "youtube": "",
+        "blog": ""
+      },
       "joinedAt": "2026-01-27",
-      "theme": "gold"
+      "theme": "gold",
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
+      }
     },
     {
       "id": "slot02",
@@ -46,10 +60,22 @@
         "title": "시흥 장곡동 전문 공인중개사",
         "tagline": "시흥장현유승한내들퍼스트파크 전문"
       },
-      "contact": { "phone": "", "email": "", "address": null, "_address_note": "박씨 입력 대기" },
-      "social": { "youtube": "", "blog": "" },
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": null,
+        "_address_note": "박씨 입력 대기"
+      },
+      "social": {
+        "youtube": "",
+        "blog": ""
+      },
       "joinedAt": "2026-01-29",
-      "theme": "gold"
+      "theme": "gold",
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
+      }
     },
     {
       "id": "slot03",
@@ -63,6 +89,10 @@
         "title": "배곧 신도시 전문 공인중개사 모집",
         "tagline": "한라비발디·서해그랑블·호반써밋 라인 전담",
         "emoji": "🏙️"
+      },
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
       }
     },
     {
@@ -77,6 +107,10 @@
         "title": "정왕·오이도 전문 공인중개사 모집",
         "tagline": "시흥시청권 · 오이도역세권 상업·주거 매물",
         "emoji": "🌊"
+      },
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
       }
     },
     {
@@ -91,6 +125,10 @@
         "title": "시흥 북부 전문 공인중개사 모집",
         "tagline": "은행·거모·목감 택지지구 아파트/단독 전담",
         "emoji": "🌳"
+      },
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
       }
     },
     {
@@ -105,6 +143,10 @@
         "title": "월곶·소래 포구 권역 공인중개사",
         "tagline": "수도권 서남부 해안 라이프스타일 매물",
         "emoji": "⚓"
+      },
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
       }
     },
     {
@@ -119,6 +161,10 @@
         "title": "서울 접근권 공인중개사",
         "tagline": "구로·금천·광명·시흥 교차 수요 담당",
         "emoji": "🗼"
+      },
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
       }
     },
     {
@@ -133,6 +179,10 @@
         "title": "등기 · 명의이전 전담 법무사",
         "tagline": "매매·전세 계약 후 소유권 이전까지 원스톱",
         "emoji": "⚖️"
+      },
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
       }
     },
     {
@@ -147,6 +197,10 @@
         "title": "부동산 전담 세무사",
         "tagline": "양도소득세·취득세·임대소득 신고 서비스",
         "emoji": "🧾"
+      },
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
       }
     },
     {
@@ -161,6 +215,10 @@
         "title": "담보·상속·증여 감정평가사",
         "tagline": "은행 담보감정·상속세 감정·협의이혼 재산분할",
         "emoji": "📐"
+      },
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
       }
     },
     {
@@ -175,6 +233,10 @@
         "title": "매물 촬영 · 홈스테이징",
         "tagline": "팔리는 사진 · 보여지는 인테리어",
         "emoji": "📸"
+      },
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
       }
     },
     {
@@ -189,6 +251,10 @@
         "title": "주택담보대출 전문 상담사",
         "tagline": "매수 전 대출 한도·금리 비교 → 실행까지",
         "emoji": "💰"
+      },
+      "tools": {
+        "tier": "A",
+        "engine": "Perplexity Pro"
       }
     }
   ]

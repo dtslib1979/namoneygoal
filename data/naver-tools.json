@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "version": "2.0",
+    "updated": "2026-04-25",
+    "description": "namoneygoal v2 — 네이버 4채널 도구함. 슬롯원이 LLM 으로 운영하는 채널들.",
+    "engine_default": "Perplexity Pro"
+  },
+  "channels": [
+    {
+      "id": "blog",
+      "icon": "📝",
+      "name": "네이버 블로그",
+      "name_en": "Naver Blog",
+      "function": "AI 워키토키 → 자동 발행",
+      "engine": "Perplexity 인용 + GPT-SoVITS 음성 → 텍스트 → 네이버 SEO",
+      "tier": "Tier A · 자동",
+      "automation_status": "active"
+    },
+    {
+      "id": "cafe",
+      "icon": "☕",
+      "name": "네이버 카페",
+      "name_en": "Naver Cafe",
+      "function": "지역 부동산 카페 모니터링",
+      "engine": "Perplexity 키워드 검색 + 알림",
+      "tier": "Tier A · 반자동",
+      "automation_status": "in_progress"
+    },
+    {
+      "id": "realestate",
+      "icon": "🏠",
+      "name": "네이버 부동산",
+      "name_en": "Naver Real Estate",
+      "function": "매물 등록 + 시세 동기화",
+      "engine": "Perplexity 시세 인용 + 수동 등록",
+      "tier": "Tier A · 반자동",
+      "automation_status": "manual"
+    },
+    {
+      "id": "map",
+      "icon": "📍",
+      "name": "네이버 지도",
+      "name_en": "Naver Map",
+      "function": "사무실 + 매물 위치",
+      "engine": "iframe 임베드 (slot/realty 컴포넌트)",
+      "tier": "Tier A · 자동",
+      "automation_status": "active"
+    }
+  ]
+}
