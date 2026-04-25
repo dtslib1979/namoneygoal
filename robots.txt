@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://dtslib1979.github.io/lotus/sitemap.xml
+
+Disallow: /backoffice/
+Disallow: /.hq/
