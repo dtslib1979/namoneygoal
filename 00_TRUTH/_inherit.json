@@ -1,5 +1,5 @@
 {
-  "repo": "lotus",
+  "repo": "namoneygoal",
   "level": 2,
   "parent": "dtslib-papyrus",
   "type": "Core Branch",
@@ -8,5 +8,8 @@
     "defaults": "override-allowed"
   },
   "created": "2026-01-26",
-  "overrides": []
+  "overrides": [],
+  "narrative": "남원골 — 시흥 부동산 중개인 12슬롯 한정 길드. Perplexity Pro + AI 워키토키 → 네이버 4채널(블로그/카페/부동산/지도) 자동 발행. 코드 없이 LLM만 사용",
+  "fab_route": "RT-α",
+  "pipeline_position": "branch / vertical-branch-realestate"
 }
